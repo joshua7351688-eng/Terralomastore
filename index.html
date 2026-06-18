@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Terraloma Distribution — Wholesale Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════ TOKENS ═══════════════ */
+:root{
+  --col-bg:#F7F5F1; --col-surface:#FFFFFF; --col-panel:#F2F0EC; --col-panel-2:#EAE7E1;
+  --col-border:#E2DDD6; --col-border-hi:#C8C0B4;
+  --col-navy:#1B2A4A; --col-navy-mid:#2E4270; --col-navy-lite:#4A6298;
+  --col-ink:#1A1A1A; --col-text:#2C2C2C; --col-mid:#6B6560; --col-mute:#9E9690; --col-ghost:#C8C0B4;
+  --col-gold:#B8922A; --col-gold-lite:#D4AA4A;
+  --font-display:'Libre Baskerville',Georgia,serif;
+  --font-body:'Raleway',-apple-system,sans-serif;
+  --max-w:1320px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--col-surface);color:var(--col-ink);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+/* ═══════════════ LOGIN GATE ═══════════════ */
+.gate{position:fixed;inset:0;z-index:1000;background:var(--col-navy);display:flex;align-items:center;justify-content:center;padding:24px;}
+.gate-inner{max-width:380px;width:100%;text-align:center;}
+.gate-logo{font-family:var(--font-display);font-size:28px;font-weight:700;color:#fff;letter-spacing:0.06em;margin-bottom:8px;}
+.gate-sub{font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:40px;}
+.gate-title{font-family:var(--font-display);font-size:22px;color:#fff;margin-bottom:8px;}
+.gate-text{font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:28px;line-height:1.6;}
+.gate-input{width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:#fff;font-family:var(--font-body);font-size:15px;padding:14px 16px;outline:none;text-align:center;letter-spacing:0.1em;transition:border-color .2s;}
+.gate-input::placeholder{color:rgba(255,255,255,0.4);letter-spacing:0;}
+.gate-input:focus{border-color:var(--col-gold-lite);}
+.gate-btn{width:100%;background:#fff;color:var(--col-navy);font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:15px;border:none;cursor:pointer;margin-top:14px;transition:background .2s;}
+.gate-btn:hover{background:var(--col-gold-lite);}
+.gate-error{color:#E8A0A0;font-size:13px;margin-top:14px;min-height:18px;}
+.gate-help{font-size:12px;color:rgba(255,255,255,0.4);margin-top:28px;line-height:1.6;}
+.gate-help a{color:rgba(255,255,255,0.7);border-bottom:1px solid rgba(255,255,255,0.3);}
+
+/* ═══════════════ APP ═══════════════ */
+#app{display:none;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:var(--col-surface);border-bottom:1px solid var(--col-border);}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.nav-logo{font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--col-navy);letter-spacing:0.08em;text-align:center;}
+.nav-logo span{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--col-mute);display:block;margin-top:0;font-family:var(--font-body);}
+.nav-side{display:flex;align-items:center;gap:8px;min-width:120px;}
+.nav-side.left{justify-content:flex-start;}
+.nav-side.right{justify-content:flex-end;}
+.cart-toggle{position:relative;background:none;border:none;cursor:pointer;color:var(--col-navy);padding:8px;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;}
+.cart-toggle svg{width:22px;height:22px;stroke:var(--col-navy);fill:none;stroke-width:1.5;}
+.cart-count{position:absolute;top:0;right:-2px;background:var(--col-gold);color:#fff;border-radius:999px;min-width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;padding:0 5px;}
+
+/* HERO BANNER */
+.hero{position:relative;height:clamp(320px,42vw,520px);overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;background:var(--col-navy);}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(rgba(27,42,74,0.3),rgba(27,42,74,0.65));}
+.hero-content{position:relative;z-index:1;padding:24px;max-width:700px;}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--col-gold-lite);margin-bottom:18px;}
+.hero-title{font-family:var(--font-display);font-size:clamp(34px,5vw,62px);font-weight:700;color:#fff;line-height:1.05;letter-spacing:-0.01em;margin-bottom:18px;}
+.hero-text{font-size:clamp(15px,2vw,18px);color:rgba(255,255,255,0.85);line-height:1.6;max-width:520px;margin:0 auto;}
+
+/* SECTION BAR */
+.shopbar{max-width:var(--max-w);margin:0 auto;padding:44px 32px 24px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.shopbar h2{font-family:var(--font-display);font-size:clamp(26px,3vw,36px);font-weight:700;color:var(--col-navy);letter-spacing:-0.01em;}
+.shopbar p{font-size:13px;color:var(--col-mute);margin-top:4px;}
+.filters{display:flex;gap:8px;flex-wrap:wrap;}
+.filter-btn{background:transparent;border:1px solid var(--col-border-hi);color:var(--col-mid);font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:9px 18px;cursor:pointer;transition:all .2s;}
+.filter-btn:hover{border-color:var(--col-navy);color:var(--col-navy);}
+.filter-btn.active{background:var(--col-navy);border-color:var(--col-navy);color:#fff;}
+
+/* PRODUCT GRID (Lucchese style) */
+.grid{max-width:var(--max-w);margin:0 auto;padding:0 32px 80px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--col-border);border-left:1px solid var(--col-border);}
+.product{position:relative;border-right:1px solid var(--col-border);border-bottom:1px solid var(--col-border);background:var(--col-surface);cursor:pointer;transition:background .25s;display:flex;flex-direction:column;}
+.product:hover{background:var(--col-panel);}
+.product-img{aspect-ratio:1/1.05;background:var(--col-panel);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.product-img img{width:88%;height:88%;object-fit:contain;transition:transform .4s ease;mix-blend-mode:multiply;}
+.product:hover .product-img img{transform:scale(1.05);}
+.product-tag{position:absolute;top:16px;left:16px;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#fff;padding:4px 9px;}
+.product-info{padding:20px 24px 26px;}
+.product-name{font-family:var(--font-body);font-size:14px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--col-navy);margin-bottom:8px;}
+.product-price{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--col-text);}
+.product-price small{font-size:12px;color:var(--col-mute);font-family:var(--font-body);font-weight:500;letter-spacing:0.02em;}
+.product-meta{font-size:12px;color:var(--col-mute);margin-top:6px;letter-spacing:0.04em;}
+
+/* FOOTER */
+.footer{background:var(--col-navy);padding:40px 0;}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.footer-logo{font-family:var(--font-display);font-size:20px;font-weight:700;color:#fff;letter-spacing:0.04em;}
+.footer-contact{display:flex;gap:24px;flex-wrap:wrap;align-items:center;}
+.footer-contact a{font-size:13px;color:rgba(255,255,255,0.65);transition:color .2s;}
+.footer-contact a:hover{color:#fff;}
+.footer-contact span{font-size:13px;color:rgba(255,255,255,0.4);}
+
+/* ═══════════════ PRODUCT MODAL ═══════════════ */
+.modal-overlay{position:fixed;inset:0;background:rgba(27,42,74,0.5);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:24px;}
+.modal-overlay.open{opacity:1;pointer-events:auto;}
+.modal{background:var(--col-surface);max-width:920px;width:100%;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;transform:translateY(20px);transition:transform .3s;}
+.modal-overlay.open .modal{transform:none;}
+.modal-img{background:var(--col-panel);display:flex;align-items:center;justify-content:center;padding:40px;min-height:380px;}
+.modal-img img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;}
+.modal-info{padding:44px 40px;position:relative;}
+.modal-close{position:absolute;top:20px;right:24px;background:none;border:none;font-size:28px;color:var(--col-mute);cursor:pointer;line-height:1;}
+.modal-material{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--col-gold);margin-bottom:8px;}
+.modal-name{font-family:var(--font-display);font-size:32px;font-weight:700;color:var(--col-navy);line-height:1.1;margin-bottom:14px;}
+.modal-desc{font-size:14px;color:var(--col-mid);line-height:1.7;margin-bottom:24px;}
+.modal-prices{border:1px solid var(--col-border);margin-bottom:24px;}
+.mp-row{display:flex;justify-content:space-between;padding:9px 14px;font-size:13px;border-bottom:1px solid var(--col-border);}
+.mp-row:last-child{border-bottom:none;}
+.mp-row .r{color:var(--col-mid);font-weight:500;}
+.mp-row .p{font-family:var(--font-display);font-weight:700;color:var(--col-navy);font-size:15px;}
+.mp-row.best{background:rgba(184,146,42,0.08);}
+.mp-row.best .r{color:var(--col-gold);font-weight:700;}
+.modal-controls{display:flex;gap:10px;margin-bottom:16px;}
+.mc-group{flex:1;}
+.mc-label{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--col-mute);margin-bottom:6px;display:block;}
+.mc-select,.mc-qty{width:100%;background:var(--col-bg);border:1px solid var(--col-border-hi);color:var(--col-text);font-family:var(--font-body);font-size:15px;padding:11px 12px;outline:none;}
+.mc-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B2A4A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;cursor:pointer;}
+.modal-add{width:100%;background:var(--col-navy);color:#fff;font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:16px;border:none;cursor:pointer;transition:background .2s;}
+.modal-add:hover{background:var(--col-navy-mid);}
+.modal-add.added{background:#2E7D32;}
+
+/* ═══════════════ CART DRAWER ═══════════════ */
+.cart-overlay{position:fixed;inset:0;background:rgba(27,42,74,0.4);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;}
+.cart-overlay.open{opacity:1;pointer-events:auto;}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:420px;max-width:90vw;background:var(--col-surface);z-index:201;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(27,42,74,0.15);}
+.cart-drawer.open{transform:none;}
+.cart-head{padding:24px 28px;border-bottom:1px solid var(--col-border);display:flex;align-items:center;justify-content:space-between;}
+.cart-head h3{font-family:var(--font-display);font-size:22px;color:var(--col-navy);font-weight:700;}
+.cart-close{background:none;border:none;font-size:24px;color:var(--col-mute);cursor:pointer;line-height:1;}
+.cart-items{flex:1;overflow-y:auto;padding:8px 28px;}
+.cart-empty{text-align:center;color:var(--col-mute);font-size:14px;padding:60px 20px;line-height:1.6;}
+.cart-item{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--col-border);}
+.cart-item-img{width:60px;height:60px;background:var(--col-panel);flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.cart-item-img img{width:90%;height:90%;object-fit:contain;mix-blend-mode:multiply;}
+.cart-item-info{flex:1;min-width:0;}
+.cart-item-name{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--col-navy);line-height:1.2;}
+.cart-item-meta{font-size:12px;color:var(--col-mute);margin-top:3px;}
+.cart-item-price{font-size:13px;color:var(--col-mid);margin-top:4px;}
+.cart-item-price strong{color:var(--col-navy);}
+.cart-item-remove{background:none;border:none;color:var(--col-mute);font-size:11px;cursor:pointer;text-decoration:underline;margin-top:4px;padding:0;}
+.cart-foot{padding:22px 28px;border-top:1px solid var(--col-border);background:var(--col-panel);}
+.cart-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
+.cart-total-label{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--col-mid);}
+.cart-total-val{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--col-navy);}
+.cart-note{font-size:11px;color:var(--col-mute);line-height:1.5;margin-bottom:16px;}
+.cart-send{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;font-family:var(--font-body);font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:16px;border:none;cursor:pointer;transition:background .2s;}
+.cart-send:hover{background:#1da851;}
+.cart-send svg{width:18px;height:18px;fill:#fff;}
+.cart-send:disabled{background:var(--col-border-hi);cursor:not-allowed;}
+
+/* RESPONSIVE */
+@media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:700px){.modal{grid-template-columns:1fr;}.modal-img{min-height:280px;}}
+@media(max-width:560px){
+  .grid{grid-template-columns:1fr;}
+  .nav-side{min-width:auto;}
+  .cart-drawer{width:100%;}
+  .shopbar{padding:32px 20px 20px;}
+  .grid{padding:0 20px 60px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ LOGIN GATE ═══════════════ -->
+<div class="gate" id="gate">
+  <div class="gate-inner">
+    <div class="gate-logo">TERRALOMA</div>
+    <div class="gate-sub">Wholesale Distribution</div>
+    <div class="gate-title">Private Store</div>
+    <div class="gate-text">For approved resellers only. Enter your access code to continue.</div>
+    <form id="gateForm" onsubmit="checkPassword(event)">
+      <input class="gate-input" id="gateInput" type="password" placeholder="Access code" autocomplete="off" required>
+      <button class="gate-btn" type="submit">Enter Store</button>
+      <div class="gate-error" id="gateError"></div>
+    </form>
+    <div class="gate-help">Don't have a code? <a href="https://wa.me/524439171366" target="_blank">Request access on WhatsApp</a></div>
+  </div>
+</div>
+
+<!-- ═══════════════ APP ═══════════════ -->
+<div id="app">
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-side left"></div>
+      <div class="nav-logo">TERRALOMA<span>Wholesale Store</span></div>
+      <div class="nav-side right">
+        <button class="cart-toggle" onclick="openCart()">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <section class="hero">
+    <img src="banner.jpg" alt="Terraloma boots" onerror="this.src='firstboot.png'; this.style.opacity='0.35';">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Approved Resellers · Factory Direct</div>
+      <h1 class="hero-title">The Wholesale Collection</h1>
+      <p class="hero-text">Handcrafted in León, Guanajuato. Volume pricing built in — the more you order, the lower your cost per pair. Build your order and send it to us on WhatsApp.</p>
+    </div>
+  </section>
+
+  <!-- SHOP BAR -->
+  <div class="shopbar">
+    <div>
+      <h2>Shop the Collection</h2>
+      <p id="resultCount"></p>
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all" onclick="setFilter(this)">All</button>
+      <button class="filter-btn" data-filter="exotic" onclick="setFilter(this)">Genuine Exotic</button>
+      <button class="filter-btn" data-filter="embossed" onclick="setFilter(this)">Embossed</button>
+    </div>
+  </div>
+
+  <!-- PRODUCT GRID -->
+  <div class="grid" id="grid"></div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">TERRALOMA</div>
+      <div class="footer-contact">
+        <a href="https://wa.me/524439171366" target="_blank">WhatsApp</a>
+        <a href="mailto:terraloma.distribution@gmail.com">Email</a>
+        <a href="https://instagram.com/terralomamx" target="_blank">@terralomamx</a>
+        <span>León, Guanajuato, México</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ PRODUCT MODAL ═══════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<!-- ═══════════════ CART DRAWER ═══════════════ -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h3>Your Order</h3>
+    <button class="cart-close" onclick="closeCart()">×</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Estimated Total</span>
+      <span class="cart-total-val" id="cartTotal">$0</span>
+    </div>
+    <p class="cart-note">Estimate based on per-model volume pricing. Final pricing and stock confirmed by Terraloma on WhatsApp.</p>
+    <button class="cart-send" id="cartSend" onclick="sendOrder()" disabled>
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+      Send Order via WhatsApp
+    </button>
+  </div>
+</aside>
+
+
+<script>
+/* ═══════════════ 1) ACCESS CODE ═══════════════ */
+const ACCESS_CODE = "terraloma2025";
+
+/* ═══════════════ 2) WHATSAPP ═══════════════ */
+const WHATSAPP = "524439171366";
+
+/* ═══════════════ 3) MODELS ═══════════════
+   id, name, material, type(exotic/embossed), tag+color, img, desc,
+   sizes[], prices[[minQty,pricePerPair],...]  */
+const MODELS = [
+  { id:"americano", name:"The Americano", material:"Embossed · Crocodile Print",
+    type:"embossed", tag:"Crocodile", tagColor:"#B8922A", img:"boot1.png",
+    desc:"Crocodile-embossed cowhide vamp, black shaft with American flag detail and laser-cut stars. Wide square toe.",
+    sizes:["7","7.5","8","8.5","9","9.5","10","10.5","11","12"], prices:[[14,95],[30,88],[100,82]] },
+  { id:"nightrider", name:"The Nightrider", material:"Embossed · Python Print",
+    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"boot2.png",
+    desc:"All-black python-embossed cowhide, tone-on-tone construction. Clean and versatile — moves across every demographic.",
+    sizes:["7","7.5","8","8.5","9","9.5","10","10.5","11","12"], prices:[[14,92],[30,86],[100,80]] },
+  { id:"tejano", name:"The Tejano", material:"Embossed · Pirarucu Print",
+    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"boot3.png",
+    desc:"Pirarucu-embossed cowhide vamp, oxblood shaft with traditional embroidery and diamond-pattern inlay. Wide square toe.",
+    sizes:["7","7.5","8","8.5","9","9.5","10","10.5","11","12"], prices:[[14,95],[30,88],[100,82]] },
+  { id:"rancher", name:"The Rancher", material:"Embossed · Python Print",
+    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"boot4.png",
+    desc:"Python-embossed cowhide vamp, dark chocolate shaft with diamond inlay embroidery. One of the highest-margin models.",
+    sizes:["8","8.5","9","9.5","10","10.5","11"], prices:[[14,98],[30,90],[100,84]] },
+  { id:"patron", name:"The Patron", material:"Genuine Exotic · Pirarucu",
+    type:"exotic", tag:"Genuine Exotic", tagColor:"#1B2A4A", img:"boot1.png",
+    desc:"Authentic Pirarucu scale vamp, hand-selected hides. Requires valid import/resale permits. For established retailers.",
+    sizes:["8","8.5","9","9.5","10","10.5","11"], prices:[[14,165],[30,152],[100,140]] },
+  { id:"don", name:"The Don", material:"Genuine Exotic · Full-Quill Ostrich",
+    type:"exotic", tag:"Genuine Exotic", tagColor:"#1B2A4A", img:"boot4.png",
+    desc:"Full-quill ostrich vamp, every quill hand-matched. The flagship exotic. Permits required.",
+    sizes:["8","8.5","9","9.5","10","10.5","11","12"], prices:[[14,185],[30,170],[100,158]] }
+];
+
+/* ═══════════════ LOGIN ═══════════════ */
+if (sessionStorage.getItem('tl_auth')==='ok'){ unlock(); }
+function checkPassword(e){
+  e.preventDefault();
+  const val=document.getElementById('gateInput').value.trim();
+  if(val===ACCESS_CODE){ sessionStorage.setItem('tl_auth','ok'); unlock(); }
+  else{ document.getElementById('gateError').textContent="Incorrect code. Try again or request access."; document.getElementById('gateInput').value=""; }
+}
+function unlock(){
+  document.getElementById('gate').style.display='none';
+  document.getElementById('app').style.display='block';
+  renderProducts('all');
+}
+
+/* ═══════════════ PRICE HELPERS ═══════════════ */
+function lowestPrice(m){ return Math.min(...m.prices.map(p=>p[1])); }
+function unitPrice(m,qty){ let p=m.prices[0][1]; for(const[min,pr]of m.prices){ if(qty>=min)p=pr; } return p; }
+
+/* ═══════════════ RENDER GRID ═══════════════ */
+function renderProducts(filter){
+  const grid=document.getElementById('grid');
+  const list=filter==='all'?MODELS:MODELS.filter(m=>m.type===filter);
+  document.getElementById('resultCount').textContent=list.length+" models available";
+  grid.innerHTML=list.map(m=>`
+    <div class="product" onclick="openModal('${m.id}')">
+      <div class="product-img">
+        <span class="product-tag" style="background:${m.tagColor}">${m.tag}</span>
+        <img src="${m.img}" alt="${m.name}" onerror="this.style.display='none'">
+      </div>
+      <div class="product-info">
+        <div class="product-name">${m.name}</div>
+        <div class="product-price">From $${lowestPrice(m)} <small>/ pair</small></div>
+        <div class="product-meta">${m.material}</div>
+      </div>
+    </div>`).join('');
+}
+function setFilter(btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts(btn.dataset.filter);
+}
+
+/* ═══════════════ PRODUCT MODAL ═══════════════ */
+function priceRows(m){
+  return m.prices.map((tier,i)=>{
+    const next=m.prices[i+1];
+    const range=next?`${tier[0]}–${next[0]-1} pairs`:`${tier[0]}+ pairs`;
+    const best=i===m.prices.length-1?' best':'';
+    return `<div class="mp-row${best}"><span class="r">${range}</span><span class="p">$${tier[1]}/pair</span></div>`;
+  }).join('');
+}
+function openModal(id){
+  const m=MODELS.find(x=>x.id===id);
+  document.getElementById('modalContent').innerHTML=`
+    <div class="modal-img"><img src="${m.img}" alt="${m.name}" onerror="this.style.display='none'"></div>
+    <div class="modal-info">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-material">${m.material}</div>
+      <div class="modal-name">${m.name}</div>
+      <p class="modal-desc">${m.desc}</p>
+      <div class="modal-prices">${priceRows(m)}</div>
+      <div class="modal-controls">
+        <div class="mc-group">
+          <label class="mc-label">Size (US)</label>
+          <select class="mc-select" id="m-size">${m.sizes.map(s=>`<option>${s}</option>`).join('')}</select>
+        </div>
+        <div class="mc-group">
+          <label class="mc-label">Pairs</label>
+          <input class="mc-qty" id="m-qty" type="number" min="1" value="14">
+        </div>
+      </div>
+      <button class="modal-add" id="m-add" onclick="addToCart('${m.id}')">Add to Order</button>
+    </div>`;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function closeModal(){ document.getElementById('modalOverlay').classList.remove('open'); }
+
+/* ═══════════════ CART ═══════════════ */
+let cart=[];
+function addToCart(id){
+  const m=MODELS.find(x=>x.id===id);
+  const size=document.getElementById('m-size').value;
+  const qty=Math.max(1,parseInt(document.getElementById('m-qty').value)||1);
+  const ex=cart.find(i=>i.id===id&&i.size===size);
+  if(ex){ ex.qty+=qty; } else { cart.push({id,name:m.name,size,qty,img:m.img,model:m}); }
+  const btn=document.getElementById('m-add');
+  btn.textContent='Added ✓'; btn.classList.add('added');
+  renderCart();
+  setTimeout(()=>{ closeModal(); openCart(); },700);
+}
+function removeItem(idx){ cart.splice(idx,1); renderCart(); }
+function renderCart(){
+  const itemsEl=document.getElementById('cartItems');
+  const countEl=document.getElementById('cartCount');
+  const totalEl=document.getElementById('cartTotal');
+  const sendBtn=document.getElementById('cartSend');
+  const totalPairs=cart.reduce((s,i)=>s+i.qty,0);
+  countEl.textContent=totalPairs;
+  if(cart.length===0){
+    itemsEl.innerHTML='<div class="cart-empty">Your order is empty.<br>Tap a boot to add it to your order.</div>';
+    totalEl.textContent='$0'; sendBtn.disabled=true; return;
+  }
+  let total=0;
+  itemsEl.innerHTML=cart.map((i,idx)=>{
+    const up=unitPrice(i.model,i.qty); const sub=up*i.qty; total+=sub;
+    return `<div class="cart-item">
+      <div class="cart-item-img"><img src="${i.img}" alt="" onerror="this.style.display='none'"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${i.name}</div>
+        <div class="cart-item-meta">Size ${i.size} · ${i.qty} pairs · $${up}/pair</div>
+        <div class="cart-item-price">Subtotal: <strong>$${sub.toLocaleString()}</strong></div>
+        <button class="cart-item-remove" onclick="removeItem(${idx})">Remove</button>
+      </div></div>`;
+  }).join('');
+  totalEl.textContent='$'+total.toLocaleString();
+  sendBtn.disabled=false;
+}
+function openCart(){ document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
+function closeCart(){ document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+function sendOrder(){
+  if(cart.length===0)return;
+  let total=0;
+  let msg="Hi Terraloma, I'd like to place a wholesale order:%0A%0A";
+  cart.forEach(i=>{ const up=unitPrice(i.model,i.qty); const sub=up*i.qty; total+=sub;
+    msg+=`• ${i.name} — Size ${i.size} — ${i.qty} pairs @ $${up} = $${sub.toLocaleString()}%0A`; });
+  const totalPairs=cart.reduce((s,i)=>s+i.qty,0);
+  msg+=`%0ATotal: ${totalPairs} pairs — Estimated $${total.toLocaleString()}%0A%0APlease confirm stock and final pricing.`;
+  window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,'_blank');
+}
+</script>
+</body>
+</html>
