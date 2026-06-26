@@ -7,7 +7,7 @@
 <title>Terraloma Distribution — Wholesale Store</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 /* ═══════════════ TOKENS ═══════════════ */
@@ -47,7 +47,7 @@ a{color:inherit;text-decoration:none;}
 #app{display:none;}
 
 /* NAV */
-.nav{position:sticky;top:0;z-index:100;background:var(--col-surface);border-bottom:1px solid var(--col-border);}
+.nav{position:sticky;top:38px;z-index:100;background:var(--col-surface);border-bottom:1px solid var(--col-border);}
 .nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
 .nav-logo{font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--col-navy);letter-spacing:0.08em;text-align:center;}
 .nav-logo span{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--col-mute);display:block;margin-top:0;font-family:var(--font-body);}
@@ -58,9 +58,37 @@ a{color:inherit;text-decoration:none;}
 .cart-toggle svg{width:22px;height:22px;stroke:var(--col-navy);fill:none;stroke-width:1.5;}
 .cart-count{position:absolute;top:0;right:-2px;background:var(--col-gold);color:#fff;border-radius:999px;min-width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;padding:0 5px;}
 
+/* ANNOUNCEMENT BAR (marquee) */
+.announce-bar{background:var(--col-navy);height:38px;overflow:hidden;display:flex;align-items:center;position:sticky;top:0;z-index:101;}
+.announce-marquee{display:inline-flex;align-items:center;gap:40px;white-space:nowrap;animation:marquee 32s linear infinite;will-change:transform;}
+.announce-marquee:hover{animation-play-state:paused;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.am-item{font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.9);}
+.am-link{text-decoration:none;color:#fff;transition:color .2s;}
+.am-link:hover{color:var(--col-gold-lite);}
+.am-sep{color:var(--col-gold-lite);font-size:9px;}
+
+/* GENDER TABS */
+.gender-bar{display:flex;justify-content:center;gap:44px;border-bottom:1px solid var(--col-border);background:var(--col-surface);}
+.gender-tab{background:none;border:none;font-family:var(--font-body);font-size:13px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--col-mute);cursor:pointer;padding:16px 4px;position:relative;transition:color .2s;}
+.gender-tab:hover{color:var(--col-navy);}
+.gender-tab.active{color:var(--col-navy);}
+.gender-tab.active::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--col-navy);}
+
 /* HERO BANNER */
-.hero{background:var(--col-navy);line-height:0;}
-.hero img{width:100%;height:auto;display:block;margin:0 auto;max-width:760px;}
+.hero{background:var(--col-navy);}
+.hero-inner{position:relative;max-width:760px;margin:0 auto;line-height:normal;}
+.hero img{width:100%;height:auto;display:block;}
+.hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;padding:0 8%;background:linear-gradient(90deg,rgba(20,28,48,0.82) 0%,rgba(20,28,48,0.45) 45%,rgba(20,28,48,0.05) 80%,transparent 100%);}
+.hero-eyebrow{font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#fff;opacity:0.85;margin-bottom:14px;}
+.hero-headline{font-family:var(--font-body);font-weight:800;font-size:clamp(40px,8vw,72px);color:#fff;line-height:0.98;letter-spacing:-0.02em;margin-bottom:20px;}
+.hero-sub{font-family:var(--font-body);font-size:clamp(14px,2vw,17px);font-weight:400;color:rgba(255,255,255,0.9);line-height:1.5;max-width:380px;margin-bottom:30px;}
+.hero-btns{display:flex;flex-direction:column;gap:12px;align-items:flex-start;}
+.hero-btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:14px 30px;border-radius:999px;transition:all .2s;white-space:nowrap;}
+.hero-btn-white{background:#fff;color:var(--col-navy);border:2px solid #fff;}
+.hero-btn-white:hover{background:transparent;color:#fff;}
+.hero-btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.55);}
+.hero-btn-outline:hover{background:#fff;color:var(--col-navy);border-color:#fff;}
 
 /* SECTION BAR */
 .shopbar{max-width:var(--max-w);margin:0 auto;padding:44px 32px 24px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;}
@@ -84,6 +112,15 @@ a{color:inherit;text-decoration:none;}
 .product-price{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--col-text);}
 .product-price small{font-size:12px;color:var(--col-mute);font-family:var(--font-body);font-weight:500;letter-spacing:0.02em;}
 .product-meta{font-size:12px;color:var(--col-mute);margin-top:6px;letter-spacing:0.04em;}
+
+/* PROMO BANNER (woven into grid) */
+.promo{grid-column:1/-1;position:relative;min-height:440px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;text-align:center;border-right:1px solid var(--col-border);border-bottom:1px solid var(--col-border);overflow:hidden;}
+.promo::before{content:'';position:absolute;inset:0;background:rgba(18,26,44,0.58);}
+.promo-content{position:relative;z-index:1;padding:48px 32px;max-width:560px;}
+.promo-title{font-family:var(--font-display);font-size:clamp(28px,4vw,46px);font-weight:700;color:#fff;line-height:1.08;letter-spacing:-0.01em;margin-bottom:18px;}
+.promo-text{font-family:var(--font-body);font-size:clamp(14px,1.8vw,17px);color:rgba(255,255,255,0.92);line-height:1.6;margin-bottom:30px;max-width:460px;margin-left:auto;margin-right:auto;}
+.promo-btn{display:inline-flex;align-items:center;background:#fff;color:var(--col-navy);font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:15px 34px;border-radius:999px;transition:all .2s;}
+.promo-btn:hover{background:var(--col-gold-lite);color:var(--col-navy);}
 
 /* FOOTER */
 .footer{background:var(--col-navy);padding:40px 0;}
@@ -192,6 +229,24 @@ a{color:inherit;text-decoration:none;}
 <!-- ═══════════════ APP ═══════════════ -->
 <div id="app">
 
+  <!-- ANNOUNCEMENT BAR (marquee) -->
+  <div class="announce-bar">
+    <div class="announce-marquee">
+      <span class="am-item">Minimum order: 14 pairs per style</span>
+      <span class="am-sep">✦</span>
+      <span class="am-item">Ships from León, México — 7–14 business days</span>
+      <span class="am-sep">✦</span>
+      <a class="am-item am-link" href="https://wa.me/524439171366" target="_blank">Questions? Message us on WhatsApp →</a>
+      <span class="am-sep">✦</span>
+      <span class="am-item">Minimum order: 14 pairs per style</span>
+      <span class="am-sep">✦</span>
+      <span class="am-item">Ships from León, México — 7–14 business days</span>
+      <span class="am-sep">✦</span>
+      <a class="am-item am-link" href="https://wa.me/524439171366" target="_blank">Questions? Message us on WhatsApp →</a>
+      <span class="am-sep">✦</span>
+    </div>
+  </div>
+
   <nav class="nav">
     <div class="nav-inner">
       <div class="nav-side left"></div>
@@ -207,20 +262,33 @@ a{color:inherit;text-decoration:none;}
 
   <!-- HERO BANNER -->
   <section class="hero">
-    <img src="portada2.png" alt="Terraloma boots">
+    <div class="hero-inner">
+      <img src="portada11.jpeg" alt="Terraloma boots">
+      <div class="hero-overlay">
+        <div class="hero-eyebrow">New to wholesale?</div>
+        <h2 class="hero-headline">We've got<br>you.</h2>
+        <p class="hero-sub">From your first order to delivery — our team walks you through every step.</p>
+        <div class="hero-btns">
+          <a class="hero-btn hero-btn-white" href="https://wa.me/524439171366" target="_blank">Place Your Order</a>
+          <a class="hero-btn hero-btn-outline" href="#shop">Shop the Collection</a>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <!-- GENDER TABS -->
+  <div class="gender-bar">
+    <button class="gender-tab active" data-gender="men" onclick="setGender(this)">Men</button>
+    <button class="gender-tab" data-gender="women" onclick="setGender(this)">Women</button>
+  </div>
+
   <!-- SHOP BAR -->
-  <div class="shopbar">
+  <div class="shopbar" id="shop">
     <div>
       <h2>Shop the Collection</h2>
       <p id="resultCount"></p>
     </div>
-    <div class="filters">
-      <button class="filter-btn active" data-filter="all" onclick="setFilter(this)">All</button>
-      <button class="filter-btn" data-filter="exotic" onclick="setFilter(this)">Genuine Exotic</button>
-      <button class="filter-btn" data-filter="embossed" onclick="setFilter(this)">Embossed</button>
-    </div>
+    <div class="filters" id="filters"></div>
   </div>
 
   <!-- PRODUCT GRID -->
@@ -278,24 +346,185 @@ const WHATSAPP = "524439171366";
      id, name, material, type(exotic/embossed), tag+color, img, desc,
      sizes[], price (single wholesale price per pair)  */
 const MODELS = [
-  { id:"americano", name:"The Americano", material:"Embossed · Crocodile Print",
-    type:"embossed", tag:"Crocodile", tagColor:"#B8922A", img:"boot1.png",
-    desc:"Crocodile-embossed cowhide vamp, black shaft with American flag detail and laser-cut stars. Wide square toe.", price:95 },
-  { id:"nightrider", name:"The Nightrider", material:"Embossed · Python Print",
-    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"boot2.png",
-    desc:"All-black python-embossed cowhide, tone-on-tone construction. Clean and versatile — moves across every demographic.", price:92 },
-  { id:"tejano", name:"The Tejano", material:"Embossed · Pirarucu Print",
-    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"boot3.png",
-    desc:"Pirarucu-embossed cowhide vamp, oxblood shaft with traditional embroidery and diamond-pattern inlay. Wide square toe.", price:95 },
-  { id:"rancher", name:"The Rancher", material:"Embossed · Python Print",
-    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"boot4.png",
-    desc:"Python-embossed cowhide vamp, dark chocolate shaft with diamond inlay embroidery. One of the highest-margin models.", price:98 },
-  { id:"patron", name:"The Patron", material:"Genuine Exotic · Pirarucu",
-    type:"exotic", tag:"Genuine Exotic", tagColor:"#1B2A4A", img:"boot1.png",
-    desc:"Authentic Pirarucu scale vamp, hand-selected hides. Requires valid import/resale permits. For established retailers.", price:165 },
-  { id:"don", name:"The Don", material:"Genuine Exotic · Full-Quill Ostrich",
-    type:"exotic", tag:"Genuine Exotic", tagColor:"#1B2A4A", img:"boot4.png",
-    desc:"Full-quill ostrich vamp, every quill hand-matched. The flagship exotic. Permits required.", price:185 }
+  { id:"m1", name:"The Lone Star", material:"Embossed · Crocodile Print",
+    type:"embossed", tag:"Crocodile", tagColor:"#B8922A", img:"m1.png",
+    desc:"Cowboy boot crafted from black embossed alligator-skin textured mule leather. The shaft features a large overlapping central star and star details. Wide square last. Leather lining.", price:84 },
+  { id:"m2", name:"The Patriot", material:"Embossed · Python Print",
+    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"m2.png",
+    desc:"Python leather cowboy boot with silver star on the shaft and flag-style perforations. Wide square western last.", price:84 },
+  { id:"m3", name:"The Ranger", material:"Embossed · Python Print",
+    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"m3.png",
+    desc:"Honey brown cowboy boot in python leather with a wine/dark brown shaft, embroidered star and flag-style perforations. Wide square western last.", price:84 },
+  { id:"m4", name:"The Maverick", material:"Embossed · Pirarucu Print",
+    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"m4.png",
+    desc:"Honey cowboy boot in chinela leather with pirarucu print, brown shaft with star perforations and a black star embroidered with flag design. Wide square western last.", price:84 },
+  { id:"m5", name:"The Outlaw", material:"Embossed · Pirarucu Print",
+    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"m5.png",
+    desc:"Black cowboy boot in chinela leather with pirarucu print, black shaft with star perforations and a black star embroidered with flag design. Wide square western last.", price:84 },
+  { id:"m6", name:"The Durango", material:"Embossed · Python Print",
+    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"m6.png",
+    desc:"Dark brown boot in chinela leather with python print and gold/brown floral embossed embroidery. Wide square western last.", price:84 },
+  { id:"m7", name:"The Rebel", material:"Embossed · Ostrich Print",
+    type:"embossed", tag:"Ostrich", tagColor:"#B8922A", img:"m7.png",
+    desc:"Red and black boot in chinela leather with ostrich print and a distressed red flag-style star. Wide square western last.", price:84 },
+  { id:"m8", name:"The Marshal", material:"Embossed · Stingray Print",
+    type:"embossed", tag:"Stingray", tagColor:"#B8922A", img:"m8.png",
+    desc:"Black boot in chinela leather with stingray print, black shaft with star perforations and a black star embroidered with flag design. Wide square western last.", price:84 },
+  { id:"m9", name:"The Drifter", material:"Embossed · Pirarucu Print",
+    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"m9.png",
+    desc:"Black pirarucu print leather boot with matching black shaft featuring tonal grey floral embroidery. Wide square western toe.", price:84 },
+  { id:"m10", name:"The Nomad", material:"Embossed · Ostrich Print",
+    type:"embossed", tag:"Ostrich", tagColor:"#B8922A", img:"m10.jpeg",
+    desc:"Black ostrich print leather boot with matching black shaft featuring tonal grey floral embroidery. Wide square western toe.", price:84 },
+  { id:"m11", name:"The Rancher", material:"Embossed · Crocodile Print",
+    type:"embossed", tag:"Crocodile", tagColor:"#B8922A", img:"m11.jpeg",
+    desc:"Cowboy boot crafted from black embossed alligator-skin textured mule leather, with matching brown shaft featuring tonal brown floral embroidery. Wide square western toe.", price:84 },
+  { id:"m12", name:"The Mesa", material:"Embossed · Crocodile Print",
+    type:"embossed", tag:"Crocodile", tagColor:"#B8922A", img:"m12.png",
+    desc:"Tan caiman tail print leather boot with brown shaft featuring cream and tan Native American-inspired arrow and geometric embroidery. Wide square western toe.", price:84 },
+  { id:"m13", name:"The Wrangler", material:"Embossed · Pirarucu Print",
+    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"m13.png",
+    desc:"Brown cowboy boot in chinela leather with pirarucu print, brown shaft with star perforations and a black star embroidered with flag design. Wide square western last.", price:84 },
+  { id:"mm1", name:"The Cavalier", material:"Embossed · Crocodile Print",
+    type:"embossed", tag:"Crocodile", tagColor:"#B8922A", img:"mm1.png",
+    desc:"Honey tan crocodile print leather boot with black patent shaft featuring embossed star and flag perforations. Wide square western toe.", price:84 },
+  { id:"mm2", name:"The Vaquero", material:"Embossed · Ostrich Print",
+    type:"embossed", tag:"Ostrich", tagColor:"#B8922A", img:"mm2.png",
+    desc:"Cognac boot in chinela leather with ostrich print and a distressed red flag-style star. Wide square western last.", price:84 },
+  { id:"mm3", name:"The Sundance", material:"Embossed · Python Print",
+    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"mm3.png",
+    desc:"Black and grey cowboy boot in python leather with embroidered star and flag-style perforations. Wide square western last.", price:84 },
+  { id:"mm4", name:"The Bronco", material:"Embossed · Python Print",
+    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"mm4.png",
+    desc:"Black and honey cowboy boot in python leather with embroidered star and flag-style perforations. Wide square western last.", price:84 },
+  { id:"mm5", name:"The Prospector", material:"Embossed · Pirarucu Print",
+    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"mm5.png",
+    desc:"Gold and black pirarucu print leather boot with dark brown shaft featuring copper/bronze floral embroidery and a tooled leather top. Wide square western toe.", price:84 },
+  { id:"mm6", name:"The Trailblazer", material:"Embossed · Ostrich Print",
+    type:"embossed", tag:"Ostrich", tagColor:"#B8922A", img:"mm6.png",
+    desc:"Brown boot in chinela leather with ostrich print, dark brown shaft featuring copper/bronze floral embroidery and a tooled leather top. Wide square western toe.", price:84 },
+  { id:"mm7", name:"The Cimarron", material:"Embossed · Pirarucu Print",
+    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"mm7.png",
+    desc:"Dark brown pirarucu print leather boot with burgundy shaft featuring cream/red floral embroidery and diamond pattern inlay. Wide square western toe.", price:84 },
+  { id:"mm8", name:"The Stockman", material:"Embossed · Ostrich Print",
+    type:"embossed", tag:"Ostrich", tagColor:"#B8922A", img:"mm8.png",
+    desc:"Dark brown ostrich print leather boot with matching shaft featuring cream and brown floral embroidery and diamond pattern inlay. Wide square western toe.", price:84 },
+  { id:"mm9", name:"The Saddle", material:"Embossed · Python Print",
+    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"mm9.png",
+    desc:"Brown cowboy boot in python leather with matching shaft featuring cream and brown floral embroidery and diamond pattern inlay. Wide square western toe.", price:84 },
+  { id:"mm10", name:"The Crimson", material:"Embossed · Crocodile Print",
+    type:"embossed", tag:"Crocodile", tagColor:"#B8922A", img:"mm10.png",
+    desc:"Black crocodile print leather boot with black shaft featuring bold red floral embroidery and diamond pattern inlay. Wide square western toe.", price:84 },
+  { id:"mm11", name:"The Renegade", material:"Embossed · Python Print",
+    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"mm11.png",
+    desc:"Red and black cowboy boot in python leather with matching shaft featuring black and red floral embroidery and diamond pattern inlay. Wide square western toe.", price:84 },
+  { id:"mm12", name:"The Cobalt", material:"Embossed · Python Print",
+    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"mm12.png",
+    desc:"Blue and black cowboy boot in python leather with matching shaft featuring black and blue floral embroidery and diamond pattern inlay. Wide square western toe.", price:84 },
+  { id:"mm13", name:"The Frontier", material:"Embossed · Crocodile Print",
+    type:"embossed", tag:"Crocodile", tagColor:"#B8922A", img:"mm13.png",
+    desc:"Brown tan crocodile print leather boot with black patent shaft featuring embossed star and flag perforations. Wide square western toe.", price:84 },
+  { id:"mm14", name:"The Goldrush", material:"Embossed · Python Print",
+    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"mm14.png",
+    desc:"Honey cowboy boot in python leather with matching shaft featuring honey floral embroidery and diamond pattern inlay. Wide square western toe.", price:84 },
+  { id:"mm15", name:"The Wanderer", material:"Embossed · Pirarucu Print",
+    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"mm15.jpeg",
+    desc:"Brown pirarucu print leather boot with matching black shaft featuring tonal grey floral embroidery. Wide square western toe.", price:84 },
+  { id:"mm16", name:"The Domino", material:"Embossed · Pirarucu Print",
+    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"mm16.png",
+    desc:"Black and white pirarucu print leather boot with matching black shaft featuring tonal grey floral embroidery. Wide square western toe.", price:84 },
+  { id:"mm17", name:"The Weaver", material:"Woven Leather",
+    type:"embossed", tag:"Woven Leather", tagColor:"#B8922A", img:"mm17.jpeg",
+    desc:"Black and burgundy woven leather boot with cognac shaft featuring star perforations, embossed star and distressed flag design. Wide square western toe.", price:84 },
+  { id:"mm18", name:"The Pueblo", material:"Embossed · Python Print",
+    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"mm18.jpeg",
+    desc:"Natural white python print leather boot with black shaft featuring cream and rust Native American-inspired arrow and geometric embroidery. Wide square western toe.", price:84 },
+
+  /* ── WOMEN ── */
+  { id:"w1", name:"The Rosa", material:"Suede Leather", gender:"women",
+    type:"suede", tag:"Suede", tagColor:"#1B2A4A", img:"mujr1.png",
+    desc:"Pink suede knee-high women's boot with tonal floral embroidery and dramatic side fringe. Snip toe.", price:120 },
+  { id:"w2", name:"The Sienna", material:"Suede Leather", gender:"women",
+    type:"suede", tag:"Suede", tagColor:"#1B2A4A", img:"mujr2.png",
+    desc:"Brown women's boot with tonal stitch embroidery and stacked heel. Snip toe.", price:115 },
+  { id:"w3", name:"The Dahlia", material:"Suede Leather", gender:"women",
+    type:"suede", tag:"Suede", tagColor:"#1B2A4A", img:"mujr3.png",
+    desc:"Pink suede knee-high women's boot with tonal floral embroidery and dramatic side fringe. Snip toe.", price:115 },
+  { id:"w4", name:"The Savannah", material:"Premium Leather", gender:"women",
+    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujr4.png",
+    desc:"Cognac leather knee-high women's boot with cream floral and zigzag embroidery, tall shaft with fold-over top. Snip toe.", price:120 },
+  { id:"w5", name:"The Magnolia", material:"Premium Leather", gender:"women",
+    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujr5.png",
+    desc:"Dark chocolate leather knee-high women's boot with tan floral and feather embroidery and crystal stud accents throughout. Snip toe.", price:125 },
+  { id:"w6", name:"The Bluebell", material:"Premium Leather", gender:"women",
+    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujr6.png",
+    desc:"Blue denim knee-high women's boot with white western embroidery and fold-over top. Snip toe.", price:120 },
+  { id:"w7", name:"The Pearl", material:"Premium Leather", gender:"women",
+    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujr7.png",
+    desc:"Pearl white leather knee-high women's boot with light blue western embroidery. Snip toe.", price:120 },
+  { id:"w8", name:"The Champagne", material:"Premium Leather", gender:"women",
+    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujr8.png",
+    desc:"Champagne gold metallic leather knee-high women's boot with tonal western embroidery and lavender interior lining. Snip toe.", price:125 },
+  { id:"w9", name:"The Emerald", material:"Premium Leather", gender:"women",
+    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj1.png",
+    desc:"Forest green leather women's boot with emerald green and white zigzag western embroidery. Snip toe.", price:115 },
+  { id:"w10", name:"The Onyx", material:"Premium Leather", gender:"women",
+    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj2.png",
+    desc:"Black leather women's boot with full tonal hand-tooled floral pattern covering the entire shaft and vamp. Snip toe.", price:115 },
+  { id:"w11", name:"The Camellia", material:"Suede Leather", gender:"women",
+    type:"suede", tag:"Suede", tagColor:"#1B2A4A", img:"mujj3.png",
+    desc:"Pink suede women's boot with tonal floral embroidery and dramatic side fringe. Snip toe.", price:110 },
+  { id:"w12", name:"The Daisy", material:"Premium Leather", gender:"women",
+    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj4.png",
+    desc:"Tan leather women's boot with bold white floral western embroidery covering the full shaft. Snip toe.", price:120 },
+  { id:"w13", name:"The Carmen", material:"Premium Leather", gender:"women",
+    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj5.png",
+    desc:"Black leather over-the-knee women's boot with tonal floral embroidery, silver stud accents and red sole. Snip toe.", price:125 },
+  { id:"w14", name:"The Indigo", material:"Premium Leather", gender:"women",
+    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj6.png",
+    desc:"Blue denim women's boot with cream western embroidery, crystal stud accents and white piping detail. Snip toe.", price:115 },
+  { id:"w15", name:"The Violeta", material:"Suede Leather", gender:"women",
+    type:"suede", tag:"Suede", tagColor:"#1B2A4A", img:"mujj7.png",
+    desc:"Fuchsia suede women's boot with tonal floral embroidery, crystal stud accents and white piping detail. Snip toe.", price:115 },
+  { id:"w16", name:"The Turquesa", material:"Metallic Leather", gender:"women",
+    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj8.png",
+    desc:"Metallic turquoise leather women's boot with silver western embroidery and white piping detail. Snip toe.", price:115 },
+  { id:"w17", name:"The Frida", material:"Metallic Leather", gender:"women",
+    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj9.png",
+    desc:"Metallic fuchsia leather women's boot with silver western embroidery and white piping detail. Snip toe.", price:115 },
+  { id:"w18", name:"The Flamingo", material:"Premium Leather", gender:"women",
+    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj10.png",
+    desc:"Hot pink leather knee-high women's boot with tonal western embroidery and white piping detail. Snip toe.", price:120 },
+  { id:"w19", name:"The Amapola", material:"Suede Leather", gender:"women",
+    type:"suede", tag:"Suede", tagColor:"#1B2A4A", img:"mujj11.png",
+    desc:"Red suede women's boot with tonal floral embroidery and dramatic side fringe. Snip toe.", price:110 }
+];
+
+/* ═══════════════ STATE ═══════════════ */
+let currentGender='men';
+let currentMaterial='all';
+const FILTERS={
+  men:[['all','All'],['embossed','Embossed']],
+  women:[['all','All'],['suede','Suede'],['leather','Leather']]
+};
+/* Promo banners woven into the grid (shown only on the "All" view) */
+const PROMOS=[
+  { gender:'men', after:5, img:'foto4.jpeg',
+    title:'Straight From the Workshop',
+    text:'Every pair is cut, lasted, and stitched by hand in León, Guanajuato — the leather capital of the Americas.',
+    btn:'Shop the Collection', link:'#shop' },
+  { gender:'men', after:14, img:'foto2.jpeg',
+    title:'Exotic Looks, Wholesale Prices',
+    text:'Python, crocodile, ostrich and pirarucu prints — the styles that sell fastest, at factory-direct cost.',
+    btn:'Browse Models', link:'#shop' },
+  { gender:'men', after:23, img:'foto1.png',
+    title:'In Stock, Ready to Ship',
+    text:'Deep inventory across every style. Your wholesale order ships from León within days, not months.',
+    btn:'Place Your Order', link:'wa' },
+  { gender:'women', after:8, img:'foto3.jpeg',
+    title:'We Ship Across the U.S.',
+    text:'From León straight to your door. We handle customs, freight and tracking — you just sell.',
+    btn:'Start Your Order', link:'wa' }
 ];
 
 /* ═══════════════ LOGIN ═══════════════ */
@@ -309,18 +538,16 @@ function checkPassword(e){
 function unlock(){
   document.getElementById('gate').style.display='none';
   document.getElementById('app').style.display='block';
-  renderProducts('all');
+  renderFilters();
+  renderProducts();
 }
 
 /* ═══════════════ PRICE HELPERS ═══════════════ */
 function unitPrice(m){ return m.price; }
 
 /* ═══════════════ RENDER GRID ═══════════════ */
-function renderProducts(filter){
-  const grid=document.getElementById('grid');
-  const list=filter==='all'?MODELS:MODELS.filter(m=>m.type===filter);
-  document.getElementById('resultCount').textContent=list.length+" models available";
-  grid.innerHTML=list.map(m=>`
+function productCard(m){
+  return `
     <div class="product" onclick="openModal('${m.id}')">
       <div class="product-img">
         <span class="product-tag" style="background:${m.tagColor}">${m.tag}</span>
@@ -331,12 +558,56 @@ function renderProducts(filter){
         <div class="product-price">$${m.price} <small>/ pair</small></div>
         <div class="product-meta">${m.material}</div>
       </div>
-    </div>`).join('');
+    </div>`;
+}
+function promoBanner(p){
+  const href = p.link==='wa'
+    ? `https://wa.me/${WHATSAPP}?text=Hi%20Terraloma%2C%20I'd%20like%20to%20place%20a%20wholesale%20order.`
+    : p.link;
+  const target = p.link==='wa' ? ' target="_blank"' : '';
+  return `
+    <div class="promo" style="background-image:url('${p.img}')">
+      <div class="promo-content">
+        <h3 class="promo-title">${p.title}</h3>
+        <p class="promo-text">${p.text}</p>
+        <a class="promo-btn" href="${href}"${target}>${p.btn}</a>
+      </div>
+    </div>`;
+}
+function renderProducts(){
+  const grid=document.getElementById('grid');
+  const list=MODELS.filter(m=>(m.gender||'men')===currentGender && (currentMaterial==='all'||m.type===currentMaterial));
+  document.getElementById('resultCount').textContent=list.length+" models available";
+  if(list.length===0){
+    grid.innerHTML='<div style="grid-column:1/-1;padding:80px 20px;text-align:center;color:var(--col-mute)">No models in this category yet.</div>';
+    return;
+  }
+  const promos = currentMaterial==='all' ? PROMOS.filter(p=>p.gender===currentGender) : [];
+  let html='';
+  list.forEach((m,i)=>{
+    html+=productCard(m);
+    promos.filter(p=>p.after===i).forEach(p=>{ html+=promoBanner(p); });
+  });
+  grid.innerHTML=html;
+}
+function renderFilters(){
+  document.getElementById('filters').innerHTML=FILTERS[currentGender].map(f=>
+    `<button class="filter-btn${f[0]===currentMaterial?' active':''}" data-filter="${f[0]}" onclick="setFilter(this)">${f[1]}</button>`
+  ).join('');
 }
 function setFilter(btn){
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  renderProducts(btn.dataset.filter);
+  currentMaterial=btn.dataset.filter;
+  renderProducts();
+}
+function setGender(btn){
+  document.querySelectorAll('.gender-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  currentGender=btn.dataset.gender;
+  currentMaterial='all';
+  renderFilters();
+  renderProducts();
 }
 
 /* ═══════════════ PRODUCT MODAL ═══════════════ */
@@ -414,6 +685,7 @@ function sendOrder(){
   msg+=`%0ATotal: ${totalPairs} pairs — Estimated $${total.toLocaleString()}%0A%0APlease confirm stock and final pricing.`;
   window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,'_blank');
 }
+
 </script>
 </body>
 </html>
