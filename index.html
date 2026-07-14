@@ -111,6 +111,7 @@ a{color:inherit;text-decoration:none;}
 .product-name{font-family:var(--font-body);font-size:14px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--col-navy);margin-bottom:8px;}
 .product-price{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--col-text);}
 .product-price small{font-size:12px;color:var(--col-mute);font-family:var(--font-body);font-weight:500;letter-spacing:0.02em;}
+.product-resell{font-size:11px;color:var(--col-mute);margin-top:4px;letter-spacing:0.02em;}
 .product-meta{font-size:12px;color:var(--col-mute);margin-top:6px;letter-spacing:0.04em;}
 
 /* PROMO BANNER (woven into grid) */
@@ -173,9 +174,19 @@ a{color:inherit;text-decoration:none;}
 .cart-item-meta{font-size:12px;color:var(--col-mute);margin-top:3px;}
 .cart-item-price{font-size:13px;color:var(--col-mid);margin-top:4px;}
 .cart-item-price strong{color:var(--col-navy);}
+.cart-item-econ{margin-top:8px;background:var(--col-panel);border:1px solid var(--col-border);padding:8px 10px;font-size:12px;}
+.econ-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:2px 0;}
+.econ-row span{color:var(--col-mid);}
+.econ-row strong{color:var(--col-navy);font-weight:600;white-space:nowrap;}
+.econ-row.profit{margin-top:4px;padding-top:6px;border-top:1px solid var(--col-border);}
+.econ-row.profit span{color:#1f7a3d;font-weight:700;}
+.econ-row.profit strong{color:#1f7a3d;font-weight:700;}
 .cart-item-remove{background:none;border:none;color:var(--col-mute);font-size:11px;cursor:pointer;text-decoration:underline;margin-top:4px;padding:0;}
 .cart-foot{padding:22px 28px;border-top:1px solid var(--col-border);background:var(--col-panel);}
 .cart-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
+.cart-profit-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;padding-top:8px;border-top:1px solid var(--col-border);}
+.cart-profit-label{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#1f7a3d;}
+.cart-profit-val{font-family:var(--font-display);font-size:20px;font-weight:700;color:#1f7a3d;}
 .cart-total-label{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--col-mid);}
 .cart-total-val{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--col-navy);}
 .cart-note{font-size:11px;color:var(--col-mute);line-height:1.5;margin-bottom:16px;}
@@ -322,10 +333,14 @@ a{color:inherit;text-decoration:none;}
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-foot">
     <div class="cart-total-row">
-      <span class="cart-total-label">Estimated Total</span>
+      <span class="cart-total-label">Your Cost</span>
       <span class="cart-total-val" id="cartTotal">$0</span>
     </div>
-    <p class="cart-note">Estimate based on per-model volume pricing. Final pricing and stock confirmed by Terraloma on WhatsApp.</p>
+    <div class="cart-profit-row" id="cartProfit" style="display:none">
+      <span class="cart-profit-label">Potential Profit</span>
+      <span class="cart-profit-val">+$0</span>
+    </div>
+    <p class="cart-note">Resale values are estimates for the US retail market. Final pricing and stock confirmed by Terraloma on WhatsApp.</p>
     <button class="cart-send" id="cartSend" onclick="sendOrder()" disabled>
       <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
       Send Order via WhatsApp
@@ -507,6 +522,15 @@ const FILTERS={
   men:[['all','All'],['embossed','Embossed']],
   women:[['all','All'],['suede','Suede'],['leather','Leather']]
 };
+/* Resale value per pair, by leather/print (used to show reseller profit in the cart) */
+const RESELL={
+  'Pirarucu':[170,250],
+  'Crocodile':[150,230],
+  'Python':[140,210],
+  'Ostrich':[130,190],
+  'Stingray':[130,190],
+  'Woven Leather':[120,180]
+};
 /* Promo banners woven into the grid (shown only on the "All" view) */
 const PROMOS=[
   { gender:'men', after:5, img:'foto4.webp',
@@ -556,6 +580,7 @@ function productCard(m){
       <div class="product-info">
         <div class="product-name">${m.name}</div>
         <div class="product-price">$${m.price} <small>/ pair</small></div>
+        ${(m.gender!=='women' && RESELL[m.tag]) ? `<div class="product-resell">Resells $${RESELL[m.tag][0]}–${RESELL[m.tag][1]}</div>` : ''}
         <div class="product-meta">${m.material}</div>
       </div>
     </div>`;
@@ -661,19 +686,41 @@ function renderCart(){
     itemsEl.innerHTML='<div class="cart-empty">Your order is empty.<br>Tap a boot to add it to your order.</div>';
     totalEl.textContent='$0'; sendBtn.disabled=true; return;
   }
-  let total=0;
+  let total=0, profitLow=0, profitHigh=0, hasProfit=false;
   itemsEl.innerHTML=cart.map((i,idx)=>{
     const up=unitPrice(i.model); const sub=up*i.qty; total+=sub;
+    const r = (i.model.gender!=='women') ? RESELL[i.model.tag] : null;
+    let priceBlock;
+    if(r){
+      const rLow=r[0]*i.qty, rHigh=r[1]*i.qty;
+      const pLow=rLow-sub, pHigh=rHigh-sub;
+      profitLow+=pLow; profitHigh+=pHigh; hasProfit=true;
+      priceBlock=`
+        <div class="cart-item-econ">
+          <div class="econ-row"><span>Your cost</span><strong>$${sub.toLocaleString()}</strong></div>
+          <div class="econ-row"><span>Resale value</span><strong>$${rLow.toLocaleString()} – $${rHigh.toLocaleString()}</strong></div>
+          <div class="econ-row profit"><span>Potential profit</span><strong>+$${pLow.toLocaleString()} – $${pHigh.toLocaleString()}</strong></div>
+        </div>`;
+    } else {
+      priceBlock=`<div class="cart-item-price">Subtotal: <strong>$${sub.toLocaleString()}</strong></div>`;
+    }
     return `<div class="cart-item">
       <div class="cart-item-img"><img src="${i.img}" alt="" onerror="this.style.display='none'"></div>
       <div class="cart-item-info">
         <div class="cart-item-name">${i.name}</div>
         <div class="cart-item-meta">${i.qty} pairs · $${up}/pair</div>
-        <div class="cart-item-price">Subtotal: <strong>$${sub.toLocaleString()}</strong></div>
+        ${priceBlock}
         <button class="cart-item-remove" onclick="removeItem(${idx})">Remove</button>
       </div></div>`;
   }).join('');
   totalEl.textContent='$'+total.toLocaleString();
+  const profitEl=document.getElementById('cartProfit');
+  if(profitEl){
+    if(hasProfit){
+      profitEl.style.display='flex';
+      profitEl.querySelector('.cart-profit-val').textContent='+$'+profitLow.toLocaleString()+' – $'+profitHigh.toLocaleString();
+    } else { profitEl.style.display='none'; }
+  }
   sendBtn.disabled=false;
 }
 function openCart(){ document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
