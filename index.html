@@ -243,13 +243,13 @@ a{color:inherit;text-decoration:none;}
   <!-- ANNOUNCEMENT BAR (marquee) -->
   <div class="announce-bar">
     <div class="announce-marquee">
-      <span class="am-item">Minimum order: 12 pairs per style</span>
+      <span class="am-item">Minimum order: 14 pairs per style</span>
       <span class="am-sep">✦</span>
       <span class="am-item">Ships from León, México — 7–14 business days</span>
       <span class="am-sep">✦</span>
       <a class="am-item am-link" href="https://wa.me/524439171366" target="_blank">Questions? Message us on WhatsApp →</a>
       <span class="am-sep">✦</span>
-      <span class="am-item">Minimum order: 12 pairs per style</span>
+      <span class="am-item">Minimum order: 14 pairs per style</span>
       <span class="am-sep">✦</span>
       <span class="am-item">Ships from León, México — 7–14 business days</span>
       <span class="am-sep">✦</span>
@@ -645,11 +645,11 @@ function openModal(id){
       <div class="modal-material">${m.material}</div>
       <div class="modal-name">${m.name}</div>
       <p class="modal-desc">${m.desc}</p>
-      <div class="modal-price-big">$${m.price} <span>/ pair · MOQ 12</span></div>
+      <div class="modal-price-big">$${m.price} <span>/ pair · MOQ 14</span></div>
       <div class="modal-controls">
         <div class="mc-group">
           <label class="mc-label">Number of pairs</label>
-          <input class="mc-qty" id="m-qty" type="number" min="12" value="12">
+          <input class="mc-qty" id="m-qty" type="number" min="14" value="14">
         </div>
       </div>
       <p class="modal-size-note">Size assortment is arranged with you directly on WhatsApp after your order.</p>
@@ -661,7 +661,7 @@ function closeModal(){ document.getElementById('modalOverlay').classList.remove(
 
 /* ═══════════════ CART ═══════════════ */
 let cart=[];
-const MIN_PAIRS=12;
+const MIN_PAIRS=14;
 function addToCart(id){
   const m=MODELS.find(x=>x.id===id);
   const input=document.getElementById('m-qty');
