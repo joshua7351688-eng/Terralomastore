@@ -47,19 +47,23 @@ a{color:inherit;text-decoration:none;}
 #app{display:none;}
 
 /* NAV */
-.nav{position:sticky;top:38px;z-index:100;background:var(--col-surface);border-bottom:1px solid var(--col-border);}
-.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
-.nav-logo{font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--col-navy);letter-spacing:0.08em;text-align:center;}
-.nav-logo span{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--col-mute);display:block;margin-top:0;font-family:var(--font-body);}
-.nav-side{display:flex;align-items:center;gap:8px;min-width:120px;}
-.nav-side.left{justify-content:flex-start;}
-.nav-side.right{justify-content:flex-end;}
+/* Static, transparent over the hero video — scrolls away with the page */
+.nav{position:relative;z-index:100;background:transparent;border-bottom:none;}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.nav-logo{display:inline-flex;align-items:center;gap:12px;line-height:1;transition:opacity .2s;}
+.nav-logo img{height:38px;width:auto;display:block;transition:filter .35s ease;
+  /* white over the video */
+  filter:brightness(0) invert(1) drop-shadow(0 1px 3px rgba(0,0,0,.35));}
+.nav-logo:hover{opacity:.72;}
+.nav-tag{font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;line-height:1;padding:4px 9px;border-radius:999px;
+  color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.45);
+  transition:color .35s ease,border-color .35s ease;}
 .cart-toggle{position:relative;background:none;border:none;cursor:pointer;color:var(--col-navy);padding:8px;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;}
-.cart-toggle svg{width:22px;height:22px;stroke:var(--col-navy);fill:none;stroke-width:1.5;}
+.cart-toggle svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.5;transition:stroke .35s ease;filter:drop-shadow(0 1px 3px rgba(0,0,0,.35));}
 .cart-count{position:absolute;top:0;right:-2px;background:var(--col-gold);color:#fff;border-radius:999px;min-width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;padding:0 5px;}
 
 /* ANNOUNCEMENT BAR (marquee) */
-.announce-bar{background:var(--col-navy);height:38px;overflow:hidden;display:flex;align-items:center;position:sticky;top:0;z-index:101;}
+.announce-bar{background:var(--col-navy);height:38px;overflow:hidden;display:flex;align-items:center;position:relative;z-index:101;}
 .announce-marquee{display:inline-flex;align-items:center;gap:40px;white-space:nowrap;animation:marquee 32s linear infinite;will-change:transform;}
 .announce-marquee:hover{animation-play-state:paused;}
 @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
@@ -76,9 +80,16 @@ a{color:inherit;text-decoration:none;}
 .gender-tab.active::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--col-navy);}
 
 /* HERO BANNER */
-.hero{background:var(--col-navy);}
+/* Pull the hero up so the transparent nav floats over the video */
+.hero{background:var(--col-navy);margin-top:-62px;position:relative;}
 .hero-inner{position:relative;max-width:760px;margin:0 auto;line-height:normal;}
-.hero img{width:100%;height:auto;display:block;}
+/* Top scrim keeps the nav readable over bright frames */
+.hero-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:130px;z-index:1;pointer-events:none;
+  background:linear-gradient(rgba(15,22,38,.55),transparent);}
+.hero img,.hero video{width:100%;height:auto;display:block;}
+/* Desktop video (16:9) fills the full width — no side borders */
+.hero-inner.wide{max-width:none;}
+.hero-inner.wide video{max-height:88vh;object-fit:cover;width:100%;}
 .hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;padding:0 8%;background:linear-gradient(90deg,rgba(20,28,48,0.82) 0%,rgba(20,28,48,0.45) 45%,rgba(20,28,48,0.05) 80%,transparent 100%);}
 .hero-eyebrow{font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#fff;opacity:0.85;margin-bottom:14px;}
 .hero-headline{font-family:var(--font-body);font-weight:800;font-size:clamp(40px,8vw,72px);color:#fff;line-height:0.98;letter-spacing:-0.02em;margin-bottom:20px;}
@@ -122,6 +133,41 @@ a{color:inherit;text-decoration:none;}
 .promo-text{font-family:var(--font-body);font-size:clamp(14px,1.8vw,17px);color:rgba(255,255,255,0.92);line-height:1.6;margin-bottom:30px;max-width:460px;margin-left:auto;margin-right:auto;}
 .promo-btn{display:inline-flex;align-items:center;background:#fff;color:var(--col-navy);font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:15px 34px;border-radius:999px;transition:all .2s;}
 .promo-btn:hover{background:var(--col-gold-lite);color:var(--col-navy);}
+
+/* ═══════════════ SCROLL ANIMATIONS ═══════════════ */
+/* Product cards & promos rise in as they enter the viewport */
+.anim-in{opacity:0;transform:translateY(26px);transition:opacity .55s cubic-bezier(.22,.61,.36,1),transform .55s cubic-bezier(.22,.61,.36,1);}
+.anim-in.visible{opacity:1;transform:none;}
+/* Stagger via inline --d set per card */
+.anim-in{transition-delay:var(--d,0ms);}
+/* Hero entrance on load */
+.hero-overlay > *{opacity:0;transform:translateY(18px);animation:heroRise .7s cubic-bezier(.22,.61,.36,1) forwards;}
+.hero-eyebrow{animation-delay:.15s!important;}
+.hero-headline{animation-delay:.3s!important;}
+.hero-sub{animation-delay:.45s!important;}
+.hero-btns{animation-delay:.6s!important;}
+@keyframes heroRise{to{opacity:1;transform:none;}}
+/* Grid swap fade when changing gender/filter */
+.grid.swapping{opacity:0;transform:translateY(10px);}
+.grid{transition:opacity .25s ease,transform .25s ease;}
+/* Product hover: lift + sharper shadow (kept subtle) */
+.product{transition:background .25s,box-shadow .3s,transform .3s;}
+.product:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(27,42,74,0.12);z-index:1;}
+/* Gender tab underline slides */
+.gender-tab::after{transition:transform .25s ease;transform:scaleX(0);}
+.gender-tab.active::after{transform:scaleX(1);}
+/* Cart count pop when it changes */
+@keyframes countPop{0%{transform:scale(1);}40%{transform:scale(1.45);}100%{transform:scale(1);}}
+.cart-count.pop{animation:countPop .35s ease;}
+/* Reduced motion: kill the show, keep the content */
+@media (prefers-reduced-motion: reduce){
+  .anim-in{opacity:1;transform:none;transition:none;}
+  .hero-overlay > *{opacity:1;transform:none;animation:none;}
+  .grid{transition:none;}
+  .product{transition:none;}
+  .product:hover{transform:none;}
+  .announce-marquee{animation:none;}
+}
 
 /* FOOTER */
 .footer{background:var(--col-navy);padding:40px 0;}
@@ -201,8 +247,10 @@ a{color:inherit;text-decoration:none;}
 @media(max-width:560px){
   /* Keep 2 columns on mobile (Lucchese style) */
   .grid{grid-template-columns:repeat(2,1fr);padding:0 16px 60px;}
-  .nav-side{min-width:auto;}
-  .nav-inner{padding:0 16px;}
+  .nav-inner{padding:0 16px;height:56px;}
+  .nav-logo img{height:34px;}
+  .nav-tag{display:none;}
+  .hero{margin-top:-56px;}
   .cart-drawer{width:100%;}
   .shopbar{padding:28px 16px 18px;}
   /* Compact product info for narrow columns */
@@ -260,21 +308,21 @@ a{color:inherit;text-decoration:none;}
 
   <nav class="nav">
     <div class="nav-inner">
-      <div class="nav-side left"></div>
-      <div class="nav-logo">TERRALOMA<span>Wholesale Store</span></div>
-      <div class="nav-side right">
-        <button class="cart-toggle" onclick="openCart()">
-          <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
-          <span class="cart-count" id="cartCount">0</span>
-        </button>
-      </div>
+      <a class="nav-logo" href="#shop" aria-label="Terraloma — Wholesale Store">
+        <img src="logo-nav.webp" alt="Terraloma">
+        <span class="nav-tag">Wholesale</span>
+      </a>
+      <button class="cart-toggle" onclick="openCart()" aria-label="Open your order">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
     </div>
   </nav>
 
   <!-- HERO BANNER -->
   <section class="hero">
     <div class="hero-inner">
-      <img src="portada11.webp" alt="Terraloma boots">
+      <video id="heroVideo" poster="portada11.webp" autoplay muted loop playsinline aria-label="Terraloma boots"></video>
       <div class="hero-overlay">
         <div class="hero-eyebrow">New to wholesale?</div>
         <h2 class="hero-headline">We've got<br>you.</h2>
@@ -614,7 +662,39 @@ function renderProducts(){
     promos.filter(p=>p.after===i).forEach(p=>{ html+=promoBanner(p); });
   });
   grid.innerHTML=html;
+  animateGridItems();
 }
+
+/* ── Scroll-in animation for grid items ──
+   Uses a rAF-throttled scroll check (works in every browser; ~50 items is trivial). */
+function revealInView(){
+  const vh=window.innerHeight;
+  document.querySelectorAll('#grid .anim-in:not(.visible)').forEach(el=>{
+    if(el.getBoundingClientRect().top < vh*0.92){ el.classList.add('visible'); }
+  });
+}
+window.addEventListener('scroll', revealInView, {passive:true});
+window.addEventListener('resize', revealInView, {passive:true});
+/* Safety net: some browsers/webviews miss scroll events — a light interval
+   guarantees no product ever stays hidden. (~50 items: negligible cost) */
+setInterval(revealInView, 700);
+
+function animateGridItems(){
+  const items=document.querySelectorAll('#grid .product, #grid .promo');
+  items.forEach((el,i)=>{
+    el.classList.add('anim-in');
+    el.style.setProperty('--d',(i%3)*70+'ms'); // stagger per row position
+  });
+  revealInView(); // reveal whatever is already on screen
+}
+
+/* ── Fade the grid when swapping views ── */
+function swapGrid(renderFn){
+  const grid=document.getElementById('grid');
+  grid.classList.add('swapping');
+  setTimeout(()=>{ renderFn(); grid.classList.remove('swapping'); },220);
+}
+
 function renderFilters(){
   document.getElementById('filters').innerHTML=FILTERS[currentGender].map(f=>
     `<button class="filter-btn${f[0]===currentMaterial?' active':''}" data-filter="${f[0]}" onclick="setFilter(this)">${f[1]}</button>`
@@ -624,7 +704,7 @@ function setFilter(btn){
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   currentMaterial=btn.dataset.filter;
-  renderProducts();
+  swapGrid(renderProducts);
 }
 function setGender(btn){
   document.querySelectorAll('.gender-tab').forEach(b=>b.classList.remove('active'));
@@ -632,7 +712,7 @@ function setGender(btn){
   currentGender=btn.dataset.gender;
   currentMaterial='all';
   renderFilters();
-  renderProducts();
+  swapGrid(renderProducts);
 }
 
 /* ═══════════════ PRODUCT MODAL ═══════════════ */
@@ -672,6 +752,8 @@ function addToCart(id){
   const btn=document.getElementById('m-add');
   btn.textContent='Added ✓'; btn.classList.add('added');
   renderCart();
+  const cc=document.getElementById('cartCount');
+  cc.classList.remove('pop'); void cc.offsetWidth; cc.classList.add('pop');
   setTimeout(()=>{ closeModal(); openCart(); },700);
 }
 function removeItem(idx){ cart.splice(idx,1); renderCart(); }
@@ -735,6 +817,28 @@ function sendOrder(){
   msg+=`%0ATotal: ${totalPairs} pairs — Estimated $${total.toLocaleString()}%0A%0APlease confirm stock and final pricing.`;
   window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,'_blank');
 }
+
+/* ═══════════════ HERO VIDEO — per device ═══════════════
+   Desktop (>=900px wide) → hero-desktop.mp4 (16:9, full width)
+   Mobile → hero.mp4 (vertical). If the desktop file doesn't
+   exist yet, it falls back to the vertical one automatically. */
+(function(){
+  const v=document.getElementById('heroVideo');
+  if(!v) return;
+  const inner=v.closest('.hero-inner');
+  const wantDesktop=window.innerWidth>=900;
+  if(wantDesktop){
+    v.src='hero-desktop.mp4';
+    inner.classList.add('wide');
+    v.addEventListener('error',function fallback(){
+      v.removeEventListener('error',fallback);
+      inner.classList.remove('wide');
+      v.src='hero.mp4';
+    });
+  } else {
+    v.src='hero.mp4';
+  }
+})();
 
 </script>
 </body>
