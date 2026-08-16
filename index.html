@@ -27,21 +27,32 @@ body{background:var(--col-surface);color:var(--col-ink);font-family:var(--font-b
 img{display:block;max-width:100%;}
 a{color:inherit;text-decoration:none;}
 
-/* ═══════════════ LOGIN GATE ═══════════════ */
-.gate{position:fixed;inset:0;z-index:1000;background:var(--col-navy);display:flex;align-items:center;justify-content:center;padding:24px;}
-.gate-inner{max-width:380px;width:100%;text-align:center;}
-.gate-logo{font-family:var(--font-display);font-size:28px;font-weight:700;color:#fff;letter-spacing:0.06em;margin-bottom:8px;}
-.gate-sub{font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:40px;}
-.gate-title{font-family:var(--font-display);font-size:22px;color:#fff;margin-bottom:8px;}
-.gate-text{font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:28px;line-height:1.6;}
-.gate-input{width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:#fff;font-family:var(--font-body);font-size:15px;padding:14px 16px;outline:none;text-align:center;letter-spacing:0.1em;transition:border-color .2s;}
-.gate-input::placeholder{color:rgba(255,255,255,0.4);letter-spacing:0;}
-.gate-input:focus{border-color:var(--col-gold-lite);}
-.gate-btn{width:100%;background:#fff;color:var(--col-navy);font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:15px;border:none;cursor:pointer;margin-top:14px;transition:background .2s;}
-.gate-btn:hover{background:var(--col-gold-lite);}
-.gate-error{color:#E8A0A0;font-size:13px;margin-top:14px;min-height:18px;}
-.gate-help{font-size:12px;color:rgba(255,255,255,0.4);margin-top:28px;line-height:1.6;}
-.gate-help a{color:rgba(255,255,255,0.7);border-bottom:1px solid rgba(255,255,255,0.3);}
+/* ═══════════════ ENTRY GATE ═══════════════ */
+.gate{position:fixed;inset:0;z-index:1000;background:#0B0F1A;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;
+  transition:opacity .5s ease;}
+.gate.leaving{opacity:0;pointer-events:none;}
+.gate-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72;}
+.gate::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,rgba(11,15,26,.35) 0%,rgba(11,15,26,.82) 75%);}
+.gate-inner{position:relative;z-index:2;max-width:420px;width:100%;text-align:center;}
+
+/* 3D spinning logo */
+.gate-logo3d{perspective:900px;margin-bottom:22px;}
+.gate-logo3d img{width:min(300px,74vw);height:auto;display:block;margin:0 auto;
+  filter:brightness(0) invert(1) drop-shadow(0 6px 24px rgba(0,0,0,.6));
+  animation:spinY 7s linear infinite;transform-style:preserve-3d;}
+@keyframes spinY{from{transform:rotateY(0deg);}to{transform:rotateY(360deg);}}
+
+.gate-sub{font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.72);margin-bottom:38px;}
+.gate-btn{min-width:230px;background:#fff;color:var(--col-navy);font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:16px 34px;border:2px solid #fff;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+.gate-btn:hover{background:transparent;color:#fff;}
+.gate-help{font-size:12px;color:rgba(255,255,255,0.55);margin-top:30px;line-height:1.6;}
+.gate-help a{color:rgba(255,255,255,0.85);border-bottom:1px solid rgba(255,255,255,0.35);}
+
+/* Reduced motion: stop the spin */
+@media (prefers-reduced-motion: reduce){
+  .gate-logo3d img{animation:none;}
+}
 
 /* ═══════════════ APP ═══════════════ */
 #app{display:none;}
@@ -80,26 +91,58 @@ a{color:inherit;text-decoration:none;}
 .gender-tab.active::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--col-navy);}
 
 /* HERO BANNER */
-/* Pull the hero up so the transparent nav floats over the video */
+/* Pull the hero up so the transparent nav floats over the image */
 .hero{background:var(--col-navy);margin-top:-62px;position:relative;}
-.hero-inner{position:relative;max-width:760px;margin:0 auto;line-height:normal;}
-/* Top scrim keeps the nav readable over bright frames */
+.hero-inner{position:relative;margin:0 auto;line-height:normal;}
+/* Top scrim keeps the nav readable over the photo */
 .hero-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:130px;z-index:1;pointer-events:none;
   background:linear-gradient(rgba(15,22,38,.55),transparent);}
-.hero img,.hero video{width:100%;height:auto;display:block;}
-/* Desktop video (16:9) fills the full width — no side borders */
-.hero-inner.wide{max-width:none;}
-.hero-inner.wide video{max-height:88vh;object-fit:cover;width:100%;}
-.hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;padding:0 8%;background:linear-gradient(90deg,rgba(20,28,48,0.82) 0%,rgba(20,28,48,0.45) 45%,rgba(20,28,48,0.05) 80%,transparent 100%);}
-.hero-eyebrow{font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#fff;opacity:0.85;margin-bottom:14px;}
-.hero-headline{font-family:var(--font-body);font-weight:800;font-size:clamp(40px,8vw,72px);color:#fff;line-height:0.98;letter-spacing:-0.02em;margin-bottom:20px;}
-.hero-sub{font-family:var(--font-body);font-size:clamp(14px,2vw,17px);font-weight:400;color:rgba(255,255,255,0.9);line-height:1.5;max-width:380px;margin-bottom:30px;}
-.hero-btns{display:flex;flex-direction:column;gap:12px;align-items:flex-start;}
-.hero-btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:14px 30px;border-radius:999px;transition:all .2s;white-space:nowrap;}
-.hero-btn-white{background:#fff;color:var(--col-navy);border:2px solid #fff;}
-.hero-btn-white:hover{background:transparent;color:#fff;}
-.hero-btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.55);}
-.hero-btn-outline:hover{background:#fff;color:var(--col-navy);border-color:#fff;}
+.hero-img{width:100%;height:clamp(460px,78vh,860px);object-fit:cover;object-position:center 42%;display:block;}
+/* Desktop shot is already horizontal — no vertical shift needed */
+@media(min-width:900px){ .hero-img{object-position:center;} }
+/* Bottom scrim so the giant headline stays readable */
+.hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;padding:0 5% 7%;
+  background:linear-gradient(transparent 35%,rgba(12,18,32,.55) 70%,rgba(12,18,32,.85) 100%);}
+.hero-headline{font-family:var(--font-body);font-weight:800;
+  font-size:clamp(38px,9.5vw,132px);line-height:0.92;letter-spacing:-0.035em;
+  text-transform:uppercase;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.5);margin:0;}
+
+/* WHY NOW */
+.whynow{background:#0B0B0C;padding:clamp(56px,8vw,104px) 0 clamp(48px,6vw,80px);}
+.whynow-inner{max-width:820px;margin:0 auto;padding:0 24px;text-align:center;}
+.whynow-title{font-family:var(--font-body);font-weight:800;
+  font-size:clamp(38px,6vw,72px);line-height:1.02;letter-spacing:-0.035em;
+  color:#fff;margin-bottom:22px;}
+.whynow-text{font-family:var(--font-body);font-size:clamp(16px,2vw,21px);font-weight:400;
+  line-height:1.6;color:rgba(255,255,255,.72);max-width:620px;margin:0 auto 40px;}
+.whynow-label{font-family:var(--font-body);font-size:11px;font-weight:700;
+  letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px;}
+/* SAME MARKET / DIFFERENT GAME — scatter-to-assemble headline */
+.scatter{background:#0B0B0C;min-height:82vh;display:flex;align-items:center;justify-content:center;
+  padding:clamp(60px,10vw,120px) 24px;overflow:hidden;}
+.scatter-text{font-family:var(--font-body);font-weight:800;
+  font-size:clamp(34px,7.5vw,104px);line-height:1.02;letter-spacing:-0.035em;
+  text-transform:uppercase;color:#fff;text-align:center;max-width:15ch;margin:0;}
+/* Each letter drifts from a random offset/rotation (--p: 1 = scattered, 0 = set) */
+.sc-ch{display:inline-block;white-space:pre;will-change:transform;
+  transform:translate(calc(var(--tx,0px) * var(--p,0)), calc(var(--ty,0px) * var(--p,0)))
+            rotate(calc(var(--rot,0deg) * var(--p,0)));
+  opacity:calc(1 - (var(--p,0) * .35));}
+
+/* Infinite horizontal ticker of reseller photos */
+.ticker{margin:34px 0 8px;overflow:hidden;width:100%;
+  /* soft fade at both edges so photos slide in/out instead of popping */
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);}
+.ticker-track{display:flex;align-items:center;
+  width:max-content;animation:tickerRun 44s linear infinite;will-change:transform;}
+.ticker:hover .ticker-track{animation-play-state:paused;}
+@keyframes tickerRun{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+/* Spacing lives on the item (not `gap`) so half the track is exactly one set
+   — otherwise the loop jumps by half a gap on every cycle. */
+.ticker-item{margin:0 clamp(12px,2vw,22px) 0 0;flex:0 0 auto;}
+.ticker-item img{width:clamp(190px,26vw,320px);aspect-ratio:4/5;object-fit:cover;
+  display:block;background:#111;box-shadow:0 14px 38px rgba(0,0,0,.5);}
 
 /* SECTION BAR */
 .shopbar{max-width:var(--max-w);margin:0 auto;padding:44px 32px 24px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;}
@@ -134,6 +177,18 @@ a{color:inherit;text-decoration:none;}
 .promo-btn{display:inline-flex;align-items:center;background:#fff;color:var(--col-navy);font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:15px 34px;border-radius:999px;transition:all .2s;}
 .promo-btn:hover{background:var(--col-gold-lite);color:var(--col-navy);}
 
+/* ═══════════════ LINE-MASK REVEAL ═══════════════
+   Text rises line by line from behind an invisible mask. */
+.rv-line{display:block;overflow:hidden;}
+.rv-in{display:block;transform:translateY(110%);
+  transition:transform .95s cubic-bezier(.16,1,.3,1);transition-delay:var(--ld,0ms);}
+.rv-on .rv-in{transform:translateY(0);}
+/* Non-text blocks (images, buttons) just rise + fade */
+.rv-up{opacity:0;transform:translateY(34px);
+  transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);
+  transition-delay:var(--ld,0ms);}
+.rv-up.rv-on{opacity:1;transform:none;}
+
 /* ═══════════════ SCROLL ANIMATIONS ═══════════════ */
 /* Product cards & promos rise in as they enter the viewport */
 .anim-in{opacity:0;transform:translateY(26px);transition:opacity .55s cubic-bezier(.22,.61,.36,1),transform .55s cubic-bezier(.22,.61,.36,1);}
@@ -167,6 +222,10 @@ a{color:inherit;text-decoration:none;}
   .product{transition:none;}
   .product:hover{transform:none;}
   .announce-marquee{animation:none;}
+  .rv-in{transform:none;transition:none;}
+  .rv-up{opacity:1;transform:none;transition:none;}
+  .ticker-track{animation:none;}
+  .sc-ch{transform:none;opacity:1;}
 }
 
 /* FOOTER */
@@ -269,19 +328,17 @@ a{color:inherit;text-decoration:none;}
 </head>
 <body>
 
-<!-- ═══════════════ LOGIN GATE ═══════════════ -->
+<!-- ═══════════════ ENTRY GATE ═══════════════ -->
 <div class="gate" id="gate">
+  <picture>
+    <source media="(min-width:900px)" srcset="gate-bg-desktop.webp">
+    <img class="gate-bg" src="gate-bg.webp" alt="">
+  </picture>
   <div class="gate-inner">
-    <div class="gate-logo">TERRALOMA</div>
-    <div class="gate-sub">Wholesale Distribution</div>
-    <div class="gate-title">Private Store</div>
-    <div class="gate-text">For approved resellers only. Enter your access code to continue.</div>
-    <form id="gateForm" onsubmit="checkPassword(event)">
-      <input class="gate-input" id="gateInput" type="password" placeholder="Access code" autocomplete="off" required>
-      <button class="gate-btn" type="submit">Enter Store</button>
-      <div class="gate-error" id="gateError"></div>
-    </form>
-    <div class="gate-help">Don't have a code? <a href="https://wa.me/524439171366" target="_blank">Request access on WhatsApp</a></div>
+    <div class="gate-logo3d"><img src="logo-nav.webp" alt="Terraloma"></div>
+    <div class="gate-sub">Wholesale Distribution · León, México</div>
+    <button class="gate-btn" type="button" onclick="enterStore()">Enter Store</button>
+    <div class="gate-help">Questions? <a href="https://wa.me/524439171366" target="_blank">Message us on WhatsApp</a></div>
   </div>
 </div>
 
@@ -322,17 +379,45 @@ a{color:inherit;text-decoration:none;}
   <!-- HERO BANNER -->
   <section class="hero">
     <div class="hero-inner">
-      <video id="heroVideo" poster="portada11.webp" autoplay muted loop playsinline aria-label="Terraloma boots"></video>
+      <picture>
+        <source media="(min-width:900px)" srcset="hero-img-desktop.webp">
+        <img class="hero-img" src="hero-img.webp" alt="Terraloma boots">
+      </picture>
       <div class="hero-overlay">
-        <div class="hero-eyebrow">New to wholesale?</div>
-        <h2 class="hero-headline">We've got<br>you.</h2>
-        <p class="hero-sub">From your first order to delivery — our team walks you through every step.</p>
-        <div class="hero-btns">
-          <a class="hero-btn hero-btn-white" href="https://wa.me/524439171366" target="_blank">Place Your Order</a>
-          <a class="hero-btn hero-btn-outline" href="#shop">Shop the Collection</a>
+        <h2 class="hero-headline">Western is<br>taking over.</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY NOW -->
+  <section class="whynow">
+    <div class="whynow-inner">
+      <h2 class="whynow-title" data-rv="lines">Why now?</h2>
+      <p class="whynow-text" data-rv="lines">The people winning right now started when it still felt too early. The ones still "thinking about it" are watching them win.</p>
+      <div class="whynow-label" data-rv="lines">Those who have already started</div>
+      <div class="ticker" data-rv="up" aria-label="Resellers already selling Terraloma">
+        <div class="ticker-track">
+          <figure class="ticker-item"><img src="pr1.webp" alt=""></figure>
+          <figure class="ticker-item"><img src="pr2.webp" alt=""></figure>
+          <figure class="ticker-item"><img src="win.webp" alt="A reseller's wholesale order, delivered"></figure>
+          <figure class="ticker-item"><img src="pr3.webp" alt=""></figure>
+          <figure class="ticker-item"><img src="pr4.webp" alt=""></figure>
+          <figure class="ticker-item"><img src="pr5.webp" alt=""></figure>
+          <!-- duplicated set keeps the loop seamless -->
+          <figure class="ticker-item" aria-hidden="true"><img src="pr1.webp" alt=""></figure>
+          <figure class="ticker-item" aria-hidden="true"><img src="pr2.webp" alt=""></figure>
+          <figure class="ticker-item" aria-hidden="true"><img src="win.webp" alt=""></figure>
+          <figure class="ticker-item" aria-hidden="true"><img src="pr3.webp" alt=""></figure>
+          <figure class="ticker-item" aria-hidden="true"><img src="pr4.webp" alt=""></figure>
+          <figure class="ticker-item" aria-hidden="true"><img src="pr5.webp" alt=""></figure>
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- SAME MARKET / DIFFERENT GAME — letters scatter & assemble on scroll -->
+  <section class="scatter" id="scatter">
+    <h2 class="scatter-text" data-scatter>Same market. Different game.</h2>
   </section>
 
   <!-- GENDER TABS -->
@@ -344,7 +429,7 @@ a{color:inherit;text-decoration:none;}
   <!-- SHOP BAR -->
   <div class="shopbar" id="shop">
     <div>
-      <h2>Shop the Collection</h2>
+      <h2 data-rv="lines">Shop the Collection</h2>
       <p id="resultCount"></p>
     </div>
     <div class="filters" id="filters"></div>
@@ -355,8 +440,8 @@ a{color:inherit;text-decoration:none;}
 
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-logo">TERRALOMA</div>
-      <div class="footer-contact">
+      <div class="footer-logo" data-rv="lines">TERRALOMA</div>
+      <div class="footer-contact" data-rv="up">
         <a href="https://wa.me/524439171366" target="_blank">WhatsApp</a>
         <a href="mailto:terraloma.distribution@gmail.com">Email</a>
         <a href="https://instagram.com/terralomamx" target="_blank">@terralomamx</a>
@@ -398,10 +483,7 @@ a{color:inherit;text-decoration:none;}
 
 
 <script>
-/* ═══════════════ 1) ACCESS CODE ═══════════════ */
-const ACCESS_CODE = "terraloma2025";
-
-/* ═══════════════ 2) WHATSAPP ═══════════════ */
+/* ═══════════════ 1) WHATSAPP ═══════════════ */
 const WHATSAPP = "524439171366";
 
 /* ═══════════════ 3) MODELS ═══════════════
@@ -599,19 +681,25 @@ const PROMOS=[
     btn:'Start Your Order', link:'wa' }
 ];
 
-/* ═══════════════ LOGIN ═══════════════ */
+/* ═══════════════ ENTRY ═══════════════ */
+/* Skip the splash if they already entered during this session */
 if (sessionStorage.getItem('tl_auth')==='ok'){ unlock(); }
-function checkPassword(e){
-  e.preventDefault();
-  const val=document.getElementById('gateInput').value.trim();
-  if(val===ACCESS_CODE){ sessionStorage.setItem('tl_auth','ok'); unlock(); }
-  else{ document.getElementById('gateError').textContent="Incorrect code. Try again or request access."; document.getElementById('gateInput').value=""; }
+
+function enterStore(){
+  sessionStorage.setItem('tl_auth','ok');
+  const gate=document.getElementById('gate');
+  gate.classList.add('leaving');          // fade the splash out
+  setTimeout(unlock, 450);
 }
 function unlock(){
   document.getElementById('gate').style.display='none';
   document.getElementById('app').style.display='block';
   renderFilters();
   renderProducts();
+  initReveal();      // split static section text into masked lines
+  buildScatter();    // split the scatter headline into letters
+  revealInView();    // reveal whatever is already on screen
+  scatterProgress();
 }
 
 /* ═══════════════ PRICE HELPERS ═══════════════ */
@@ -641,9 +729,9 @@ function promoBanner(p){
   return `
     <div class="promo" style="background-image:url('${p.img}')">
       <div class="promo-content">
-        <h3 class="promo-title">${p.title}</h3>
-        <p class="promo-text">${p.text}</p>
-        <a class="promo-btn" href="${href}"${target}>${p.btn}</a>
+        <h3 class="promo-title" data-rv="lines">${p.title}</h3>
+        <p class="promo-text" data-rv="lines">${p.text}</p>
+        <a class="promo-btn" data-rv="up" href="${href}"${target}>${p.btn}</a>
       </div>
     </div>`;
 }
@@ -663,21 +751,121 @@ function renderProducts(){
   });
   grid.innerHTML=html;
   animateGridItems();
+  initReveal(grid);   // promo banners are re-created on every render
+  revealInView();
 }
 
-/* ── Scroll-in animation for grid items ──
-   Uses a rAF-throttled scroll check (works in every browser; ~50 items is trivial). */
+/* ═══════════════ LINE-MASK REVEAL ═══════════════
+   Splits [data-rv="lines"] text into visual lines, each wrapped in a mask,
+   so the copy rises line by line. [data-rv="up"] just fades + rises. */
+function splitIntoLines(el){
+  if(el.dataset.rvReady==='1') return;
+  const text=el.textContent.replace(/\s+/g,' ').trim();
+  if(!text) return;
+  el.dataset.rvText=text;                       // keep the original for re-splitting
+  // 1) wrap every word so we can read its vertical position
+  el.innerHTML=text.split(' ').map(w=>'<span class="rv-w">'+w+'</span>').join(' ');
+  const words=Array.from(el.querySelectorAll('.rv-w'));
+  // 2) group words that share the same top → same visual line
+  const lines=[]; let cur=[], lastTop=null;
+  words.forEach(w=>{
+    const top=Math.round(w.offsetTop);
+    if(lastTop===null||Math.abs(top-lastTop)<4){ cur.push(w.textContent); }
+    else { lines.push(cur); cur=[w.textContent]; }
+    lastTop=top;
+  });
+  if(cur.length) lines.push(cur);
+  // 3) rebuild: one mask per line (trailing space keeps copy/paste + screen
+  //    readers correct, since each line is its own block)
+  el.innerHTML=lines.map((words,i)=>
+    '<span class="rv-line"><span class="rv-in" style="--ld:'+(i*110)+'ms">'+
+    words.join(' ')+(i<lines.length-1?' ':'')+'</span></span>'
+  ).join('');
+  el.dataset.rvReady='1';
+}
+
+/* Re-split every [data-rv="lines"] element (line breaks change with width) */
+function resplitLines(){
+  document.querySelectorAll('[data-rv="lines"][data-rv-ready="1"]').forEach(el=>{
+    const wasOn=el.classList.contains('rv-on');
+    el.dataset.rvReady='0';
+    el.textContent=el.dataset.rvText||el.textContent;
+    splitIntoLines(el);
+    if(wasOn) el.classList.add('rv-on');
+  });
+  revealInView();
+}
+
+function initReveal(root){
+  (root||document).querySelectorAll('[data-rv="lines"]').forEach(splitIntoLines);
+  (root||document).querySelectorAll('[data-rv="up"]').forEach(el=>el.classList.add('rv-up'));
+}
+
+/* Re-split when the width changes. Width is polled as well as event-driven,
+   because some webviews don't fire resize reliably. */
+let _rvResize, _rvLastWidth=window.innerWidth;
+function onWidthChange(){
+  if(window.innerWidth===_rvLastWidth) return;
+  _rvLastWidth=window.innerWidth;
+  clearTimeout(_rvResize);
+  _rvResize=setTimeout(resplitLines,220);
+}
+window.addEventListener('resize', onWidthChange, {passive:true});
+setInterval(onWidthChange, 600);
+
+/* ── Scroll-in checks (grid cards + reveal elements) ── */
 function revealInView(){
   const vh=window.innerHeight;
+  /* At the very bottom, elements below the trigger line can never rise any
+     further — so accept anything inside the viewport instead. */
+  const atBottom=(window.scrollY+vh)>=(document.body.scrollHeight-4);
+  // product cards / promos
   document.querySelectorAll('#grid .anim-in:not(.visible)').forEach(el=>{
-    if(el.getBoundingClientRect().top < vh*0.92){ el.classList.add('visible'); }
+    const t=el.getBoundingClientRect().top;
+    if(t < vh*0.92 || (atBottom && t < vh)){ el.classList.add('visible'); }
+  });
+  // line-mask + rise reveals
+  document.querySelectorAll('[data-rv]:not(.rv-on)').forEach(el=>{
+    const t=el.getBoundingClientRect().top;
+    if(t < vh*0.88 || (atBottom && t < vh)){ el.classList.add('rv-on'); }
   });
 }
-window.addEventListener('scroll', revealInView, {passive:true});
-window.addEventListener('resize', revealInView, {passive:true});
+/* ═══════════════ SCATTER HEADLINE ═══════════════
+   Splits the line into letters, each given a random offset + rotation.
+   Scrolling drives --p from 1 (scattered) down to 0 (assembled). */
+function buildScatter(){
+  document.querySelectorAll('[data-scatter]').forEach(el=>{
+    if(el.dataset.scReady==='1') return;
+    const text=el.textContent;
+    el.innerHTML=[...text].map(ch=>{
+      if(ch===' ') return '<span class="sc-ch" style="--tx:0px;--ty:0px;--rot:0deg"> </span>';
+      const tx=(Math.random()*2-1)*46;      // vw-ish spread
+      const ty=(Math.random()*2-1)*40;
+      const rot=(Math.random()*2-1)*75;
+      return '<span class="sc-ch" style="--tx:'+tx.toFixed(1)+'vw;--ty:'+ty.toFixed(1)+
+             'vh;--rot:'+rot.toFixed(1)+'deg">'+ch+'</span>';
+    }).join('');
+    el.dataset.scReady='1';
+  });
+}
+
+function scatterProgress(){
+  const sec=document.getElementById('scatter');
+  if(!sec) return;
+  const vh=window.innerHeight, r=sec.getBoundingClientRect();
+  if(r.bottom<-200 || r.top>vh+200) return;          // far off-screen: skip
+  // 1 while the section is entering, 0 once it's settled near the middle
+  let p=(r.top-vh*0.10)/(vh*0.72);
+  p=Math.max(0,Math.min(1,p));
+  sec.style.setProperty('--p', p.toFixed(3));
+}
+
+function onFrame(){ revealInView(); scatterProgress(); }
+window.addEventListener('scroll', onFrame, {passive:true});
+window.addEventListener('resize', onFrame, {passive:true});
 /* Safety net: some browsers/webviews miss scroll events — a light interval
-   guarantees no product ever stays hidden. (~50 items: negligible cost) */
-setInterval(revealInView, 700);
+   keeps reveals and the scatter in sync. */
+setInterval(onFrame, 100);
 
 function animateGridItems(){
   const items=document.querySelectorAll('#grid .product, #grid .promo');
@@ -817,28 +1005,6 @@ function sendOrder(){
   msg+=`%0ATotal: ${totalPairs} pairs — Estimated $${total.toLocaleString()}%0A%0APlease confirm stock and final pricing.`;
   window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,'_blank');
 }
-
-/* ═══════════════ HERO VIDEO — per device ═══════════════
-   Desktop (>=900px wide) → hero-desktop.mp4 (16:9, full width)
-   Mobile → hero.mp4 (vertical). If the desktop file doesn't
-   exist yet, it falls back to the vertical one automatically. */
-(function(){
-  const v=document.getElementById('heroVideo');
-  if(!v) return;
-  const inner=v.closest('.hero-inner');
-  const wantDesktop=window.innerWidth>=900;
-  if(wantDesktop){
-    v.src='hero-desktop.mp4';
-    inner.classList.add('wide');
-    v.addEventListener('error',function fallback(){
-      v.removeEventListener('error',fallback);
-      inner.classList.remove('wide');
-      v.src='hero.mp4';
-    });
-  } else {
-    v.src='hero.mp4';
-  }
-})();
 
 </script>
 </body>
