@@ -131,6 +131,44 @@ a{color:inherit;text-decoration:none;}
             rotate(calc(var(--rot,0deg) * var(--p,0)));
   opacity:calc(1 - (var(--p,0) * .35));}
 
+/* THE MATH — copy one side, photo the other (alternating) */
+.math{background:var(--col-bg);padding:clamp(34px,4vw,58px) 0;}
+.math+.math{padding-top:0;}                     /* stacked blocks sit closer */
+.math-inner{max-width:var(--max-w);margin:0 auto;padding:0 clamp(20px,5vw,48px);
+  display:grid;grid-template-columns:1.05fr 0.95fr;gap:clamp(24px,4vw,54px);align-items:center;}
+/* flipped: photo on the left */
+.math--flip .math-copy{order:2;}
+.math--flip .math-figure{order:1;}
+.math-title{font-size:clamp(28px,3.6vw,48px);line-height:1.03;
+  color:var(--col-navy);margin:0 0 16px;}
+.mt-sans{display:block;font-family:var(--font-body);font-weight:800;
+  letter-spacing:-0.03em;text-transform:uppercase;}
+/* serif half, like the reference lockup */
+.mt-serif{display:block;font-family:var(--font-display);font-weight:700;
+  letter-spacing:-0.01em;}
+.math-text{font-family:var(--font-body);font-size:clamp(14px,1.5vw,17px);
+  line-height:1.6;color:var(--col-mid);max-width:44ch;margin:0;}
+/* Fixed frame + oversized photo = room to drift on scroll (parallax) */
+.math-figure{margin:0;overflow:hidden;height:clamp(240px,34vw,380px);
+  box-shadow:0 20px 54px rgba(27,42,74,.16);}
+/* 126% tall with a -10% base leaves headroom for ±8% of drift without
+   ever exposing an edge (percentages resolve against the image, not the frame) */
+.math-figure img{width:100%;height:126%;object-fit:cover;display:block;will-change:transform;
+  transform:translateY(calc(-10% + var(--py,0%)));}
+/* Dark variant */
+.math--dark{background:#0B0B0C;}
+.math--dark .math-title{color:#fff;}
+.math--dark .math-text{color:rgba(255,255,255,.72);}
+.math--dark .math-figure{box-shadow:0 20px 54px rgba(0,0,0,.55);}
+@media(max-width:760px){
+  .math{padding:clamp(28px,6vw,40px) 0;}
+  .math-inner{grid-template-columns:1fr;gap:20px;}
+  /* photo always first on mobile, whichever side it takes on desktop */
+  .math-figure,.math--flip .math-figure{order:-1;}
+  .math-copy,.math--flip .math-copy{order:0;}
+  .math-figure{height:clamp(220px,52vw,300px);}
+}
+
 /* Infinite horizontal ticker of reseller photos */
 .ticker{margin:34px 0 8px;overflow:hidden;width:100%;}
 .ticker-track{display:flex;align-items:center;
@@ -225,6 +263,7 @@ a{color:inherit;text-decoration:none;}
   .rv-up{opacity:1;transform:none;transition:none;}
   .ticker-track{animation:none;}
   .sc-ch{transform:none;opacity:1;}
+  .math-figure img{transform:translateY(-10%);}
 }
 
 /* FOOTER */
@@ -396,6 +435,54 @@ a{color:inherit;text-decoration:none;}
   <!-- SAME MARKET / DIFFERENT GAME — letters scatter & assemble on scroll -->
   <section class="scatter" id="scatter">
     <h2 class="scatter-text" data-scatter>Same market. Different game.</h2>
+  </section>
+
+  <!-- THE MATH -->
+  <section class="math math--dark math--flip">
+    <div class="math-inner">
+      <div class="math-copy">
+        <h2 class="math-title">
+          <span class="mt-sans" data-rv="lines">Your first 5 sales pay for</span>
+          <span class="mt-serif" data-rv="lines">the whole case.</span>
+        </h2>
+        <p class="math-text" data-rv="lines">One case is $1,176. At $250 a pair, you're in profit before you've sold half. Most resellers move their first case in weeks, not months — this isn't a slow burn.</p>
+      </div>
+      <figure class="math-figure" data-rv="up">
+        <img src="case.webp" alt="A reseller's case of Terraloma boots, ready to sell">
+      </figure>
+    </div>
+  </section>
+
+  <!-- DEMAND -->
+  <section class="math math--dark">
+    <div class="math-inner">
+      <div class="math-copy">
+        <h2 class="math-title">
+          <span class="mt-sans" data-rv="lines">Boots people</span>
+          <span class="mt-serif" data-rv="lines">already want.</span>
+        </h2>
+        <p class="math-text" data-rv="lines">You're not creating demand — western is already exploding. You're just the one supplying it. These aren't a gamble sitting on your shelf; they're what customers are actively looking for right now.</p>
+      </div>
+      <figure class="math-figure" data-rv="up">
+        <img src="demand.webp" alt="Exotic leather boots worn beside a Lamborghini">
+      </figure>
+    </div>
+  </section>
+
+  <!-- NO OVERHEAD -->
+  <section class="math math--dark math--flip">
+    <div class="math-inner">
+      <div class="math-copy">
+        <h2 class="math-title">
+          <span class="mt-sans" data-rv="lines">No store. No staff.</span>
+          <span class="mt-serif" data-rv="lines">No warehouse.</span>
+        </h2>
+        <p class="math-text" data-rv="lines">Sell from your phone, your car, a market stand, or online. We produce, we handle customs, we ship to your door. You focus on the one thing that makes money — selling.</p>
+      </div>
+      <figure class="math-figure" data-rv="up">
+        <img src="nostore.webp" alt="Cases of boots loaded in a pickup truck bed">
+      </figure>
+    </div>
   </section>
 
   <!-- GENDER TABS -->
@@ -840,7 +927,22 @@ function scatterProgress(){
   sec.style.setProperty('--p', p.toFixed(3));
 }
 
-function onFrame(){ revealInView(); scatterProgress(); }
+/* ── Photo parallax in the three story sections ──
+   The frame is measured (never transformed) and the oversized photo inside
+   drifts, so the reading can't feed back into itself. */
+function mathParallax(){
+  const vh=window.innerHeight;
+  document.querySelectorAll('.math-figure').forEach(fig=>{
+    const r=fig.getBoundingClientRect();
+    if(r.bottom<0 || r.top>vh) return;               // off-screen: skip
+    let p=((vh-r.top)/(vh+r.height))*2-1;            // -1 → 1 across the viewport
+    p=Math.max(-1,Math.min(1,p));
+    const img=fig.querySelector('img');
+    if(img) img.style.setProperty('--py',(-p*8).toFixed(2)+'%');
+  });
+}
+
+function onFrame(){ revealInView(); scatterProgress(); mathParallax(); }
 window.addEventListener('scroll', onFrame, {passive:true});
 window.addEventListener('resize', onFrame, {passive:true});
 /* Safety net: some browsers/webviews miss scroll events — a light interval
