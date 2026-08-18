@@ -7,7 +7,15 @@
 <title>Terraloma Distribution — Wholesale Store</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Fonts load without blocking the first paint: the page renders immediately
+     in a system fallback, then swaps once Google Fonts arrives. On a slow or
+     blocked mobile connection the page still shows instead of staying blank. -->
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600;700;800;900&display=swap"
+      media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600;700;800;900&display=swap">
+</noscript>
 
 <style>
 /* ═══════════════ TOKENS ═══════════════ */
@@ -380,7 +388,7 @@ a{color:inherit;text-decoration:none;}
     <img class="gate-bg" src="gate-bg.webp" alt="">
   </picture>
   <div class="gate-inner">
-    <div class="gate-logo3d"><img src="logo-nav.webp" alt="Terraloma"></div>
+    <div class="gate-logo3d"><img src="logo-nav.webp" alt="Terraloma" loading="lazy" decoding="async"></div>
     <div class="gate-sub">Wholesale Distribution · León, México</div>
     <button class="gate-btn" type="button" onclick="enterStore()">Enter Store</button>
     <div class="gate-help">Questions? <a href="https://wa.me/524439171366" target="_blank">Message us on WhatsApp</a></div>
@@ -393,7 +401,7 @@ a{color:inherit;text-decoration:none;}
   <nav class="nav">
     <div class="nav-inner">
       <a class="nav-logo" href="#shop" aria-label="Terraloma — Wholesale Store">
-        <img src="logo-nav.webp" alt="Terraloma">
+        <img src="logo-nav.webp" alt="Terraloma" loading="lazy" decoding="async">
         <span class="nav-tag">Wholesale</span>
       </a>
     </div>
@@ -404,7 +412,7 @@ a{color:inherit;text-decoration:none;}
     <div class="hero-inner">
       <picture>
         <source media="(min-width:900px)" srcset="hero-img-desktop.webp">
-        <img class="hero-img" src="hero-img.webp" alt="Terraloma boots">
+        <img class="hero-img" src="hero-img.webp" alt="Terraloma boots" loading="lazy" decoding="async">
       </picture>
       <div class="hero-overlay">
         <h2 class="hero-headline">Western is<br>taking over.</h2>
@@ -422,19 +430,19 @@ a{color:inherit;text-decoration:none;}
     <!-- full-bleed: sits outside the centred column so it runs edge to edge -->
     <div class="ticker" data-rv="up" aria-label="Resellers already selling Terraloma">
       <div class="ticker-track">
-          <figure class="ticker-item"><img src="pr1.webp" alt=""></figure>
-          <figure class="ticker-item"><img src="pr2.webp" alt=""></figure>
-          <figure class="ticker-item"><img src="win.webp" alt="A reseller's wholesale order, delivered"></figure>
-          <figure class="ticker-item"><img src="pr3.webp" alt=""></figure>
-          <figure class="ticker-item"><img src="pr4.webp" alt=""></figure>
-          <figure class="ticker-item"><img src="pr5.webp" alt=""></figure>
+          <figure class="ticker-item"><img src="pr1.webp" alt="" loading="lazy" decoding="async"></figure>
+          <figure class="ticker-item"><img src="pr2.webp" alt="" loading="lazy" decoding="async"></figure>
+          <figure class="ticker-item"><img src="win.webp" alt="A reseller's wholesale order, delivered" loading="lazy" decoding="async"></figure>
+          <figure class="ticker-item"><img src="pr3.webp" alt="" loading="lazy" decoding="async"></figure>
+          <figure class="ticker-item"><img src="pr4.webp" alt="" loading="lazy" decoding="async"></figure>
+          <figure class="ticker-item"><img src="pr5.webp" alt="" loading="lazy" decoding="async"></figure>
           <!-- duplicated set keeps the loop seamless -->
-          <figure class="ticker-item" aria-hidden="true"><img src="pr1.webp" alt=""></figure>
-          <figure class="ticker-item" aria-hidden="true"><img src="pr2.webp" alt=""></figure>
-          <figure class="ticker-item" aria-hidden="true"><img src="win.webp" alt=""></figure>
-          <figure class="ticker-item" aria-hidden="true"><img src="pr3.webp" alt=""></figure>
-          <figure class="ticker-item" aria-hidden="true"><img src="pr4.webp" alt=""></figure>
-          <figure class="ticker-item" aria-hidden="true"><img src="pr5.webp" alt=""></figure>
+          <figure class="ticker-item" aria-hidden="true"><img src="pr1.webp" alt="" loading="lazy" decoding="async"></figure>
+          <figure class="ticker-item" aria-hidden="true"><img src="pr2.webp" alt="" loading="lazy" decoding="async"></figure>
+          <figure class="ticker-item" aria-hidden="true"><img src="win.webp" alt="" loading="lazy" decoding="async"></figure>
+          <figure class="ticker-item" aria-hidden="true"><img src="pr3.webp" alt="" loading="lazy" decoding="async"></figure>
+          <figure class="ticker-item" aria-hidden="true"><img src="pr4.webp" alt="" loading="lazy" decoding="async"></figure>
+          <figure class="ticker-item" aria-hidden="true"><img src="pr5.webp" alt="" loading="lazy" decoding="async"></figure>
       </div>
     </div>
   </section>
@@ -448,7 +456,7 @@ a{color:inherit;text-decoration:none;}
   <section class="math math--dark math--flip">
     <div class="math-inner">
       <figure class="math-figure" data-rv="up">
-        <img src="case.webp" alt="A reseller's case of Terraloma boots, ready to sell">
+        <img src="case.webp" alt="A reseller's case of Terraloma boots, ready to sell" loading="lazy" decoding="async">
       </figure>
       <div class="math-copy">
         <h2 class="math-title">
@@ -464,7 +472,7 @@ a{color:inherit;text-decoration:none;}
   <section class="math math--dark">
     <div class="math-inner">
       <figure class="math-figure" data-rv="up">
-        <img src="demand.webp" alt="Exotic leather boots worn beside a Lamborghini">
+        <img src="demand.webp" alt="Exotic leather boots worn beside a Lamborghini" loading="lazy" decoding="async">
       </figure>
       <div class="math-copy">
         <h2 class="math-title">
@@ -480,7 +488,7 @@ a{color:inherit;text-decoration:none;}
   <section class="math math--dark math--flip">
     <div class="math-inner">
       <figure class="math-figure" data-rv="up">
-        <img src="nostore.webp" alt="Cases of boots loaded in a pickup truck bed">
+        <img src="nostore.webp" alt="Cases of boots loaded in a pickup truck bed" loading="lazy" decoding="async">
       </figure>
       <div class="math-copy">
         <h2 class="math-title">
@@ -783,7 +791,7 @@ function productCard(m){
     <div class="product" onclick="openModal('${m.id}')">
       <div class="product-img">
         <span class="product-tag" style="background:${m.tagColor}">${m.tag}</span>
-        <img src="${m.img}" alt="${m.name}" onerror="this.style.display='none'">
+        <img src="${m.img}" alt="${m.name}" onerror="this.style.display='none'" loading="lazy" decoding="async">
       </div>
       <div class="product-info">
         <div class="product-name">${m.name}</div>
@@ -996,7 +1004,7 @@ function setGender(btn){
 function openModal(id){
   const m=MODELS.find(x=>x.id===id);
   document.getElementById('modalContent').innerHTML=`
-    <div class="modal-img"><img src="${m.img}" alt="${m.name}" onerror="this.style.display='none'"></div>
+    <div class="modal-img"><img src="${m.img}" alt="${m.name}" onerror="this.style.display='none'" loading="lazy" decoding="async"></div>
     <div class="modal-info">
       <button class="modal-close" onclick="closeModal()">×</button>
       <div class="modal-material">${m.material}</div>
@@ -1064,7 +1072,7 @@ function renderCart(){
       priceBlock=`<div class="cart-item-price">Subtotal: <strong>$${sub.toLocaleString()}</strong></div>`;
     }
     return `<div class="cart-item">
-      <div class="cart-item-img"><img src="${i.img}" alt="" onerror="this.style.display='none'"></div>
+      <div class="cart-item-img"><img src="${i.img}" alt="" onerror="this.style.display='none'" loading="lazy" decoding="async"></div>
       <div class="cart-item-info">
         <div class="cart-item-name">${i.name}</div>
         <div class="cart-item-meta">${i.qty} pairs · $${up}/pair</div>
