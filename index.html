@@ -3,1106 +3,268 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow">
-<title>Terraloma Distribution — Wholesale Store</title>
+<title>Terraloma — The catalogue</title>
+<meta name="description" content="Not a shelf of finished boots — a set of choices. Pick your leather, your shape, your finish, and we make it yours.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Fonts load without blocking the first paint: the page renders immediately
-     in a system fallback, then swaps once Google Fonts arrives. On a slow or
-     blocked mobile connection the page still shows instead of staying blank. -->
-<link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600;700;800;900&display=swap"
-      media="print" onload="this.media='all'">
-<noscript>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600;700;800;900&display=swap">
-</noscript>
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════ TOKENS ═══════════════ */
-:root{
-  --col-bg:#F7F5F1; --col-surface:#FFFFFF; --col-panel:#F2F0EC; --col-panel-2:#EAE7E1;
-  --col-border:#E2DDD6; --col-border-hi:#C8C0B4;
-  --col-navy:#1B2A4A; --col-navy-mid:#2E4270; --col-navy-lite:#4A6298;
-  --col-ink:#1A1A1A; --col-text:#2C2C2C; --col-mid:#6B6560; --col-mute:#9E9690; --col-ghost:#C8C0B4;
-  --col-gold:#B8922A; --col-gold-lite:#D4AA4A;
-  --font-display:'Libre Baskerville',Georgia,serif;
-  --font-body:'Raleway',-apple-system,sans-serif;
-  --max-w:1320px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--col-surface);color:var(--col-ink);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
-img{display:block;max-width:100%;}
-a{color:inherit;text-decoration:none;}
+  :root{
+    --cream:#F2EBDD; --bone:#FBF6EC; --tan:#C49A67; --cognac:#965E30;
+    --clay:#6B4A2C; --espresso:#241A12; --taupe:#7A6A55; --line:#E1D6C0;
+    --serif:'Cormorant Garamond',Georgia,serif; --sans:'Jost',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--espresso);font-family:var(--sans);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:940px;margin:0 auto;padding:0 26px}
+  section{position:relative}
+  .pad{padding:11vh 0}
 
-/* ═══════════════ ENTRY GATE ═══════════════ */
-.gate{position:fixed;inset:0;z-index:1000;background:#0B0F1A;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;
-  transition:opacity .5s ease;}
-.gate.leaving{opacity:0;pointer-events:none;}
-.gate-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72;}
-.gate::after{content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at center,rgba(11,15,26,.35) 0%,rgba(11,15,26,.82) 75%);}
-.gate-inner{position:relative;z-index:2;max-width:420px;width:100%;text-align:center;}
+  header{position:sticky;top:0;z-index:40;background:rgba(242,235,221,.82);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+  header.scrolled{border-color:var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;max-width:940px;margin:0 auto;padding:16px 26px}
+  .brand{font-family:var(--serif);font-weight:500;font-size:21px;letter-spacing:.22em;text-transform:uppercase;color:var(--espresso);text-decoration:none}
+  .loc{font-family:var(--sans);font-size:11px;letter-spacing:.14em;color:var(--taupe);text-transform:uppercase}
+  @media(max-width:520px){.loc{display:none}}
 
-/* 3D spinning logo */
-.gate-logo3d{perspective:900px;margin-bottom:22px;}
-.gate-logo3d img{width:min(300px,74vw);height:auto;display:block;margin:0 auto;
-  filter:brightness(0) invert(1) drop-shadow(0 6px 24px rgba(0,0,0,.6));
-  animation:spinY 7s linear infinite;transform-style:preserve-3d;}
-@keyframes spinY{from{transform:rotateY(0deg);}to{transform:rotateY(360deg);}}
+  .eyebrow{font-size:12px;letter-spacing:.16em;color:var(--taupe);margin-bottom:18px}
+  h1,h2{font-family:var(--serif);font-weight:500;line-height:1.07;letter-spacing:-.01em}
+  h1{font-size:clamp(38px,9vw,66px)}
+  h2{font-size:clamp(28px,6.5vw,46px)}
+  .lead{font-weight:300;font-size:clamp(16px,4vw,19px);line-height:1.7;color:var(--clay);max-width:48ch;margin-top:22px}
+  .body{font-weight:300;font-size:clamp(15px,3.6vw,17px);line-height:1.75;color:var(--clay);max-width:52ch;margin-top:18px}
+  em{font-style:italic}
 
-.gate-sub{font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.72);margin-bottom:38px;}
-.gate-btn{min-width:230px;background:#fff;color:var(--col-navy);font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:16px 34px;border:2px solid #fff;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
-.gate-btn:hover{background:transparent;color:#fff;}
-.gate-help{font-size:12px;color:rgba(255,255,255,0.55);margin-top:30px;line-height:1.6;}
-.gate-help a{color:rgba(255,255,255,0.85);border-bottom:1px solid rgba(255,255,255,0.35);}
+  .hero{min-height:66vh;display:flex;flex-direction:column;justify-content:center;padding:16vh 0 8vh}
 
-/* Reduced motion: stop the spin */
-@media (prefers-reduced-motion: reduce){
-  .gate-logo3d img{animation:none;}
-}
+  /* section heading block */
+  .head{margin-bottom:40px}
 
-/* ═══════════════ APP ═══════════════ */
-#app{display:none;}
+  /* generic grid */
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(2,1fr)}
+  @media(min-width:720px){.g4{grid-template-columns:repeat(4,1fr)}}
+  .g5{grid-template-columns:repeat(2,1fr)}
+  @media(min-width:640px){.g5{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:900px){.g5{grid-template-columns:repeat(5,1fr)}}
+  @media(max-width:620px){.g3{grid-template-columns:repeat(2,1fr)}}
 
-/* NAV */
-/* Static, transparent over the hero video — scrolls away with the page */
-.nav{position:relative;z-index:100;background:transparent;border-bottom:none;}
-.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
-.nav-logo{display:inline-flex;align-items:center;gap:12px;line-height:1;transition:opacity .2s;}
-.nav-logo img{height:38px;width:auto;display:block;transition:filter .35s ease;
-  /* white over the video */
-  filter:brightness(0) invert(1) drop-shadow(0 1px 3px rgba(0,0,0,.35));}
-.nav-logo:hover{opacity:.72;}
-.nav-tag{font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;line-height:1;padding:4px 9px;border-radius:999px;
-  color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.45);
-  transition:color .35s ease,border-color .35s ease;}
-.cart-toggle{position:relative;background:none;border:none;cursor:pointer;color:var(--col-navy);padding:8px;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;}
-.cart-toggle svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.5;transition:stroke .35s ease;filter:drop-shadow(0 1px 3px rgba(0,0,0,.35));}
-.cart-count{position:absolute;top:0;right:-2px;background:var(--col-gold);color:#fff;border-radius:999px;min-width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;padding:0 5px;}
+  .cell{}
+  .swatch{aspect-ratio:4/5;border-radius:4px;border:0.5px solid rgba(107,74,44,.18)}
+  .cell .name{font-family:var(--serif);font-size:19px;margin-top:12px}
+  .cell .note{font-size:12.5px;color:var(--taupe);margin-top:2px}
 
-/* ANNOUNCEMENT BAR (marquee) */
-.announce-bar{background:var(--col-navy);height:38px;overflow:hidden;display:flex;align-items:center;position:relative;z-index:101;}
-.announce-marquee{display:inline-flex;align-items:center;gap:40px;white-space:nowrap;animation:marquee 32s linear infinite;will-change:transform;}
-.announce-marquee:hover{animation-play-state:paused;}
-@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.am-item{font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.9);}
-.am-link{text-decoration:none;color:#fff;transition:color .2s;}
-.am-link:hover{color:var(--col-gold-lite);}
-.am-sep{color:var(--col-gold-lite);font-size:9px;}
+  /* leather textures (placeholders — swap for photos later) */
+  .l-caiman{background:
+    repeating-linear-gradient(0deg, rgba(60,40,20,.13) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(90deg, rgba(60,40,20,.13) 0 1px, transparent 1px 32px),
+    linear-gradient(135deg,#C49A67,#8A6238)}
+  .l-ostrich{background:
+    radial-gradient(circle at center, rgba(60,40,20,.16) 2px, transparent 3px) 0 0/20px 20px,
+    linear-gradient(135deg,#CDA97E,#A9835A)}
+  .l-python{background:
+    repeating-linear-gradient(45deg, rgba(60,40,20,.11) 0 1px, transparent 1px 18px),
+    repeating-linear-gradient(-45deg, rgba(60,40,20,.11) 0 1px, transparent 1px 18px),
+    linear-gradient(135deg,#B8A683,#8F7C5C)}
+  .l-pirarucu{background:
+    repeating-linear-gradient(0deg, rgba(50,34,18,.15) 0 1px, transparent 1px 38px),
+    repeating-linear-gradient(90deg, rgba(50,34,18,.12) 0 1px, transparent 1px 28px),
+    linear-gradient(135deg,#A9803F,#6E4E28)}
+  .l-cognac{background:linear-gradient(135deg,#A9713F,#7A4E27)}
+  .l-cow{background:
+    repeating-linear-gradient(115deg, rgba(60,40,20,.07) 0 1px, transparent 1px 9px),
+    linear-gradient(135deg,#9A7248,#6B4A2C)}
 
-/* GENDER TABS */
-.gender-bar{display:flex;justify-content:center;gap:44px;border-bottom:1px solid var(--col-border);background:var(--col-surface);}
-.gender-tab{background:none;border:none;font-family:var(--font-body);font-size:13px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--col-mute);cursor:pointer;padding:16px 4px;position:relative;transition:color .2s;}
-.gender-tab:hover{color:var(--col-navy);}
-.gender-tab.active{color:var(--col-navy);}
-.gender-tab.active::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--col-navy);}
+  /* toe shapes — fotografías generadas de la puntera vista desde arriba */
+  .toe{aspect-ratio:1;overflow:hidden;border-radius:4px;border:0.5px solid rgba(107,74,44,.14);background:var(--cream)}
+  .toe img{width:100%;height:100%;object-fit:cover;display:block}
 
-/* HERO BANNER */
-/* Pull the hero up so the transparent nav floats over the image */
-.hero{background:var(--col-navy);margin-top:-62px;position:relative;}
-.hero-inner{position:relative;margin:0 auto;line-height:normal;}
-/* Top scrim keeps the nav readable over the photo */
-.hero-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:130px;z-index:1;pointer-events:none;
-  background:linear-gradient(rgba(15,22,38,.55),transparent);}
-.hero-img{width:100%;height:clamp(460px,78vh,860px);object-fit:cover;object-position:center 42%;display:block;}
-/* Desktop shot is already horizontal — no vertical shift needed */
-@media(min-width:900px){ .hero-img{object-position:center;} }
-/* Bottom scrim so the giant headline stays readable */
-.hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;padding:0 5% 7%;
-  background:linear-gradient(transparent 35%,rgba(12,18,32,.55) 70%,rgba(12,18,32,.85) 100%);}
-.hero-headline{font-family:var(--font-body);font-weight:800;
-  font-size:clamp(38px,9.5vw,132px);line-height:0.92;letter-spacing:-0.035em;
-  text-transform:uppercase;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.5);margin:0;}
+  /* plain tonal plates (branding + work) */
+  .plate{aspect-ratio:4/5;border-radius:4px;position:relative;overflow:hidden;border:0.5px solid rgba(107,74,44,.16)}
+  .plate .cap{position:absolute;left:14px;bottom:12px;font-family:var(--serif);font-style:italic;font-size:16px;color:#3a2b1c}
+  .pl-a{background:linear-gradient(150deg,#F0E5D2,#D2B98E)}
+  .pl-b{background:linear-gradient(150deg,#E7D8BE,#C09A66)}
+  .pl-c{background:linear-gradient(150deg,#EFE3CF,#B98F5E)}
+  .work{aspect-ratio:4/5;border-radius:4px;border:0.5px solid rgba(107,74,44,.16)}
+  .w1{background:linear-gradient(150deg,#EFE3CF,#C49A67 70%,#7A5433)}
+  .w2{background:linear-gradient(150deg,#F0E6D3,#B8A683)}
+  .w3{background:linear-gradient(150deg,#EDE2CE,#A9803F)}
+  .w-mill{background:var(--bone);display:flex;align-items:center;justify-content:center;text-align:center;padding:14px}
+  .w-mill{position:relative}
+  .work.w-mill{background:var(--bone) !important}
 
-/* WHY NOW */
-.whynow{background:#0B0B0C;padding:clamp(56px,8vw,104px) 0 clamp(48px,6vw,80px);}
-.whynow-inner{max-width:820px;margin:0 auto;padding:0 24px;text-align:center;}
-.whynow-title{font-family:var(--font-body);font-weight:800;
-  font-size:clamp(38px,6vw,72px);line-height:1.02;letter-spacing:-0.035em;
-  color:#fff;margin-bottom:22px;}
-.whynow-text{font-family:var(--font-body);font-size:clamp(16px,2vw,21px);font-weight:400;
-  line-height:1.6;color:rgba(255,255,255,.72);max-width:620px;margin:0 auto 40px;}
-.whynow-label{font-family:var(--font-body);font-size:11px;font-weight:700;
-  letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px;}
-/* SAME MARKET / DIFFERENT GAME — scatter-to-assemble headline */
-.scatter{background:#0B0B0C;display:flex;align-items:center;justify-content:center;
-  padding:clamp(44px,7vw,86px) 24px;overflow:hidden;}
-.scatter-text{font-family:var(--font-body);font-weight:800;
-  font-size:clamp(34px,7.5vw,104px);line-height:1.02;letter-spacing:-0.035em;
-  text-transform:uppercase;color:#fff;text-align:center;max-width:15ch;margin:0;}
-/* A word is one unbreakable unit, so "different" never splits across lines */
-.sc-word{display:inline-block;white-space:nowrap;}
-/* Each letter drifts from a random offset/rotation (--p: 1 = scattered, 0 = set) */
-.sc-ch{display:inline-block;white-space:pre;will-change:transform;
-  transform:translate(calc(var(--tx,0px) * var(--p,0)), calc(var(--ty,0px) * var(--p,0)))
-            rotate(calc(var(--rot,0deg) * var(--p,0)));
-  opacity:calc(1 - (var(--p,0) * .35));}
+  /* proof / cta */
+  .cta{background:var(--cognac);color:var(--bone);text-align:center}
+  .cta h2{color:var(--bone)}
+  .cta .lead{color:#F1E5D3;margin:22px auto 0}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:15px;background:var(--bone);color:var(--espresso);padding:15px 30px;border-radius:2px;text-decoration:none;transition:transform .2s,background .25s;margin-top:34px}
+  .btn:hover{background:var(--cream);transform:translateY(-1px)}
 
-/* THE MATH — copy one side, photo the other (alternating) */
-.math{background:var(--col-bg);padding:clamp(34px,4vw,58px) 0;}
-.math+.math{padding-top:0;}                     /* stacked blocks sit closer */
-.math-inner{max-width:var(--max-w);margin:0 auto;padding:0 clamp(20px,5vw,48px);
-  display:grid;grid-template-columns:1.05fr 0.95fr;gap:clamp(24px,4vw,54px);align-items:center;}
-/* Photo comes first in the markup (so mobile text can wrap around it);
-   on desktop `order` puts it back on the intended side. */
-.math-figure{order:2;}          /* default: copy left, photo right */
-.math-copy{order:1;}
-.math--flip .math-figure{order:1;}   /* flipped: photo left, copy right */
-.math--flip .math-copy{order:2;}
-.math-title{font-size:clamp(28px,3.6vw,48px);line-height:1.03;
-  color:var(--col-navy);margin:0 0 16px;}
-.mt-sans{display:block;font-family:var(--font-body);font-weight:800;
-  letter-spacing:-0.03em;text-transform:uppercase;}
-/* serif half, like the reference lockup */
-.mt-serif{display:block;font-family:var(--font-display);font-weight:700;
-  letter-spacing:-0.01em;}
-.math-text{font-family:var(--font-body);font-size:clamp(14px,1.5vw,17px);
-  line-height:1.6;color:var(--col-mid);max-width:44ch;margin:0;}
-/* Fixed frame + oversized photo = room to drift on scroll (parallax) */
-.math-figure{margin:0;overflow:hidden;height:clamp(240px,34vw,380px);
-  box-shadow:0 20px 54px rgba(27,42,74,.16);}
-/* 126% tall with a -10% base leaves headroom for ±8% of drift without
-   ever exposing an edge (percentages resolve against the image, not the frame) */
-.math-figure img{width:100%;height:126%;object-fit:cover;display:block;will-change:transform;
-  transform:translateY(calc(-10% + var(--py,0%)));}
-/* Dark variant */
-.math--dark{background:#0B0B0C;}
-.math--dark .math-title{color:#fff;}
-.math--dark .math-text{color:rgba(255,255,255,.72);}
-.math--dark .math-figure{box-shadow:0 20px 54px rgba(0,0,0,.55);}
-@media(max-width:760px){
-  .math{padding:clamp(28px,6vw,40px) 0;}
-  /* Mobile: the photo floats to one side and the copy wraps around it,
-     like the reference — not a full-width photo stacked on top. */
-  .math-inner{display:block;}
-  .math-copy::after{content:'';display:block;clear:both;}
-  .math-figure{float:right;width:44%;height:auto;aspect-ratio:3/4;
-    margin:4px 0 14px 16px;}
-  .math--flip .math-figure{float:left;margin:4px 16px 14px 0;}
-  .math-title{font-size:clamp(26px,7.4vw,34px);margin-bottom:12px;}
-  .math-text{font-size:15px;max-width:none;}
-}
+  .float{position:fixed;right:18px;bottom:18px;z-index:50;display:inline-flex;align-items:center;gap:9px;background:var(--espresso);color:var(--bone);padding:13px 18px;border-radius:40px;text-decoration:none;font-size:14px;box-shadow:0 6px 22px rgba(36,26,18,.28);transition:transform .25s,background .25s}
+  .float:hover{transform:translateY(-2px);background:var(--clay)}
+  .float svg{width:19px;height:19px;fill:currentColor}
+  @media(max-width:520px){.float span{display:none}.float{padding:14px;border-radius:50%}}
 
-/* Infinite horizontal ticker of reseller photos */
-.ticker{margin:34px 0 8px;overflow:hidden;width:100%;}
-.ticker-track{display:flex;align-items:center;
-  width:max-content;animation:tickerRun 44s linear infinite;will-change:transform;}
-.ticker:hover .ticker-track{animation-play-state:paused;}
-@keyframes tickerRun{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-/* Spacing lives on the item (not `gap`) so half the track is exactly one set
-   — otherwise the loop jumps by half a gap on every cycle. */
-.ticker-item{margin:0 clamp(12px,2vw,22px) 0 0;flex:0 0 auto;}
-.ticker-item img{width:clamp(190px,26vw,320px);aspect-ratio:4/5;object-fit:cover;
-  display:block;background:#111;box-shadow:0 14px 38px rgba(0,0,0,.5);}
+  footer{background:var(--cream);text-align:center;padding:8vh 0 9vh}
+  footer .name{font-family:var(--serif);font-size:22px;letter-spacing:.16em}
+  footer .meta{font-size:13px;color:var(--taupe);margin-top:12px;line-height:1.9}
+  footer a{color:var(--cognac);text-decoration:none}
 
-/* SECTION BAR */
-.shopbar{max-width:var(--max-w);margin:0 auto;padding:44px 32px 24px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;}
-.shopbar h2{font-family:var(--font-display);font-size:clamp(26px,3vw,36px);font-weight:700;color:var(--col-navy);letter-spacing:-0.01em;}
-.shopbar p{font-size:13px;color:var(--col-mute);margin-top:4px;}
-.filters{display:flex;gap:8px;flex-wrap:wrap;}
-.filter-btn{background:transparent;border:1px solid var(--col-border-hi);color:var(--col-mid);font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:9px 18px;cursor:pointer;transition:all .2s;}
-.filter-btn:hover{border-color:var(--col-navy);color:var(--col-navy);}
-.filter-btn.active{background:var(--col-navy);border-color:var(--col-navy);color:#fff;}
-
-/* PRODUCT GRID (Lucchese style) */
-.grid{max-width:var(--max-w);margin:0 auto;padding:0 32px 80px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--col-border);border-left:1px solid var(--col-border);}
-.product{position:relative;border-right:1px solid var(--col-border);border-bottom:1px solid var(--col-border);background:var(--col-surface);cursor:pointer;transition:background .25s;display:flex;flex-direction:column;}
-.product:hover{box-shadow:0 12px 36px rgba(27,42,74,0.1);z-index:1;}
-.product-img{aspect-ratio:4/5;background:#FFFFFF;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
-.product-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
-.product:hover .product-img img{transform:scale(1.05);}
-.product-tag{position:absolute;top:16px;left:16px;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#fff;padding:4px 9px;}
-.product-info{padding:20px 24px 26px;}
-.product-name{font-family:var(--font-body);font-size:14px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--col-navy);margin-bottom:8px;}
-.product-price{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--col-text);}
-.product-price small{font-size:12px;color:var(--col-mute);font-family:var(--font-body);font-weight:500;letter-spacing:0.02em;}
-.product-resell{font-size:11px;color:var(--col-mute);margin-top:4px;letter-spacing:0.02em;}
-.product-meta{font-size:12px;color:var(--col-mute);margin-top:6px;letter-spacing:0.04em;}
-
-/* PROMO BANNER (woven into grid) */
-.promo{grid-column:1/-1;position:relative;min-height:440px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;text-align:center;border-right:1px solid var(--col-border);border-bottom:1px solid var(--col-border);overflow:hidden;}
-.promo::before{content:'';position:absolute;inset:0;background:rgba(18,26,44,0.58);}
-.promo-content{position:relative;z-index:1;padding:48px 32px;max-width:560px;}
-.promo-title{font-family:var(--font-display);font-size:clamp(28px,4vw,46px);font-weight:700;color:#fff;line-height:1.08;letter-spacing:-0.01em;margin-bottom:18px;}
-.promo-text{font-family:var(--font-body);font-size:clamp(14px,1.8vw,17px);color:rgba(255,255,255,0.92);line-height:1.6;margin-bottom:30px;max-width:460px;margin-left:auto;margin-right:auto;}
-.promo-btn{display:inline-flex;align-items:center;background:#fff;color:var(--col-navy);font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:15px 34px;border-radius:999px;transition:all .2s;}
-.promo-btn:hover{background:var(--col-gold-lite);color:var(--col-navy);}
-
-/* ═══════════════ LINE-MASK REVEAL ═══════════════
-   Text rises line by line from behind an invisible mask. */
-.rv-line{display:block;overflow:hidden;}
-.rv-in{display:block;transform:translateY(110%);
-  transition:transform .95s cubic-bezier(.16,1,.3,1);transition-delay:var(--ld,0ms);}
-.rv-on .rv-in{transform:translateY(0);}
-/* Non-text blocks (images, buttons) just rise + fade */
-.rv-up{opacity:0;transform:translateY(34px);
-  transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);
-  transition-delay:var(--ld,0ms);}
-.rv-up.rv-on{opacity:1;transform:none;}
-
-/* ═══════════════ SCROLL ANIMATIONS ═══════════════ */
-/* Product cards & promos rise in as they enter the viewport */
-.anim-in{opacity:0;transform:translateY(26px);transition:opacity .55s cubic-bezier(.22,.61,.36,1),transform .55s cubic-bezier(.22,.61,.36,1);}
-.anim-in.visible{opacity:1;transform:none;}
-/* Stagger via inline --d set per card */
-.anim-in{transition-delay:var(--d,0ms);}
-/* Hero entrance on load */
-.hero-overlay > *{opacity:0;transform:translateY(18px);animation:heroRise .7s cubic-bezier(.22,.61,.36,1) forwards;}
-.hero-eyebrow{animation-delay:.15s!important;}
-.hero-headline{animation-delay:.3s!important;}
-.hero-sub{animation-delay:.45s!important;}
-.hero-btns{animation-delay:.6s!important;}
-@keyframes heroRise{to{opacity:1;transform:none;}}
-/* Grid swap fade when changing gender/filter */
-.grid.swapping{opacity:0;transform:translateY(10px);}
-.grid{transition:opacity .25s ease,transform .25s ease;}
-/* Product hover: lift + sharper shadow (kept subtle) */
-.product{transition:background .25s,box-shadow .3s,transform .3s;}
-.product:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(27,42,74,0.12);z-index:1;}
-/* Gender tab underline slides */
-.gender-tab::after{transition:transform .25s ease;transform:scaleX(0);}
-.gender-tab.active::after{transform:scaleX(1);}
-/* Cart count pop when it changes */
-@keyframes countPop{0%{transform:scale(1);}40%{transform:scale(1.45);}100%{transform:scale(1);}}
-.cart-count.pop{animation:countPop .35s ease;}
-/* Reduced motion: kill the show, keep the content */
-@media (prefers-reduced-motion: reduce){
-  .anim-in{opacity:1;transform:none;transition:none;}
-  .hero-overlay > *{opacity:1;transform:none;animation:none;}
-  .grid{transition:none;}
-  .product{transition:none;}
-  .product:hover{transform:none;}
-  .announce-marquee{animation:none;}
-  .rv-in{transform:none;transition:none;}
-  .rv-up{opacity:1;transform:none;transition:none;}
-  .ticker-track{animation:none;}
-  .sc-ch{transform:none;opacity:1;}
-  .math-figure img{transform:translateY(-10%);}
-}
-
-/* FOOTER */
-.footer{background:var(--col-navy);padding:40px 0;}
-.footer-inner{max-width:var(--max-w);margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
-.footer-logo{font-family:var(--font-display);font-size:20px;font-weight:700;color:#fff;letter-spacing:0.04em;}
-.footer-contact{display:flex;gap:24px;flex-wrap:wrap;align-items:center;}
-.footer-contact a{font-size:13px;color:rgba(255,255,255,0.65);transition:color .2s;}
-.footer-contact a:hover{color:#fff;}
-.footer-contact span{font-size:13px;color:rgba(255,255,255,0.4);}
-
-/* ═══════════════ PRODUCT MODAL ═══════════════ */
-.modal-overlay{position:fixed;inset:0;background:rgba(27,42,74,0.5);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:24px;}
-.modal-overlay.open{opacity:1;pointer-events:auto;}
-.modal{background:var(--col-surface);max-width:920px;width:100%;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;transform:translateY(20px);transition:transform .3s;}
-.modal-overlay.open .modal{transform:none;}
-.modal-img{background:#FFFFFF;display:flex;align-items:center;justify-content:center;padding:40px;min-height:380px;}
-.modal-img img{width:100%;height:100%;object-fit:contain;}
-.modal-info{padding:44px 40px;position:relative;}
-.modal-close{position:absolute;top:20px;right:24px;background:none;border:none;font-size:28px;color:var(--col-mute);cursor:pointer;line-height:1;}
-.modal-material{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--col-gold);margin-bottom:8px;}
-.modal-name{font-family:var(--font-display);font-size:32px;font-weight:700;color:var(--col-navy);line-height:1.1;margin-bottom:14px;}
-.modal-desc{font-size:14px;color:var(--col-mid);line-height:1.7;margin-bottom:24px;}
-.modal-price-big{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--col-navy);margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--col-border);}
-.modal-price-big span{font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--col-mute);letter-spacing:0.04em;}
-.modal-size-note{font-size:12px;color:var(--col-mute);line-height:1.5;margin-bottom:16px;}
-.modal-controls{display:flex;gap:10px;margin-bottom:16px;}
-.mc-group{flex:1;}
-.mc-label{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--col-mute);margin-bottom:6px;display:block;}
-.mc-select,.mc-qty{width:100%;background:var(--col-bg);border:1px solid var(--col-border-hi);color:var(--col-text);font-family:var(--font-body);font-size:15px;padding:11px 12px;outline:none;}
-.mc-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B2A4A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;cursor:pointer;}
-.modal-add{width:100%;background:var(--col-navy);color:#fff;font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:16px;border:none;cursor:pointer;transition:background .2s;}
-.modal-add:hover{background:var(--col-navy-mid);}
-.modal-add.added{background:#2E7D32;}
-
-/* ═══════════════ CART DRAWER ═══════════════ */
-.cart-overlay{position:fixed;inset:0;background:rgba(27,42,74,0.4);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;}
-.cart-overlay.open{opacity:1;pointer-events:auto;}
-.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:420px;max-width:90vw;background:var(--col-surface);z-index:201;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(27,42,74,0.15);}
-.cart-drawer.open{transform:none;}
-.cart-head{padding:24px 28px;border-bottom:1px solid var(--col-border);display:flex;align-items:center;justify-content:space-between;}
-.cart-head h3{font-family:var(--font-display);font-size:22px;color:var(--col-navy);font-weight:700;}
-.cart-close{background:none;border:none;font-size:24px;color:var(--col-mute);cursor:pointer;line-height:1;}
-.cart-items{flex:1;overflow-y:auto;padding:8px 28px;}
-.cart-empty{text-align:center;color:var(--col-mute);font-size:14px;padding:60px 20px;line-height:1.6;}
-.cart-item{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--col-border);}
-.cart-item-img{width:60px;height:60px;background:#FFFFFF;border:1px solid var(--col-border);flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;}
-.cart-item-img img{width:100%;height:100%;object-fit:contain;}
-.cart-item-info{flex:1;min-width:0;}
-.cart-item-name{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--col-navy);line-height:1.2;}
-.cart-item-meta{font-size:12px;color:var(--col-mute);margin-top:3px;}
-.cart-item-price{font-size:13px;color:var(--col-mid);margin-top:4px;}
-.cart-item-price strong{color:var(--col-navy);}
-.cart-item-econ{margin-top:8px;background:var(--col-panel);border:1px solid var(--col-border);padding:8px 10px;font-size:12px;}
-.econ-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:2px 0;}
-.econ-row span{color:var(--col-mid);}
-.econ-row strong{color:var(--col-navy);font-weight:600;white-space:nowrap;}
-.econ-row.profit{margin-top:4px;padding-top:6px;border-top:1px solid var(--col-border);}
-.econ-row.profit span{color:#1f7a3d;font-weight:700;}
-.econ-row.profit strong{color:#1f7a3d;font-weight:700;}
-.cart-item-remove{background:none;border:none;color:var(--col-mute);font-size:11px;cursor:pointer;text-decoration:underline;margin-top:4px;padding:0;}
-.cart-foot{padding:22px 28px;border-top:1px solid var(--col-border);background:var(--col-panel);}
-.cart-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
-.cart-profit-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;padding-top:8px;border-top:1px solid var(--col-border);}
-.cart-profit-label{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#1f7a3d;}
-.cart-profit-val{font-family:var(--font-display);font-size:20px;font-weight:700;color:#1f7a3d;}
-.cart-total-label{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--col-mid);}
-.cart-total-val{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--col-navy);}
-.cart-note{font-size:11px;color:var(--col-mute);line-height:1.5;margin-bottom:16px;}
-.cart-send{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;font-family:var(--font-body);font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:16px;border:none;cursor:pointer;transition:background .2s;}
-.cart-send:hover{background:#1da851;}
-.cart-send svg{width:18px;height:18px;fill:#fff;}
-.cart-send:disabled{background:var(--col-border-hi);cursor:not-allowed;}
-
-/* RESPONSIVE */
-@media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:700px){.modal{grid-template-columns:1fr;}.modal-img{min-height:280px;}}
-@media(max-width:560px){
-  /* Keep 2 columns on mobile (Lucchese style) */
-  .grid{grid-template-columns:repeat(2,1fr);padding:0 16px 60px;}
-  .nav-inner{padding:0 16px;height:56px;}
-  .nav-logo img{height:34px;}
-  .nav-tag{display:none;}
-  .hero{margin-top:-56px;}
-  .cart-drawer{width:100%;}
-  .shopbar{padding:28px 16px 18px;}
-  /* Compact product info for narrow columns */
-  .product-info{padding:14px 14px 18px;}
-  .product-name{font-size:12px;letter-spacing:0.06em;margin-bottom:5px;}
-  .product-price{font-size:16px;}
-  .product-price small{font-size:11px;}
-  .product-meta{font-size:11px;margin-top:4px;}
-  .product-tag{font-size:8px;padding:3px 7px;top:10px;left:10px;}
-  .footer-inner{flex-direction:column;text-align:center;gap:14px;}
-}
-@media(max-width:380px){
-  .product-meta{display:none;}
-}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+  /* imágenes reales dentro de swatch / plate / work */
+  .swatch,.plate,.work{overflow:hidden;position:relative;background-color:var(--cream)}
+  .swatch img,.plate img,.work img{width:100%;height:100%;object-fit:cover;display:block}
+  .plate{background:none}
+  .plate::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;background:linear-gradient(to top,rgba(36,26,18,.5),rgba(36,26,18,0));pointer-events:none}
+  .plate .cap{color:var(--bone);text-shadow:0 1px 8px rgba(0,0,0,.4);z-index:2}
 </style>
 </head>
 <body>
+  <header id="hdr">
+    <div class="bar">
+      <a class="brand" href="#top">Terraloma</a>
+      <span class="loc">The catalogue</span>
+    </div>
+  </header>
+  <a name="top"></a>
 
-<!-- ═══════════════ ENTRY GATE ═══════════════ -->
-<div class="gate" id="gate">
-  <picture>
-    <source media="(min-width:900px)" srcset="gate-bg-desktop.webp">
-    <img class="gate-bg" src="gate-bg.webp" alt="">
-  </picture>
-  <div class="gate-inner">
-    <div class="gate-logo3d"><img src="logo-nav.webp" alt="Terraloma" loading="lazy" decoding="async"></div>
-    <div class="gate-sub">Wholesale Distribution · León, México</div>
-    <button class="gate-btn" type="button" onclick="enterStore()">Enter Store</button>
-    <div class="gate-help">Questions? <a href="https://wa.me/524439171366" target="_blank">Message us on WhatsApp</a></div>
-  </div>
-</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow reveal">The Terraloma catalogue</p>
+      <h1 class="reveal d1">This is what<br>we can build for you.</h1>
+      <p class="lead reveal d2">Not a shelf of finished boots — a set of choices. Pick your leather, your shape, your finish, and we make it yours.</p>
+    </div>
+  </section>
 
-<!-- ═══════════════ APP ═══════════════ -->
-<div id="app">
+  <!-- LEATHERS -->
+  <section class="pad">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow reveal">The leathers</p>
+        <h2 class="reveal d1">Start with the skin.</h2>
+        <p class="body reveal d2">Every look of exotic leather, crafted in premium embossed hides — the texture and the feel, without the permits.</p>
+      </div>
+      <div class="grid g3">
+        <div class="cell reveal"><div class="swatch"><img src="pielcaiman.png" alt="Embossed caiman leather" loading="lazy"></div><p class="name">Embossed caiman</p><p class="note">The classic. Bold, structured scale.</p></div>
+        <div class="cell reveal"><div class="swatch"><img src="pielavestruz.png" alt="Ostrich leather" loading="lazy"></div><p class="name">Ostrich</p><p class="note">Quill texture, soft and premium.</p></div>
+        <div class="cell reveal"><div class="swatch"><img src="pielpiton.png" alt="Python leather" loading="lazy"></div><p class="name">Python</p><p class="note">Fine diamond pattern, eye-catching.</p></div>
+        <div class="cell reveal"><div class="swatch"><img src="pielpirarucu.png" alt="Pirarucú leather" loading="lazy"></div><p class="name">Pirarucú</p><p class="note">Large dramatic scale.</p></div>
+        <div class="cell reveal"><div class="swatch"><img src="pielmantarraya.png" alt="Stingray leather" loading="lazy"></div><p class="name">Stingray</p><p class="note">Pearled dots, unmistakable.</p></div>
+        <div class="cell reveal"><div class="swatch"><img src="trenzado.png" alt="Braided leather" loading="lazy"></div><p class="name">Braided</p><p class="note">Woven detail, artisanal signature.</p></div>
+      </div>
+    </div>
+  </section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a class="nav-logo" href="#shop" aria-label="Terraloma — Wholesale Store">
-        <img src="logo-nav.webp" alt="Terraloma" loading="lazy" decoding="async">
-        <span class="nav-tag">Wholesale</span>
+  <!-- SHAPE -->
+  <section class="pad">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow reveal">Shape</p>
+        <h2 class="reveal d1">Then the silhouette.</h2>
+        <p class="body reveal d2">Toe and last set the whole character of the boot. Round, square, oval, snip, wide oval — your call.</p>
+      </div>
+      <div class="grid g5">
+        <div class="cell reveal"><div class="toe"><img src="punta-redonda.webp" alt="Round toe" loading="lazy"></div><p class="name">Round</p></div>
+        <div class="cell reveal"><div class="toe"><img src="punta-cuadrada.webp" alt="Square toe" loading="lazy"></div><p class="name">Square</p></div>
+        <div class="cell reveal"><div class="toe"><img src="punta-oval.webp" alt="Oval toe" loading="lazy"></div><p class="name">Oval</p></div>
+        <div class="cell reveal"><div class="toe"><img src="punta-snip.webp" alt="Snip toe" loading="lazy"></div><p class="name">Snip</p></div>
+        <div class="cell reveal"><div class="toe"><img src="punta-wideoval.webp" alt="Wide oval toe" loading="lazy"></div><p class="name">Wide oval</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINISH -->
+  <section class="pad">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow reveal">Finish</p>
+        <h2 class="reveal d1">The details that make it yours.</h2>
+        <p class="body reveal d2">Tones, stitching, embroidery, sole and heel. The small decisions that turn a boot into <em>your</em> boot.</p>
+      </div>
+      <div class="grid g4">
+        <div class="cell reveal"><div class="swatch"><img src="colores.png" alt="Color and patina" loading="lazy"></div><p class="name">Color & patina</p></div>
+        <div class="cell reveal"><div class="swatch"><img src="taller5.webp" alt="Hands stitching a boot" loading="lazy"></div><p class="name">Stitching</p></div>
+        <div class="cell reveal"><div class="swatch"><img src="bordado.png" alt="Embroidery detail" loading="lazy"></div><p class="name">Embroidery</p></div>
+        <div class="cell reveal"><div class="swatch"><img src="suela.png" alt="Sole and heel" loading="lazy"></div><p class="name">Sole & heel</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANDING -->
+  <section class="pad">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow reveal">Your name on it</p>
+        <h2 class="reveal d1">Your brand, in every pair.</h2>
+        <p class="body reveal d2">However your customer meets the boot, they meet <em>your</em> name — not ours.</p>
+      </div>
+      <div class="grid g3">
+        <div class="cell reveal"><div class="plate"><img src="brand.png" alt="Debossed logo on the boot" loading="lazy"><span class="cap">Debossed logo</span></div></div>
+        <div class="cell reveal"><div class="plate"><img src="plate-bench.webp" alt="Branded insole" loading="lazy"><span class="cap">Branded insole</span></div></div>
+        <div class="cell reveal"><div class="plate"><img src="cubrepolvo.png" alt="Custom box and dust cover" loading="lazy"><span class="cap">Custom box &amp; dust cover</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="pad">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow reveal">What we've made</p>
+        <h2 class="reveal d1">Proof, not a price list.</h2>
+        <p class="body reveal d2">A look at boots we've built. Not a catalogue to order from — a measure of what we can do for your line.</p>
+      </div>
+      <div class="grid g4">
+        <div class="cell reveal"><div class="work"><img src="m5-cream.png" alt="Finished boot" loading="lazy"></div></div>
+        <div class="cell reveal"><div class="work"><img src="mm1-cream.png" alt="Finished boot" loading="lazy"></div></div>
+        <div class="cell reveal"><div class="work"><img src="mujj1-cream.png" alt="Finished boot" loading="lazy"></div></div>
+        <div class="cell reveal"><div class="work w-mill"><span style="font-family:var(--serif);font-size:18px;color:var(--espresso);line-height:1.25">The Millinery<br><span style="font-size:12px;color:var(--cognac)">partner line</span></span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta pad">
+    <div class="wrap">
+      <h2 class="reveal">Ready to build yours?</h2>
+      <p class="lead reveal d1">Bring your brand and a rough idea — even a photo you like. We'll take it from there.</p>
+      <a class="btn reveal d2" href="#" data-wa>
+        <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.4 5 5.1-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.6-6c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5 0a6.5 6.5 0 01-1.9-1.2 7.2 7.2 0 01-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.4c0-.1-.6-1.5-.8-2s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.9 11.9 0 004.6 4c.6.3 1.1.4 1.5.6a3.6 3.6 0 001.6.1c.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.4-.3z"/></svg>
+        Let's build your line
       </a>
     </div>
-  </nav>
-
-  <!-- HERO BANNER -->
-  <section class="hero">
-    <div class="hero-inner">
-      <picture>
-        <source media="(min-width:900px)" srcset="hero-img-desktop.webp">
-        <img class="hero-img" src="hero-img.webp" alt="Terraloma boots" loading="lazy" decoding="async">
-      </picture>
-      <div class="hero-overlay">
-        <h2 class="hero-headline">Western is<br>taking over.</h2>
-      </div>
-    </div>
   </section>
 
-  <!-- WHY NOW -->
-  <section class="whynow">
-    <div class="whynow-inner">
-      <h2 class="whynow-title" data-rv="lines">Why now?</h2>
-      <p class="whynow-text" data-rv="lines">The people winning right now started when it still felt too early. The ones still "thinking about it" are watching them win.</p>
-      <div class="whynow-label" data-rv="lines">Those who have already started</div>
-    </div>
-    <!-- full-bleed: sits outside the centred column so it runs edge to edge -->
-    <div class="ticker" data-rv="up" aria-label="Resellers already selling Terraloma">
-      <div class="ticker-track">
-          <figure class="ticker-item"><img src="pr1.webp" alt="" loading="lazy" decoding="async"></figure>
-          <figure class="ticker-item"><img src="pr2.webp" alt="" loading="lazy" decoding="async"></figure>
-          <figure class="ticker-item"><img src="win.webp" alt="A reseller's wholesale order, delivered" loading="lazy" decoding="async"></figure>
-          <figure class="ticker-item"><img src="pr3.webp" alt="" loading="lazy" decoding="async"></figure>
-          <figure class="ticker-item"><img src="pr4.webp" alt="" loading="lazy" decoding="async"></figure>
-          <figure class="ticker-item"><img src="pr5.webp" alt="" loading="lazy" decoding="async"></figure>
-          <!-- duplicated set keeps the loop seamless -->
-          <figure class="ticker-item" aria-hidden="true"><img src="pr1.webp" alt="" loading="lazy" decoding="async"></figure>
-          <figure class="ticker-item" aria-hidden="true"><img src="pr2.webp" alt="" loading="lazy" decoding="async"></figure>
-          <figure class="ticker-item" aria-hidden="true"><img src="win.webp" alt="" loading="lazy" decoding="async"></figure>
-          <figure class="ticker-item" aria-hidden="true"><img src="pr3.webp" alt="" loading="lazy" decoding="async"></figure>
-          <figure class="ticker-item" aria-hidden="true"><img src="pr4.webp" alt="" loading="lazy" decoding="async"></figure>
-          <figure class="ticker-item" aria-hidden="true"><img src="pr5.webp" alt="" loading="lazy" decoding="async"></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- SAME MARKET / DIFFERENT GAME — letters scatter & assemble on scroll -->
-  <section class="scatter" id="scatter">
-    <h2 class="scatter-text" data-scatter>Same market. Different game.</h2>
-  </section>
-
-  <!-- THE MATH -->
-  <section class="math math--dark math--flip">
-    <div class="math-inner">
-      <figure class="math-figure" data-rv="up">
-        <img src="case.webp" alt="A reseller's case of Terraloma boots, ready to sell" loading="lazy" decoding="async">
-      </figure>
-      <div class="math-copy">
-        <h2 class="math-title">
-          <span class="mt-sans" data-rv="lines">Your first 5 sales pay for</span>
-          <span class="mt-serif" data-rv="lines">the whole case.</span>
-        </h2>
-        <p class="math-text" data-rv="lines">One case is $1,176. At $250 a pair, you're in profit before you've sold half. Most resellers move their first case in weeks, not months — this isn't a slow burn.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- DEMAND -->
-  <section class="math math--dark">
-    <div class="math-inner">
-      <figure class="math-figure" data-rv="up">
-        <img src="demand.webp" alt="Exotic leather boots worn beside a Lamborghini" loading="lazy" decoding="async">
-      </figure>
-      <div class="math-copy">
-        <h2 class="math-title">
-          <span class="mt-sans" data-rv="lines">Boots people</span>
-          <span class="mt-serif" data-rv="lines">already want.</span>
-        </h2>
-        <p class="math-text" data-rv="lines">You're not creating demand — western is already exploding. You're just the one supplying it. These aren't a gamble sitting on your shelf; they're what customers are actively looking for right now.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- NO OVERHEAD -->
-  <section class="math math--dark math--flip">
-    <div class="math-inner">
-      <figure class="math-figure" data-rv="up">
-        <img src="nostore.webp" alt="Cases of boots loaded in a pickup truck bed" loading="lazy" decoding="async">
-      </figure>
-      <div class="math-copy">
-        <h2 class="math-title">
-          <span class="mt-sans" data-rv="lines">No store. No staff.</span>
-          <span class="mt-serif" data-rv="lines">No warehouse.</span>
-        </h2>
-        <p class="math-text" data-rv="lines">Sell from your phone, your car, a market stand, or online. We produce, we handle customs, we ship to your door. You focus on the one thing that makes money — selling.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- GENDER TABS -->
-  <div class="gender-bar">
-    <button class="gender-tab active" data-gender="men" onclick="setGender(this)">Men</button>
-    <button class="gender-tab" data-gender="women" onclick="setGender(this)">Women</button>
-  </div>
-
-  <!-- SHOP BAR -->
-  <div class="shopbar" id="shop">
-    <div>
-      <h2 data-rv="lines">Shop the Collection</h2>
-      <p id="resultCount"></p>
-    </div>
-    <div class="filters" id="filters"></div>
-  </div>
-
-  <!-- PRODUCT GRID -->
-  <div class="grid" id="grid"></div>
-
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-logo" data-rv="lines">TERRALOMA</div>
-      <div class="footer-contact" data-rv="up">
-        <a href="https://wa.me/524439171366" target="_blank">WhatsApp</a>
-        <a href="mailto:terraloma.distribution@gmail.com">Email</a>
-        <a href="https://instagram.com/terralomamx" target="_blank">@terralomamx</a>
-        <span>León, Guanajuato, México</span>
-      </div>
+  <footer>
+    <div class="wrap">
+      <p class="name">TERRALOMA</p>
+      <p class="meta">Private-label boots · León, México<br>
+      <a href="#" data-wa>WhatsApp</a> &nbsp;·&nbsp; <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a></p>
     </div>
   </footer>
-</div>
 
-<!-- ═══════════════ PRODUCT MODAL ═══════════════ -->
-<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
-  <div class="modal" id="modalContent"></div>
-</div>
-
-<!-- ═══════════════ CART DRAWER ═══════════════ -->
-<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
-<aside class="cart-drawer" id="cartDrawer">
-  <div class="cart-head">
-    <h3>Your Order</h3>
-    <button class="cart-close" onclick="closeCart()">×</button>
-  </div>
-  <div class="cart-items" id="cartItems"></div>
-  <div class="cart-foot">
-    <div class="cart-total-row">
-      <span class="cart-total-label">Your Cost</span>
-      <span class="cart-total-val" id="cartTotal">$0</span>
-    </div>
-    <div class="cart-profit-row" id="cartProfit" style="display:none">
-      <span class="cart-profit-label">Potential Profit</span>
-      <span class="cart-profit-val">+$0</span>
-    </div>
-    <p class="cart-note">Resale values are estimates for the US retail market. Final pricing and stock confirmed by Terraloma on WhatsApp.</p>
-    <button class="cart-send" id="cartSend" onclick="sendOrder()" disabled>
-      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
-      Send Order via WhatsApp
-    </button>
-  </div>
-</aside>
-
+  <a class="float" href="#" data-wa aria-label="Message us on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.6 15l-1.4 5 5.1-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.6-6c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5 0a6.5 6.5 0 01-1.9-1.2 7.2 7.2 0 01-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.4c0-.1-.6-1.5-.8-2s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.9 11.9 0 004.6 4c.6.3 1.1.4 1.5.6a3.6 3.6 0 001.6.1c.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.4-.3z"/></svg>
+    <span>WhatsApp</span>
+  </a>
 
 <script>
-/* ═══════════════ 1) WHATSAPP ═══════════════ */
-const WHATSAPP = "524439171366";
+  var WA_NUMBER = "5214771234567"; // <-- your WhatsApp number
+  var WA_TEXT   = "Hi Terraloma — I saw the catalogue and I'd like to build a line for my brand.";
+  var waURL = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(WA_TEXT);
+  document.querySelectorAll('[data-wa]').forEach(function(a){a.href=waURL;a.target="_blank";a.rel="noopener";});
 
-/* ═══════════════ 3) MODELS ═══════════════
-   One simple price per pair. For each boot:
-     id, name, material, type(exotic/embossed), tag+color, img, desc,
-     sizes[], price (single wholesale price per pair)  */
-const MODELS = [
-  { id:"m1", name:"The Lone Star", material:"Embossed · Crocodile Print",
-    type:"embossed", tag:"Crocodile", tagColor:"#B8922A", img:"m1.webp",
-    desc:"Cowboy boot crafted from black embossed alligator-skin textured mule leather. The shaft features a large overlapping central star and star details. Wide square last. Leather lining.", price:84 },
-  { id:"m2", name:"The Patriot", material:"Embossed · Python Print",
-    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"m2.webp",
-    desc:"Python leather cowboy boot with silver star on the shaft and flag-style perforations. Wide square western last.", price:84 },
-  { id:"m3", name:"The Ranger", material:"Embossed · Python Print",
-    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"m3.webp",
-    desc:"Honey brown cowboy boot in python leather with a wine/dark brown shaft, embroidered star and flag-style perforations. Wide square western last.", price:84 },
-  { id:"m4", name:"The Maverick", material:"Embossed · Pirarucu Print",
-    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"m4.webp",
-    desc:"Honey cowboy boot in chinela leather with pirarucu print, brown shaft with star perforations and a black star embroidered with flag design. Wide square western last.", price:84 },
-  { id:"m5", name:"The Outlaw", material:"Embossed · Pirarucu Print",
-    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"m5.webp",
-    desc:"Black cowboy boot in chinela leather with pirarucu print, black shaft with star perforations and a black star embroidered with flag design. Wide square western last.", price:84 },
-  { id:"m6", name:"The Durango", material:"Embossed · Python Print",
-    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"m6.webp",
-    desc:"Dark brown boot in chinela leather with python print and gold/brown floral embossed embroidery. Wide square western last.", price:84 },
-  { id:"m7", name:"The Rebel", material:"Embossed · Ostrich Print",
-    type:"embossed", tag:"Ostrich", tagColor:"#B8922A", img:"m7.webp",
-    desc:"Red and black boot in chinela leather with ostrich print and a distressed red flag-style star. Wide square western last.", price:84 },
-  { id:"m8", name:"The Marshal", material:"Embossed · Stingray Print",
-    type:"embossed", tag:"Stingray", tagColor:"#B8922A", img:"m8.webp",
-    desc:"Black boot in chinela leather with stingray print, black shaft with star perforations and a black star embroidered with flag design. Wide square western last.", price:84 },
-  { id:"m9", name:"The Drifter", material:"Embossed · Pirarucu Print",
-    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"m9.webp",
-    desc:"Black pirarucu print leather boot with matching black shaft featuring tonal grey floral embroidery. Wide square western toe.", price:84 },
-  { id:"m10", name:"The Nomad", material:"Embossed · Ostrich Print",
-    type:"embossed", tag:"Ostrich", tagColor:"#B8922A", img:"m10.webp",
-    desc:"Black ostrich print leather boot with matching black shaft featuring tonal grey floral embroidery. Wide square western toe.", price:84 },
-  { id:"m11", name:"The Rancher", material:"Embossed · Crocodile Print",
-    type:"embossed", tag:"Crocodile", tagColor:"#B8922A", img:"m11.webp",
-    desc:"Cowboy boot crafted from black embossed alligator-skin textured mule leather, with matching brown shaft featuring tonal brown floral embroidery. Wide square western toe.", price:84 },
-  { id:"m12", name:"The Mesa", material:"Embossed · Crocodile Print",
-    type:"embossed", tag:"Crocodile", tagColor:"#B8922A", img:"m12.webp",
-    desc:"Tan caiman tail print leather boot with brown shaft featuring cream and tan Native American-inspired arrow and geometric embroidery. Wide square western toe.", price:84 },
-  { id:"m13", name:"The Wrangler", material:"Embossed · Pirarucu Print",
-    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"m13.webp",
-    desc:"Brown cowboy boot in chinela leather with pirarucu print, brown shaft with star perforations and a black star embroidered with flag design. Wide square western last.", price:84 },
-  { id:"mm1", name:"The Cavalier", material:"Embossed · Crocodile Print",
-    type:"embossed", tag:"Crocodile", tagColor:"#B8922A", img:"mm1.webp",
-    desc:"Honey tan crocodile print leather boot with black patent shaft featuring embossed star and flag perforations. Wide square western toe.", price:84 },
-  { id:"mm2", name:"The Vaquero", material:"Embossed · Ostrich Print",
-    type:"embossed", tag:"Ostrich", tagColor:"#B8922A", img:"mm2.webp",
-    desc:"Cognac boot in chinela leather with ostrich print and a distressed red flag-style star. Wide square western last.", price:84 },
-  { id:"mm3", name:"The Sundance", material:"Embossed · Python Print",
-    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"mm3.webp",
-    desc:"Black and grey cowboy boot in python leather with embroidered star and flag-style perforations. Wide square western last.", price:84 },
-  { id:"mm4", name:"The Bronco", material:"Embossed · Python Print",
-    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"mm4.webp",
-    desc:"Black and honey cowboy boot in python leather with embroidered star and flag-style perforations. Wide square western last.", price:84 },
-  { id:"mm5", name:"The Prospector", material:"Embossed · Pirarucu Print",
-    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"mm5.webp",
-    desc:"Gold and black pirarucu print leather boot with dark brown shaft featuring copper/bronze floral embroidery and a tooled leather top. Wide square western toe.", price:84 },
-  { id:"mm6", name:"The Trailblazer", material:"Embossed · Ostrich Print",
-    type:"embossed", tag:"Ostrich", tagColor:"#B8922A", img:"mm6.webp",
-    desc:"Brown boot in chinela leather with ostrich print, dark brown shaft featuring copper/bronze floral embroidery and a tooled leather top. Wide square western toe.", price:84 },
-  { id:"mm7", name:"The Cimarron", material:"Embossed · Pirarucu Print",
-    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"mm7.webp",
-    desc:"Dark brown pirarucu print leather boot with burgundy shaft featuring cream/red floral embroidery and diamond pattern inlay. Wide square western toe.", price:84 },
-  { id:"mm8", name:"The Stockman", material:"Embossed · Ostrich Print",
-    type:"embossed", tag:"Ostrich", tagColor:"#B8922A", img:"mm8.webp",
-    desc:"Dark brown ostrich print leather boot with matching shaft featuring cream and brown floral embroidery and diamond pattern inlay. Wide square western toe.", price:84 },
-  { id:"mm9", name:"The Saddle", material:"Embossed · Python Print",
-    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"mm9.webp",
-    desc:"Brown cowboy boot in python leather with matching shaft featuring cream and brown floral embroidery and diamond pattern inlay. Wide square western toe.", price:84 },
-  { id:"mm10", name:"The Crimson", material:"Embossed · Crocodile Print",
-    type:"embossed", tag:"Crocodile", tagColor:"#B8922A", img:"mm10.webp",
-    desc:"Black crocodile print leather boot with black shaft featuring bold red floral embroidery and diamond pattern inlay. Wide square western toe.", price:84 },
-  { id:"mm11", name:"The Renegade", material:"Embossed · Python Print",
-    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"mm11.webp",
-    desc:"Red and black cowboy boot in python leather with matching shaft featuring black and red floral embroidery and diamond pattern inlay. Wide square western toe.", price:84 },
-  { id:"mm12", name:"The Cobalt", material:"Embossed · Python Print",
-    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"mm12.webp",
-    desc:"Blue and black cowboy boot in python leather with matching shaft featuring black and blue floral embroidery and diamond pattern inlay. Wide square western toe.", price:84 },
-  { id:"mm13", name:"The Frontier", material:"Embossed · Crocodile Print",
-    type:"embossed", tag:"Crocodile", tagColor:"#B8922A", img:"mm13.webp",
-    desc:"Brown tan crocodile print leather boot with black patent shaft featuring embossed star and flag perforations. Wide square western toe.", price:84 },
-  { id:"mm14", name:"The Goldrush", material:"Embossed · Python Print",
-    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"mm14.webp",
-    desc:"Honey cowboy boot in python leather with matching shaft featuring honey floral embroidery and diamond pattern inlay. Wide square western toe.", price:84 },
-  { id:"mm15", name:"The Wanderer", material:"Embossed · Pirarucu Print",
-    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"mm15.webp",
-    desc:"Brown pirarucu print leather boot with matching black shaft featuring tonal grey floral embroidery. Wide square western toe.", price:84 },
-  { id:"mm16", name:"The Domino", material:"Embossed · Pirarucu Print",
-    type:"embossed", tag:"Pirarucu", tagColor:"#B8922A", img:"mm16.webp",
-    desc:"Black and white pirarucu print leather boot with matching black shaft featuring tonal grey floral embroidery. Wide square western toe.", price:84 },
-  { id:"mm17", name:"The Weaver", material:"Woven Leather",
-    type:"embossed", tag:"Woven Leather", tagColor:"#B8922A", img:"mm17.webp",
-    desc:"Black and burgundy woven leather boot with cognac shaft featuring star perforations, embossed star and distressed flag design. Wide square western toe.", price:84 },
-  { id:"mm18", name:"The Pueblo", material:"Embossed · Python Print",
-    type:"embossed", tag:"Python", tagColor:"#B8922A", img:"mm18.webp",
-    desc:"Natural white python print leather boot with black shaft featuring cream and rust Native American-inspired arrow and geometric embroidery. Wide square western toe.", price:84 },
+  var hdr=document.getElementById('hdr');
+  window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
 
-  /* ── WOMEN ── */
-  { id:"w1", name:"The Rosa", material:"Suede Leather", gender:"women",
-    type:"suede", tag:"Suede", tagColor:"#1B2A4A", img:"mujr1.webp",
-    desc:"Pink suede knee-high women's boot with tonal floral embroidery and dramatic side fringe. Snip toe.", price:120 },
-  { id:"w2", name:"The Sienna", material:"Suede Leather", gender:"women",
-    type:"suede", tag:"Suede", tagColor:"#1B2A4A", img:"mujr2.webp",
-    desc:"Brown women's boot with tonal stitch embroidery and stacked heel. Snip toe.", price:115 },
-  { id:"w3", name:"The Dahlia", material:"Suede Leather", gender:"women",
-    type:"suede", tag:"Suede", tagColor:"#1B2A4A", img:"mujr3.webp",
-    desc:"Pink suede knee-high women's boot with tonal floral embroidery and dramatic side fringe. Snip toe.", price:115 },
-  { id:"w4", name:"The Savannah", material:"Premium Leather", gender:"women",
-    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujr4.webp",
-    desc:"Cognac leather knee-high women's boot with cream floral and zigzag embroidery, tall shaft with fold-over top. Snip toe.", price:120 },
-  { id:"w5", name:"The Magnolia", material:"Premium Leather", gender:"women",
-    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujr5.webp",
-    desc:"Dark chocolate leather knee-high women's boot with tan floral and feather embroidery and crystal stud accents throughout. Snip toe.", price:125 },
-  { id:"w6", name:"The Bluebell", material:"Premium Leather", gender:"women",
-    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujr6.webp",
-    desc:"Blue denim knee-high women's boot with white western embroidery and fold-over top. Snip toe.", price:120 },
-  { id:"w7", name:"The Pearl", material:"Premium Leather", gender:"women",
-    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujr7.webp",
-    desc:"Pearl white leather knee-high women's boot with light blue western embroidery. Snip toe.", price:120 },
-  { id:"w8", name:"The Champagne", material:"Premium Leather", gender:"women",
-    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujr8.webp",
-    desc:"Champagne gold metallic leather knee-high women's boot with tonal western embroidery and lavender interior lining. Snip toe.", price:125 },
-  { id:"w9", name:"The Emerald", material:"Premium Leather", gender:"women",
-    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj1.webp",
-    desc:"Forest green leather women's boot with emerald green and white zigzag western embroidery. Snip toe.", price:115 },
-  { id:"w10", name:"The Onyx", material:"Premium Leather", gender:"women",
-    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj2.webp",
-    desc:"Black leather women's boot with full tonal hand-tooled floral pattern covering the entire shaft and vamp. Snip toe.", price:115 },
-  { id:"w11", name:"The Camellia", material:"Suede Leather", gender:"women",
-    type:"suede", tag:"Suede", tagColor:"#1B2A4A", img:"mujj3.webp",
-    desc:"Pink suede women's boot with tonal floral embroidery and dramatic side fringe. Snip toe.", price:110 },
-  { id:"w12", name:"The Daisy", material:"Premium Leather", gender:"women",
-    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj4.webp",
-    desc:"Tan leather women's boot with bold white floral western embroidery covering the full shaft. Snip toe.", price:120 },
-  { id:"w13", name:"The Carmen", material:"Premium Leather", gender:"women",
-    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj5.webp",
-    desc:"Black leather over-the-knee women's boot with tonal floral embroidery, silver stud accents and red sole. Snip toe.", price:125 },
-  { id:"w14", name:"The Indigo", material:"Premium Leather", gender:"women",
-    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj6.webp",
-    desc:"Blue denim women's boot with cream western embroidery, crystal stud accents and white piping detail. Snip toe.", price:115 },
-  { id:"w15", name:"The Violeta", material:"Suede Leather", gender:"women",
-    type:"suede", tag:"Suede", tagColor:"#1B2A4A", img:"mujj7.webp",
-    desc:"Fuchsia suede women's boot with tonal floral embroidery, crystal stud accents and white piping detail. Snip toe.", price:115 },
-  { id:"w16", name:"The Turquesa", material:"Metallic Leather", gender:"women",
-    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj8.webp",
-    desc:"Metallic turquoise leather women's boot with silver western embroidery and white piping detail. Snip toe.", price:115 },
-  { id:"w17", name:"The Frida", material:"Metallic Leather", gender:"women",
-    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj9.webp",
-    desc:"Metallic fuchsia leather women's boot with silver western embroidery and white piping detail. Snip toe.", price:115 },
-  { id:"w18", name:"The Flamingo", material:"Premium Leather", gender:"women",
-    type:"leather", tag:"Leather", tagColor:"#1B2A4A", img:"mujj10.webp",
-    desc:"Hot pink leather knee-high women's boot with tonal western embroidery and white piping detail. Snip toe.", price:120 },
-  { id:"w19", name:"The Amapola", material:"Suede Leather", gender:"women",
-    type:"suede", tag:"Suede", tagColor:"#1B2A4A", img:"mujj11.webp",
-    desc:"Red suede women's boot with tonal floral embroidery and dramatic side fringe. Snip toe.", price:110 }
-];
-
-/* ═══════════════ STATE ═══════════════ */
-let currentGender='men';
-let currentMaterial='all';
-const FILTERS={
-  men:[['all','All'],['embossed','Embossed']],
-  women:[['all','All'],['suede','Suede'],['leather','Leather']]
-};
-/* Resale value per pair, by leather/print (used to show reseller profit in the cart) */
-const RESELL={
-  'Pirarucu':[170,250],
-  'Crocodile':[150,230],
-  'Python':[140,210],
-  'Ostrich':[130,190],
-  'Stingray':[130,190],
-  'Woven Leather':[120,180]
-};
-/* Promo banners woven into the grid (shown only on the "All" view) */
-const PROMOS=[
-  { gender:'men', after:5, img:'foto4.webp',
-    title:'Straight From the Workshop',
-    text:'Every pair is cut, lasted, and stitched by hand in León, Guanajuato — the leather capital of the Americas.',
-    btn:'Shop the Collection', link:'#shop' },
-  { gender:'men', after:14, img:'foto2.webp',
-    title:'Exotic Looks, Wholesale Prices',
-    text:'Python, crocodile, ostrich and pirarucu prints — the styles that sell fastest, at factory-direct cost.',
-    btn:'Browse Models', link:'#shop' },
-  { gender:'men', after:23, img:'foto1.webp',
-    title:'In Stock, Ready to Ship',
-    text:'Deep inventory across every style. Your wholesale order ships from León within days, not months.',
-    btn:'Place Your Order', link:'wa' },
-  { gender:'women', after:8, img:'foto3.webp',
-    title:'We Ship Across the U.S.',
-    text:'From León straight to your door. We handle customs, freight and tracking — you just sell.',
-    btn:'Start Your Order', link:'wa' }
-];
-
-/* ═══════════════ ENTRY ═══════════════ */
-/* Skip the splash if they already entered during this session */
-if (sessionStorage.getItem('tl_auth')==='ok'){ unlock(); }
-
-function enterStore(){
-  sessionStorage.setItem('tl_auth','ok');
-  const gate=document.getElementById('gate');
-  gate.classList.add('leaving');          // fade the splash out
-  setTimeout(unlock, 450);
-}
-function unlock(){
-  document.getElementById('gate').style.display='none';
-  document.getElementById('app').style.display='block';
-  renderFilters();
-  renderProducts();
-  initReveal();      // split static section text into masked lines
-  buildScatter();    // split the scatter headline into letters
-  revealInView();    // reveal whatever is already on screen
-  scatterProgress();
-}
-
-/* ═══════════════ PRICE HELPERS ═══════════════ */
-function unitPrice(m){ return m.price; }
-
-/* ═══════════════ RENDER GRID ═══════════════ */
-function productCard(m){
-  return `
-    <div class="product" onclick="openModal('${m.id}')">
-      <div class="product-img">
-        <span class="product-tag" style="background:${m.tagColor}">${m.tag}</span>
-        <img src="${m.img}" alt="${m.name}" onerror="this.style.display='none'" loading="lazy" decoding="async">
-      </div>
-      <div class="product-info">
-        <div class="product-name">${m.name}</div>
-        <div class="product-price">$${m.price} <small>/ pair</small></div>
-        ${(m.gender!=='women' && RESELL[m.tag]) ? `<div class="product-resell">Resells $${RESELL[m.tag][0]}–${RESELL[m.tag][1]}</div>` : ''}
-        <div class="product-meta">${m.material}</div>
-      </div>
-    </div>`;
-}
-function promoBanner(p){
-  const href = p.link==='wa'
-    ? `https://wa.me/${WHATSAPP}?text=Hi%20Terraloma%2C%20I'd%20like%20to%20place%20a%20wholesale%20order.`
-    : p.link;
-  const target = p.link==='wa' ? ' target="_blank"' : '';
-  return `
-    <div class="promo" style="background-image:url('${p.img}')">
-      <div class="promo-content">
-        <h3 class="promo-title" data-rv="lines">${p.title}</h3>
-        <p class="promo-text" data-rv="lines">${p.text}</p>
-        <a class="promo-btn" data-rv="up" href="${href}"${target}>${p.btn}</a>
-      </div>
-    </div>`;
-}
-function renderProducts(){
-  const grid=document.getElementById('grid');
-  const list=MODELS.filter(m=>(m.gender||'men')===currentGender && (currentMaterial==='all'||m.type===currentMaterial));
-  document.getElementById('resultCount').textContent=list.length+" models available";
-  if(list.length===0){
-    grid.innerHTML='<div style="grid-column:1/-1;padding:80px 20px;text-align:center;color:var(--col-mute)">No models in this category yet.</div>';
-    return;
-  }
-  const promos = currentMaterial==='all' ? PROMOS.filter(p=>p.gender===currentGender) : [];
-  let html='';
-  list.forEach((m,i)=>{
-    html+=productCard(m);
-    promos.filter(p=>p.after===i).forEach(p=>{ html+=promoBanner(p); });
-  });
-  grid.innerHTML=html;
-  animateGridItems();
-  initReveal(grid);   // promo banners are re-created on every render
-  revealInView();
-}
-
-/* ═══════════════ LINE-MASK REVEAL ═══════════════
-   Splits [data-rv="lines"] text into visual lines, each wrapped in a mask,
-   so the copy rises line by line. [data-rv="up"] just fades + rises. */
-function splitIntoLines(el){
-  if(el.dataset.rvReady==='1') return;
-  const text=el.textContent.replace(/\s+/g,' ').trim();
-  if(!text) return;
-  el.dataset.rvText=text;                       // keep the original for re-splitting
-  // 1) wrap every word so we can read its vertical position
-  el.innerHTML=text.split(' ').map(w=>'<span class="rv-w">'+w+'</span>').join(' ');
-  const words=Array.from(el.querySelectorAll('.rv-w'));
-  // 2) group words that share the same top → same visual line
-  const lines=[]; let cur=[], lastTop=null;
-  words.forEach(w=>{
-    const top=Math.round(w.offsetTop);
-    if(lastTop===null||Math.abs(top-lastTop)<4){ cur.push(w.textContent); }
-    else { lines.push(cur); cur=[w.textContent]; }
-    lastTop=top;
-  });
-  if(cur.length) lines.push(cur);
-  // 3) rebuild: one mask per line (trailing space keeps copy/paste + screen
-  //    readers correct, since each line is its own block)
-  el.innerHTML=lines.map((words,i)=>
-    '<span class="rv-line"><span class="rv-in" style="--ld:'+(i*110)+'ms">'+
-    words.join(' ')+(i<lines.length-1?' ':'')+'</span></span>'
-  ).join('');
-  el.dataset.rvReady='1';
-}
-
-/* Re-split every [data-rv="lines"] element (line breaks change with width) */
-function resplitLines(){
-  document.querySelectorAll('[data-rv="lines"][data-rv-ready="1"]').forEach(el=>{
-    const wasOn=el.classList.contains('rv-on');
-    el.dataset.rvReady='0';
-    el.textContent=el.dataset.rvText||el.textContent;
-    splitIntoLines(el);
-    if(wasOn) el.classList.add('rv-on');
-  });
-  revealInView();
-}
-
-function initReveal(root){
-  (root||document).querySelectorAll('[data-rv="lines"]').forEach(splitIntoLines);
-  (root||document).querySelectorAll('[data-rv="up"]').forEach(el=>el.classList.add('rv-up'));
-}
-
-/* Re-split when the width changes. Width is polled as well as event-driven,
-   because some webviews don't fire resize reliably. */
-let _rvResize, _rvLastWidth=window.innerWidth;
-function onWidthChange(){
-  if(window.innerWidth===_rvLastWidth) return;
-  _rvLastWidth=window.innerWidth;
-  clearTimeout(_rvResize);
-  _rvResize=setTimeout(resplitLines,220);
-}
-window.addEventListener('resize', onWidthChange, {passive:true});
-setInterval(onWidthChange, 600);
-
-/* ── Scroll-in checks (grid cards + reveal elements) ── */
-function revealInView(){
-  const vh=window.innerHeight;
-  /* At the very bottom, elements below the trigger line can never rise any
-     further — so accept anything inside the viewport instead. */
-  const atBottom=(window.scrollY+vh)>=(document.body.scrollHeight-4);
-  // product cards / promos
-  document.querySelectorAll('#grid .anim-in:not(.visible)').forEach(el=>{
-    const t=el.getBoundingClientRect().top;
-    if(t < vh*0.92 || (atBottom && t < vh)){ el.classList.add('visible'); }
-  });
-  // line-mask + rise reveals
-  document.querySelectorAll('[data-rv]:not(.rv-on)').forEach(el=>{
-    const t=el.getBoundingClientRect().top;
-    if(t < vh*0.88 || (atBottom && t < vh)){ el.classList.add('rv-on'); }
-  });
-}
-/* ═══════════════ SCATTER HEADLINE ═══════════════
-   Splits the line into letters, each given a random offset + rotation.
-   Scrolling drives --p from 1 (scattered) down to 0 (assembled). */
-function buildScatter(){
-  document.querySelectorAll('[data-scatter]').forEach(el=>{
-    if(el.dataset.scReady==='1') return;
-    const words=el.textContent.trim().split(/\s+/);
-    // Letters are grouped per word so a word never breaks across two lines.
-    el.innerHTML=words.map(word=>
-      '<span class="sc-word">'+[...word].map(ch=>{
-        const tx=(Math.random()*2-1)*46;
-        const ty=(Math.random()*2-1)*40;
-        const rot=(Math.random()*2-1)*75;
-        return '<span class="sc-ch" style="--tx:'+tx.toFixed(1)+'vw;--ty:'+ty.toFixed(1)+
-               'vh;--rot:'+rot.toFixed(1)+'deg">'+ch+'</span>';
-      }).join('')+'</span>'
-    ).join(' ');
-    el.dataset.scReady='1';
-  });
-}
-
-function scatterProgress(){
-  const sec=document.getElementById('scatter');
-  if(!sec) return;
-  const vh=window.innerHeight, r=sec.getBoundingClientRect();
-  if(r.bottom<-200 || r.top>vh+200) return;          // far off-screen: skip
-  // 1 while the section is entering, 0 once it's settled near the middle
-  let p=(r.top-vh*0.10)/(vh*0.72);
-  p=Math.max(0,Math.min(1,p));
-  sec.style.setProperty('--p', p.toFixed(3));
-}
-
-/* ── Photo parallax in the three story sections ──
-   The frame is measured (never transformed) and the oversized photo inside
-   drifts, so the reading can't feed back into itself. */
-function mathParallax(){
-  const vh=window.innerHeight;
-  document.querySelectorAll('.math-figure').forEach(fig=>{
-    const r=fig.getBoundingClientRect();
-    if(r.bottom<0 || r.top>vh) return;               // off-screen: skip
-    let p=((vh-r.top)/(vh+r.height))*2-1;            // -1 → 1 across the viewport
-    p=Math.max(-1,Math.min(1,p));
-    const img=fig.querySelector('img');
-    if(img) img.style.setProperty('--py',(-p*8).toFixed(2)+'%');
-  });
-}
-
-function onFrame(){ revealInView(); scatterProgress(); mathParallax(); }
-window.addEventListener('scroll', onFrame, {passive:true});
-window.addEventListener('resize', onFrame, {passive:true});
-/* Safety net: some browsers/webviews miss scroll events — a light interval
-   keeps reveals and the scatter in sync. */
-setInterval(onFrame, 100);
-
-function animateGridItems(){
-  const items=document.querySelectorAll('#grid .product, #grid .promo');
-  items.forEach((el,i)=>{
-    el.classList.add('anim-in');
-    el.style.setProperty('--d',(i%3)*70+'ms'); // stagger per row position
-  });
-  revealInView(); // reveal whatever is already on screen
-}
-
-/* ── Fade the grid when swapping views ── */
-function swapGrid(renderFn){
-  const grid=document.getElementById('grid');
-  grid.classList.add('swapping');
-  setTimeout(()=>{ renderFn(); grid.classList.remove('swapping'); },220);
-}
-
-function renderFilters(){
-  document.getElementById('filters').innerHTML=FILTERS[currentGender].map(f=>
-    `<button class="filter-btn${f[0]===currentMaterial?' active':''}" data-filter="${f[0]}" onclick="setFilter(this)">${f[1]}</button>`
-  ).join('');
-}
-function setFilter(btn){
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  currentMaterial=btn.dataset.filter;
-  swapGrid(renderProducts);
-}
-function setGender(btn){
-  document.querySelectorAll('.gender-tab').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  currentGender=btn.dataset.gender;
-  currentMaterial='all';
-  renderFilters();
-  swapGrid(renderProducts);
-}
-
-/* ═══════════════ PRODUCT MODAL ═══════════════ */
-function openModal(id){
-  const m=MODELS.find(x=>x.id===id);
-  document.getElementById('modalContent').innerHTML=`
-    <div class="modal-img"><img src="${m.img}" alt="${m.name}" onerror="this.style.display='none'" loading="lazy" decoding="async"></div>
-    <div class="modal-info">
-      <button class="modal-close" onclick="closeModal()">×</button>
-      <div class="modal-material">${m.material}</div>
-      <div class="modal-name">${m.name}</div>
-      <p class="modal-desc">${m.desc}</p>
-      <div class="modal-price-big">$${m.price} <span>/ pair · MOQ 14</span></div>
-      <div class="modal-controls">
-        <div class="mc-group">
-          <label class="mc-label">Number of pairs</label>
-          <input class="mc-qty" id="m-qty" type="number" min="14" value="14">
-        </div>
-      </div>
-      <p class="modal-size-note">Size assortment is arranged with you directly on WhatsApp after your order.</p>
-      <button class="modal-add" id="m-add" onclick="addToCart('${m.id}')">Add to Order</button>
-    </div>`;
-  document.getElementById('modalOverlay').classList.add('open');
-}
-function closeModal(){ document.getElementById('modalOverlay').classList.remove('open'); }
-
-/* ═══════════════ CART ═══════════════ */
-let cart=[];
-const MIN_PAIRS=14;
-function addToCart(id){
-  const m=MODELS.find(x=>x.id===id);
-  const input=document.getElementById('m-qty');
-  let qty=parseInt(input.value)||MIN_PAIRS;
-  if(qty<MIN_PAIRS){ qty=MIN_PAIRS; input.value=MIN_PAIRS; }
-  const ex=cart.find(i=>i.id===id);
-  if(ex){ ex.qty+=qty; } else { cart.push({id,name:m.name,qty,img:m.img,model:m}); }
-  const btn=document.getElementById('m-add');
-  btn.textContent='Added ✓'; btn.classList.add('added');
-  renderCart();
-  const cc=document.getElementById('cartCount');
-  if(cc){ cc.classList.remove('pop'); void cc.offsetWidth; cc.classList.add('pop'); }
-  setTimeout(()=>{ closeModal(); openCart(); },700);
-}
-function removeItem(idx){ cart.splice(idx,1); renderCart(); }
-function renderCart(){
-  const itemsEl=document.getElementById('cartItems');
-  const countEl=document.getElementById('cartCount');
-  const totalEl=document.getElementById('cartTotal');
-  const sendBtn=document.getElementById('cartSend');
-  const totalPairs=cart.reduce((s,i)=>s+i.qty,0);
-  if(countEl) countEl.textContent=totalPairs;
-  if(cart.length===0){
-    itemsEl.innerHTML='<div class="cart-empty">Your order is empty.<br>Tap a boot to add it to your order.</div>';
-    totalEl.textContent='$0'; sendBtn.disabled=true; return;
-  }
-  let total=0, profitLow=0, profitHigh=0, hasProfit=false;
-  itemsEl.innerHTML=cart.map((i,idx)=>{
-    const up=unitPrice(i.model); const sub=up*i.qty; total+=sub;
-    const r = (i.model.gender!=='women') ? RESELL[i.model.tag] : null;
-    let priceBlock;
-    if(r){
-      const rLow=r[0]*i.qty, rHigh=r[1]*i.qty;
-      const pLow=rLow-sub, pHigh=rHigh-sub;
-      profitLow+=pLow; profitHigh+=pHigh; hasProfit=true;
-      priceBlock=`
-        <div class="cart-item-econ">
-          <div class="econ-row"><span>Your cost</span><strong>$${sub.toLocaleString()}</strong></div>
-          <div class="econ-row"><span>Resale value</span><strong>$${rLow.toLocaleString()} – $${rHigh.toLocaleString()}</strong></div>
-          <div class="econ-row profit"><span>Potential profit</span><strong>+$${pLow.toLocaleString()} – $${pHigh.toLocaleString()}</strong></div>
-        </div>`;
-    } else {
-      priceBlock=`<div class="cart-item-price">Subtotal: <strong>$${sub.toLocaleString()}</strong></div>`;
-    }
-    return `<div class="cart-item">
-      <div class="cart-item-img"><img src="${i.img}" alt="" onerror="this.style.display='none'" loading="lazy" decoding="async"></div>
-      <div class="cart-item-info">
-        <div class="cart-item-name">${i.name}</div>
-        <div class="cart-item-meta">${i.qty} pairs · $${up}/pair</div>
-        ${priceBlock}
-        <button class="cart-item-remove" onclick="removeItem(${idx})">Remove</button>
-      </div></div>`;
-  }).join('');
-  totalEl.textContent='$'+total.toLocaleString();
-  const profitEl=document.getElementById('cartProfit');
-  if(profitEl){
-    if(hasProfit){
-      profitEl.style.display='flex';
-      profitEl.querySelector('.cart-profit-val').textContent='+$'+profitLow.toLocaleString()+' – $'+profitHigh.toLocaleString();
-    } else { profitEl.style.display='none'; }
-  }
-  sendBtn.disabled=false;
-}
-function openCart(){ document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
-function closeCart(){ document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
-function sendOrder(){
-  if(cart.length===0)return;
-  let total=0;
-  let msg="Hi Terraloma, I'd like to place a wholesale order:%0A%0A";
-  cart.forEach(i=>{ const up=unitPrice(i.model); const sub=up*i.qty; total+=sub;
-    msg+=`• ${i.name} — ${i.qty} pairs @ $${up} = $${sub.toLocaleString()}%0A`; });
-  const totalPairs=cart.reduce((s,i)=>s+i.qty,0);
-  msg+=`%0ATotal: ${totalPairs} pairs — Estimated $${total.toLocaleString()}%0A%0APlease confirm stock and final pricing.`;
-  window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,'_blank');
-}
-
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.14,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 </script>
 </body>
 </html>
