@@ -116,6 +116,51 @@
   .reveal.in{opacity:1;transform:none}
   .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+  /* ═══════ VER MÁS MODELOS — botón editorial ═══════ */
+  .more-wrap{text-align:center;margin-top:52px}
+  .more-btn{display:inline-flex;align-items:center;gap:14px;font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;background:transparent;color:var(--espresso);padding:16px 36px;border:1px solid var(--espresso);border-radius:999px;cursor:pointer;transition:background .3s,color .3s,gap .25s}
+  .more-btn svg{width:18px;height:18px;transition:transform .25s}
+  .more-btn:hover{background:var(--espresso);color:var(--bone)}
+  .more-btn:hover svg{transform:translateX(3px)}
+
+  /* ═══════ GALERÍA — editorial, mismo lenguaje que la página ═══════ */
+  .mg{position:fixed;inset:0;z-index:100;background:var(--cream);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .4s cubic-bezier(.2,.6,.2,1),visibility .4s}
+  .mg.is-open{opacity:1;visibility:visible}
+  .mg-header{position:sticky;top:0;z-index:2;background:rgba(242,235,221,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:20px clamp(20px,4vw,52px)}
+  .mg-header-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;max-width:1320px;margin:0 auto}
+  .mg-title{font-family:var(--serif);font-weight:500;font-size:21px;letter-spacing:.22em;text-transform:uppercase;color:var(--espresso);justify-self:start}
+  .mg-tabs{display:inline-flex;gap:0;justify-self:center}
+  .mg-tab{background:transparent;border:none;font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--taupe);padding:12px 24px;cursor:pointer;transition:color .25s;position:relative}
+  .mg-tab::after{content:"";position:absolute;left:24px;right:24px;bottom:4px;height:1px;background:var(--espresso);transform:scaleX(0);transform-origin:center;transition:transform .3s cubic-bezier(.2,.6,.2,1)}
+  .mg-tab.is-active{color:var(--espresso)}
+  .mg-tab.is-active::after{transform:scaleX(1)}
+  .mg-tab:hover{color:var(--espresso)}
+  .mg-close{background:transparent;border:1px solid rgba(36,26,18,.2);width:42px;height:42px;font-size:18px;line-height:1;color:var(--espresso);cursor:pointer;border-radius:50%;transition:background .25s,border-color .25s,transform .25s;justify-self:end;display:inline-flex;align-items:center;justify-content:center}
+  .mg-close:hover{background:var(--espresso);color:var(--bone);border-color:var(--espresso);transform:rotate(90deg)}
+  .mg-body{flex:1;overflow-y:auto;padding:clamp(32px,5vw,72px) clamp(20px,4vw,52px) 72px}
+  .mg-intro{max-width:1320px;margin:0 auto clamp(28px,4vw,44px);text-align:left}
+  .mg-intro .eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);margin:0 0 12px}
+  .mg-intro h3{font-family:var(--serif);font-weight:500;font-size:clamp(28px,4vw,42px);line-height:1.1;color:var(--espresso);margin:0}
+  .mg-count{font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe);margin-top:14px}
+  .mg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;max-width:1320px;margin:0 auto;background:var(--line)}
+  .mg-grid[hidden]{display:none}
+  @media(min-width:640px){.mg-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:900px){.mg-grid{grid-template-columns:repeat(4,1fr)}}
+  @media(min-width:1280px){.mg-grid{grid-template-columns:repeat(5,1fr)}}
+  .mg-cell{background:var(--cream);aspect-ratio:4/5;overflow:hidden;position:relative;cursor:pointer;transition:background .3s}
+  .mg-cell:hover{background:var(--bone)}
+  .mg-cell img{width:100%;height:100%;object-fit:contain;display:block;padding:14%;transition:transform .35s cubic-bezier(.2,.6,.2,1)}
+  .mg-cell:hover img{transform:scale(1.04)}
+  body.mg-locked{overflow:hidden}
+  @media(max-width:620px){
+    .mg-header{padding:14px 18px}
+    .mg-title{font-size:15px;letter-spacing:.18em}
+    .mg-tab{padding:10px 14px;font-size:10px;letter-spacing:.2em}
+    .mg-close{width:36px;height:36px}
+    .mg-intro{margin-bottom:22px}
+    .mg-cell img{padding:10%}
+  }
   /* imágenes reales dentro de swatch / plate / work */
   .swatch,.plate,.work{overflow:hidden;position:relative;background-color:var(--cream)}
   .swatch img,.plate img,.work img{width:100%;height:100%;object-fit:cover;display:block}
@@ -226,6 +271,12 @@
         <div class="cell reveal"><div class="work"><img src="mujj1-cream.png" alt="Finished boot" loading="lazy"></div></div>
         <div class="cell reveal"><div class="work w-mill"><span style="font-family:var(--serif);font-size:18px;color:var(--espresso);line-height:1.25">The Millinery<br><span style="font-size:12px;color:var(--cognac)">partner line</span></span></div></div>
       </div>
+      <div class="more-wrap reveal d2">
+        <button class="more-btn" type="button" onclick="openGallery()">
+          See more models
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M12 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -265,6 +316,100 @@
 
   var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.14,rootMargin:'0px 0px -6% 0px'});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  /* gallery modal — abrir / cerrar / cambiar tab */
+  function openGallery(){
+    document.getElementById('galleryModal').classList.add('is-open');
+    document.getElementById('galleryModal').setAttribute('aria-hidden','false');
+    document.body.classList.add('mg-locked');
+  }
+  function closeGallery(){
+    document.getElementById('galleryModal').classList.remove('is-open');
+    document.getElementById('galleryModal').setAttribute('aria-hidden','true');
+    document.body.classList.remove('mg-locked');
+  }
+  function setGalleryTab(name){
+    document.querySelectorAll('.mg-tab').forEach(function(b){b.classList.toggle('is-active', b.dataset.tab===name);});
+    document.querySelectorAll('.mg-grid').forEach(function(g){g.hidden = g.dataset.section!==name;});
+    var tEl=document.getElementById('mgSectionTitle'), cEl=document.getElementById('mgCount');
+    if(name==='men'){ tEl.textContent='Men collection'; cEl.textContent=document.getElementById('mgMen').children.length+' models'; }
+    else{ tEl.textContent='Women collection'; cEl.textContent=document.getElementById('mgWomen').children.length+' models'; }
+    document.querySelector('.mg-body').scrollTop = 0;
+  }
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeGallery(); });
 </script>
+
+<!-- ══════ GALLERY MODAL ══════ -->
+<div class="mg" id="galleryModal" aria-hidden="true" role="dialog">
+  <div class="mg-header">
+    <div class="mg-header-inner">
+      <div class="mg-title">Terraloma</div>
+      <div class="mg-tabs" role="tablist">
+        <button class="mg-tab is-active" data-tab="men" role="tab" onclick="setGalleryTab('men')">Men</button>
+        <button class="mg-tab" data-tab="women" role="tab" onclick="setGalleryTab('women')">Women</button>
+      </div>
+      <button class="mg-close" onclick="closeGallery()" aria-label="Close">×</button>
+    </div>
+  </div>
+  <div class="mg-body">
+    <div class="mg-intro">
+      <p class="eyebrow">The archive</p>
+      <h3 id="mgSectionTitle">Men collection</h3>
+      <p class="mg-count" id="mgCount">32 models</p>
+    </div>
+    <div class="mg-grid" data-section="men" id="mgMen">
+      <div class="mg-cell"><img src="m1-cream.png" alt="m1" loading="lazy"></div>
+      <div class="mg-cell"><img src="m2-cream.png" alt="m2" loading="lazy"></div>
+      <div class="mg-cell"><img src="m3-cream.png" alt="m3" loading="lazy"></div>
+      <div class="mg-cell"><img src="m4-cream.png" alt="m4" loading="lazy"></div>
+      <div class="mg-cell"><img src="m5-cream.png" alt="m5" loading="lazy"></div>
+      <div class="mg-cell"><img src="m6-cream.png" alt="m6" loading="lazy"></div>
+      <div class="mg-cell"><img src="m7-cream.png" alt="m7" loading="lazy"></div>
+      <div class="mg-cell"><img src="m8-cream.png" alt="m8" loading="lazy"></div>
+      <div class="mg-cell"><img src="m10-cream.png" alt="m10" loading="lazy"></div>
+      <div class="mg-cell"><img src="m11-cream.png" alt="m11" loading="lazy"></div>
+      <div class="mg-cell"><img src="m12-cream.png" alt="m12" loading="lazy"></div>
+      <div class="mg-cell"><img src="m13-cream.png" alt="m13" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm1-cream.png" alt="mm1" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm2-cream.png" alt="mm2" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm3-cream.png" alt="mm3" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm4-cream.png" alt="mm4" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm5-cream.png" alt="mm5" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm6-cream.png" alt="mm6" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm7-cream.png" alt="mm7" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm8-cream.png" alt="mm8" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm9-cream.png" alt="mm9" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm11-cream.png" alt="mm11" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm13-cream.png" alt="mm13" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm14-cream.png" alt="mm14" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm15-cream.png" alt="mm15" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm16-cream.png" alt="mm16" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm17-cream.png" alt="mm17" loading="lazy"></div>
+      <div class="mg-cell"><img src="mm18-cream.png" alt="mm18" loading="lazy"></div>
+      <div class="mg-cell"><img src="boot1-cream.png" alt="boot1" loading="lazy"></div>
+      <div class="mg-cell"><img src="boot2-cream.png" alt="boot2" loading="lazy"></div>
+      <div class="mg-cell"><img src="boot3-cream.png" alt="boot3" loading="lazy"></div>
+      <div class="mg-cell"><img src="boot4-cream.png" alt="boot4" loading="lazy"></div>
+    </div>
+    <div class="mg-grid" data-section="women" id="mgWomen" hidden>
+      <div class="mg-cell"><img src="mujj1-cream.png" alt="mujj1" loading="lazy"></div>
+      <div class="mg-cell"><img src="mujj3-cream.png" alt="mujj3" loading="lazy"></div>
+      <div class="mg-cell"><img src="mujj4-cream.png" alt="mujj4" loading="lazy"></div>
+      <div class="mg-cell"><img src="mujj5-cream.png" alt="mujj5" loading="lazy"></div>
+      <div class="mg-cell"><img src="mujj6-cream.png" alt="mujj6" loading="lazy"></div>
+      <div class="mg-cell"><img src="mujj7-cream.png" alt="mujj7" loading="lazy"></div>
+      <div class="mg-cell"><img src="mujj8-cream.png" alt="mujj8" loading="lazy"></div>
+      <div class="mg-cell"><img src="mujj9-cream.png" alt="mujj9" loading="lazy"></div>
+      <div class="mg-cell"><img src="mujj10-cream.png" alt="mujj10" loading="lazy"></div>
+      <div class="mg-cell"><img src="mujj11-cream.png" alt="mujj11" loading="lazy"></div>
+      <div class="mg-cell"><img src="mujr1-cream.png" alt="mujr1" loading="lazy"></div>
+      <div class="mg-cell"><img src="mujr2-cream.png" alt="mujr2" loading="lazy"></div>
+      <div class="mg-cell"><img src="mujr4-cream.png" alt="mujr4" loading="lazy"></div>
+      <div class="mg-cell"><img src="mujr5-cream.png" alt="mujr5" loading="lazy"></div>
+      <div class="mg-cell"><img src="mujr6-cream.png" alt="mujr6" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
